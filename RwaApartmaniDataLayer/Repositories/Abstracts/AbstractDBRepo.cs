@@ -98,25 +98,147 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //ApartmentReservations
-        private IList<ApartmentPicture> LoadApartmentReservationsRaw()
+        private IList<ApartmentReservation> LoadApartmentReservationsRaw()
         {
-            IList<ApartmentReservation> apartmentOwners = new List<ApartmentReservation>();
+            IList<ApartmentReservation> apartmentReservations = new List<ApartmentReservation>();
 
             var tblApartmentReservations = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentReservations)).Tables[0];
             foreach (DataRow row in tblApartmentReservations.Rows)
             {
-                apartmentOwners.Add(
+                apartmentReservations.Add(
                     new ApartmentReservation
                     {
                         Id = (int)(row[nameof(ApartmentReservation.Id)]),
                         CreatedAt = (DateTime)row[nameof(ApartmentReservation.CreatedAt)],
                         Guid = (Guid)row[nameof(ApartmentReservation.Guid)],
                         ApartmentId = (int)row[nameof(ApartmentReservation.ApartmentId)],
+                        Details = (string)row[nameof(ApartmentReservation.Details)],
+                        UserAddress = (string)row[nameof(ApartmentReservation.UserAddress)],
+                        UserEmail = (string)row[nameof(ApartmentReservation.UserEmail)],
+                        UserId = (int)row[nameof(ApartmentReservation.UserId)],
+                        UserName = (string)row[nameof(ApartmentReservation.UserName)],
+                        UserPhone = (string)row[nameof(ApartmentReservation.UserPhone)],
                     }
                 );
             }
 
-            return apartmentOwners;
+            return apartmentReservations;
+        }
+
+        //ApartmentReview
+        private IList<ApartmentReview> LoadApartmentReviewsRaw()
+        {
+            IList<ApartmentReview> apartmentReviews = new List<ApartmentReview>();
+
+            var tblApartmentReviews = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentReviews)).Tables[0];
+            foreach (DataRow row in tblApartmentReviews.Rows)
+            {
+                apartmentReviews.Add(
+                    new ApartmentReview
+                    {
+                        Id = (int)(row[nameof(ApartmentReview.Id)]),
+                        CreatedAt = (DateTime)row[nameof(ApartmentReview.CreatedAt)],
+                        Guid = (Guid)row[nameof(ApartmentReview.Guid)],
+                        ApartmentId = (int)row[nameof(ApartmentReview.ApartmentId)],
+                        Details = (string)row[nameof(ApartmentReview.Details)],
+                        Stars = (int)row[nameof(ApartmentReview.Stars)],
+                        UserId = (int)row[nameof(ApartmentReview.UserId)],
+                    }
+                );
+            }
+
+            return apartmentReviews;
+        }
+
+        //ApartmentStatus
+        private IList<ApartmentStatus> LoadApartmentStatusRaw()
+        {
+            IList<ApartmentStatus> apartmentStatus = new List<ApartmentStatus>();
+
+            var tblApartmentStatus = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentStatus)).Tables[0];
+            foreach (DataRow row in tblApartmentStatus.Rows)
+            {
+                apartmentStatus.Add(
+                    new ApartmentStatus
+                    {
+                        Id = (int)(row[nameof(ApartmentStatus.Id)]),
+                        Guid = (Guid)row[nameof(ApartmentStatus.Guid)],
+                        Name = (string)row[nameof(ApartmentStatus.Name)],
+                        NameEng = (string)row[nameof(ApartmentStatus.NameEng)],
+                    }
+                );
+            }
+
+            return apartmentStatus;
+        }
+
+        //Cities
+        private IList<City> LoadCitiesRaw()
+        {
+            IList<City> cities = new List<City>();
+
+            var tblCites = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadCities)).Tables[0];
+            foreach (DataRow row in tblCites.Rows)
+            {
+                cities.Add(
+                    new City
+                    {
+                        Id = (int)(row[nameof(City.Id)]),
+                        Guid = (Guid)row[nameof(City.Guid)],
+                        Name = (string)row[nameof(City.Name)],
+                    }
+                );
+            }
+
+            return cities;
+        }
+
+        //Tags
+        private IList<Tag> LoadTagsRaw()
+        {
+            IList<Tag> tags = new List<Tag>();
+
+            var tblTags = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTags)).Tables[0];
+            foreach (DataRow row in tblTags.Rows)
+            {
+                tags.Add(
+                    new Tag
+                    {
+                        Id = (int)(row[nameof(Tag.Id)]),
+                        Guid = (Guid)row[nameof(Tag.Guid)],
+                        Name = (string)row[nameof(Tag.Name)],
+                        CreatedAt = (DateTime)row[nameof(Tag.CreatedAt)],
+                        NameEng = (string)row[nameof(Tag.NameEng)],
+                        TypeId = (int)row[nameof(Tag.TypeId)],
+                    }
+                );
+            }
+
+            return tags;
+        }
+
+        //Tags
+        private IList<TaggedApartment> LoadTaggedApartments()
+        {
+            IList<TaggedApartment> taggedApartments = new List<TaggedApartment>();
+
+            var tblTags = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTaggedApartments)).Tables[0];
+            foreach (DataRow row in tblTags.Rows)
+            {
+                taggedApartments.Add(
+                    new TaggedApartment
+                    {
+                        Id = (int)(row[nameof(TaggedApartment.Id)]),
+                        Guid = (Guid)row[nameof(TaggedApartment.Guid)],
+                        Name = (string)row[nameof(TaggedApartment.Name)],
+                        CreatedAt = (DateTime)row[nameof(TaggedApartment.CreatedAt)],
+                        NameEng = (string)row[nameof(TaggedApartment.NameEng)],
+                        TypeId = (int)row[nameof(TaggedApartment.TypeId)],
+                    }
+                );
+            }
+
+            return taggedApartments;
         }
 
         //Abstract Repo methods

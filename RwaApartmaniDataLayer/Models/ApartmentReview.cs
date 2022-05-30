@@ -16,6 +16,6 @@ namespace RwaApartmaniDataLayer.Models
         public int UserId { get; set; }
         public string Details { get; set; }
         [Range(0, 5)]
-        public int Starts { get; set; }
+        public int Stars { get; set; }
     }
 }
