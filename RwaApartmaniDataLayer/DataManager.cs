@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RwaApartmaniDataLayer
 {
-    public class Class1
+    public class DataManager
     {
     }
 }
