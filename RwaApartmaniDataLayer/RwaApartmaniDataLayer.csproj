@@ -63,12 +63,12 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Abstracts\AbstractDBRepo.cs" />
+    <Compile Include="Repositories\Implementations\DBRepo.cs" />
     <Compile Include="Repositories\Interfaces\IRepo.cs" />
     <Compile Include="Utilities\Parsers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\Factories\" />
-    <Folder Include="Repositories\Implementations\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

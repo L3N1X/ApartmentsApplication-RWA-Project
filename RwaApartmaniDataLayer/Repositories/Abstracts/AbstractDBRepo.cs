@@ -12,7 +12,7 @@ using RwaApartmaniDataLayer.Utilities;
 
 namespace RwaApartmaniDataLayer.Repositories.Abstracts
 {
-    public class AbstractDBRepo : IRepo
+    public abstract class AbstractDBRepo : IRepo
     {
         private static string APARTMENS_CS = ConfigurationManager.ConnectionStrings["apartments"].ConnectionString;
 
@@ -486,200 +486,85 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
 
 
         //Interface methods
-        public User AuthUser(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract User AuthUser(string username, string password);
 
-        public void DeleteApartment(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void DeleteApartment(int id);
 
-        public void DeleteApartmentPicture(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void DeleteApartmentPicture(int id);
 
-        public void DeleteTag(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void DeleteTag(int id);
 
-        public void DeleteTaggedApartment(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void DeleteTaggedApartment(int id);
 
-        public void DeleteUser(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void DeleteUser(int id);
 
-        public void InsertApartment(Apartment apartment)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertApartment(Apartment apartment);
 
-        public void InsertApartmentPicture(ApartmentPicture apartmentPicture)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertApartmentPicture(ApartmentPicture apartmentPicture);
 
-        public void InsertApartmentReservation(ApartmentReservation apartmentReservation)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertApartmentReservation(ApartmentReservation apartmentReservation);
 
-        public void InsertApartmentReview(ApartmentReview apartmentReivew)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertApartmentReview(ApartmentReview apartmentReivew);
 
-        public void InsertApartmentStatus(ApartmentStatus apartmentStatus)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertApartmentStatus(ApartmentStatus apartmentStatus);
 
-        public void InsertCity(City city)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertCity(City city);
 
-        public void InsertTag(Tag tag)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertTag(Tag tag);
 
-        public void InsertTaggedApartment(TaggedApartment taggedApartment)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertTaggedApartment(TaggedApartment taggedApartment);
 
-        public void InsertTagType(TagType tagType)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertTagType(TagType tagType);
 
-        public void InsertUser(User user)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertUser(User user);
 
-        public Apartment LoadApartmentById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract Apartment LoadApartmentById(int id);
 
-        public ApartmentPicture LoadApartmentPictureById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract ApartmentPicture LoadApartmentPictureById(int id);
 
-        public ApartmentReservation LoadApartmentReservationById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract ApartmentReservation LoadApartmentReservationById(int id);
 
-        public ApartmentReview LoadApartmentReviewById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract ApartmentReview LoadApartmentReviewById(int id);
 
-        public IList<ApartmentReview> LoadApartmentReviews()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<ApartmentReview> LoadApartmentReviews();
 
-        public IList<Apartment> LoadApartments()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<Apartment> LoadApartments();
 
-        public IList<ApartmentPicture> LoadApartmentPictures()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<ApartmentPicture> LoadApartmentPictures();
 
-        public IList<ApartmentReservation> LoadApartmentReservations()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<ApartmentReservation> LoadApartmentReservations();
 
-        public IList<ApartmentStatus> LoadApartmentStatus()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<ApartmentStatus> LoadApartmentStatus();
 
-        public ApartmentStatus LoadApartmentStatusById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract ApartmentStatus LoadApartmentStatusById(int id);
 
-        public IList<City> LoadCities()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<City> LoadCities();
 
-        public City LoadCitiyById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract City LoadCitiyById(int id);
 
-        public Tag LoadTagById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract Tag LoadTagById(int id);
 
-        public TaggedApartment LoadTaggedApartmentById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract TaggedApartment LoadTaggedApartmentById(int id);
 
-        public IList<TaggedApartment> LoadTaggedApartments()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<TaggedApartment> LoadTaggedApartments();
 
-        public IList<Tag> LoadTags()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<Tag> LoadTags();
 
-        public TagType LoadTagTypeById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract TagType LoadTagTypeById(int id);
 
-        public IList<TagType> LoadTagTypes()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<TagType> LoadTagTypes();
 
-        public User LoadUserById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract User LoadUserById(int id);
 
-        public IList<User> LoadUsers()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<User> LoadUsers();
 
-        public IList<ApartmentOwner> LoadApartmentOwners()
-        {
-            return LoadApartmentOwnersRaw();
-        }
+        public abstract IList<ApartmentOwner> LoadApartmentOwners();
 
-        public ApartmentOwner LoadApartmentOwnerById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract ApartmentOwner LoadApartmentOwnerById(int id);
 
-        public void InsertApartmentOwner(ApartmentOwner apartmentOwner)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void InsertApartmentOwner(ApartmentOwner apartmentOwner);
+
+        public abstract IList<Apartment> LoadApartments(params Predicate<Apartment>[] filters);
         //Interface methods
     }
 }
