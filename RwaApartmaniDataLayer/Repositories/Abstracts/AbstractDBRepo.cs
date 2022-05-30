@@ -49,9 +49,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
 
             return apartments;
         }
-        internal Apartment LoadApartmentByIdRaw()
+        internal Apartment LoadApartmentByIdRaw(int id)
         {
-            var tblApartments = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentById)).Tables[0];
+            var tblApartments = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentById), id).Tables[0];
             if (tblApartments.Rows.Count == 0) return null;
 
             DataRow row = tblApartments.Rows[0];
@@ -96,9 +96,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return apartmentsPictures;
         }
 
-        internal ApartmentOwner LoadApartmentOwnerByIdRaw()
+        internal ApartmentOwner LoadApartmentOwnerByIdRaw(int id)
         {
-            var tblApartmentOwners = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentOwnerById)).Tables[0];
+            var tblApartmentOwners = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentOwnerById), id).Tables[0];
             if (tblApartmentOwners.Rows.Count == 0) return null;
 
             DataRow row = tblApartmentOwners.Rows[0];
@@ -137,9 +137,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return apartmentPictures;
         }
 
-        internal ApartmentPicture LoadApartmentPictureByIdRaw()
+        internal ApartmentPicture LoadApartmentPictureByIdRaw(int id)
         {
-            var tblApartmentPictures = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentPictureById)).Tables[0];
+            var tblApartmentPictures = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentPictureById), id).Tables[0];
             if (tblApartmentPictures.Rows.Count == 0) return null;
 
             DataRow row = tblApartmentPictures.Rows[0];
@@ -184,9 +184,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return apartmentReservations;
         }
 
-        internal ApartmentReservation LoadApartmentReservationByIdRaw()
+        internal ApartmentReservation LoadApartmentReservationByIdRaw(int id    )
         {
-            var tblApartmentReservations = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentReservationById)).Tables[0];
+            var tblApartmentReservations = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentReservationById), id).Tables[0];
             if (tblApartmentReservations.Rows.Count == 0) return null;
 
             DataRow row = tblApartmentReservations.Rows[0];
@@ -230,9 +230,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return apartmentReviews;
         }
 
-        internal ApartmentReview LoadApartmentReviewByIdRaw()
+        internal ApartmentReview LoadApartmentReviewByIdRaw(int id)
         {
-            var tblApartmentReviews = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentReviewById)).Tables[0];
+            var tblApartmentReviews = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentReviewById), id).Tables[0];
             if (tblApartmentReviews.Rows.Count == 0) return null;
 
             DataRow row = tblApartmentReviews.Rows[0];
@@ -270,9 +270,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return apartmentStatus;
         }
 
-        internal ApartmentStatus LoadApartmentStatusByIdRaw()
+        internal ApartmentStatus LoadApartmentStatusByIdRaw(int id)
         {
-            var tblApartmentStatus = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentStatusById)).Tables[0];
+            var tblApartmentStatus = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentStatusById), id).Tables[0];
             if (tblApartmentStatus.Rows.Count == 0) return null;
 
             DataRow row = tblApartmentStatus.Rows[0];
@@ -306,9 +306,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return cities;
         }
 
-        internal City LoadCityByIdRaw()
+        internal City LoadCityByIdRaw(int id)
         {
-            var tblCities = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadCitiyById)).Tables[0];
+            var tblCities = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadCitiyById), id).Tables[0];
             if (tblCities.Rows.Count == 0) return null;
 
             DataRow row = tblCities.Rows[0];
@@ -344,9 +344,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return tags;
         }
 
-        internal Tag LoadTagByIdRaw()
+        internal Tag LoadTagByIdRaw(int id)
         {
-            var tblTags = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTagById)).Tables[0];
+            var tblTags = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTagById), id).Tables[0];
             if (tblTags.Rows.Count == 0) return null;
 
             DataRow row = tblTags.Rows[0];
@@ -383,9 +383,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return taggedApartments;
         }
 
-        internal TaggedApartment LoadTaggedApartmentsByIdRaw()
+        internal TaggedApartment LoadTaggedApartmentsByIdRaw(int id)
         {
-            var tblTaggedApartmets = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTaggedApartmentById)).Tables[0];
+            var tblTaggedApartmets = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTaggedApartmentById), id).Tables[0];
             if (tblTaggedApartmets.Rows.Count == 0) return null;
 
             DataRow row = tblTaggedApartmets.Rows[0];
@@ -420,9 +420,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return tagTypes;
         }
 
-        internal TagType LoadTagTypesByIdRaw()
+        internal TagType LoadTagTypesByIdRaw(int id)
         {
-            var tblTagTypes = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTagTypeById)).Tables[0];
+            var tblTagTypes = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTagTypeById), id).Tables[0];
             if (tblTagTypes.Rows.Count == 0) return null;
 
             DataRow row = tblTagTypes.Rows[0];
@@ -462,9 +462,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return users;
         }
 
-        internal User LoadUserByIdRaw()
+        internal User LoadUserByIdRaw(int id)
         {
-            var tblUsers = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadUserById)).Tables[0];
+            var tblUsers = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadUserById), id).Tables[0];
             if (tblUsers.Rows.Count == 0) return null;
 
             DataRow row = tblUsers.Rows[0];
@@ -566,10 +566,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
 
         public abstract IList<Apartment> LoadApartments(params Predicate<Apartment>[] filters);
 
-        public IList<ApartmentPicture> LoadApartmentPicturesByApartmentId(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract IList<ApartmentPicture> LoadApartmentPicturesByApartmentId(int id);
         //Interface methods
     }
 }

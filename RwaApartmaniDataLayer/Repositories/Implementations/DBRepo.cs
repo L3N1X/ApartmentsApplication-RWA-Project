@@ -122,6 +122,11 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             throw new NotImplementedException();
         }
 
+        public override IList<ApartmentPicture> LoadApartmentPicturesByApartmentId(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public override ApartmentReservation LoadApartmentReservationById(int id)
         {
             throw new NotImplementedException();
