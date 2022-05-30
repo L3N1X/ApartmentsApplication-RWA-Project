@@ -174,7 +174,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                         Details = (string)row[nameof(ApartmentReservation.Details)],
                         UserAddress = (string)row[nameof(ApartmentReservation.UserAddress)],
                         UserEmail = (string)row[nameof(ApartmentReservation.UserEmail)],
-                        UserId = (int)row[nameof(ApartmentReservation.UserId)],
+                        UserId = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserId)]) ? Parsers.TryParseInt((string)row[nameof(ApartmentReservation.UserId)]) : null,
                         UserName = (string)row[nameof(ApartmentReservation.UserName)],
                         UserPhone = (string)row[nameof(ApartmentReservation.UserPhone)],
                     }
@@ -567,6 +567,8 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         public abstract IList<Apartment> LoadApartments(params Predicate<Apartment>[] filters);
 
         public abstract IList<ApartmentPicture> LoadApartmentPicturesByApartmentId(int id);
+
+        public abstract IList<Apartment> LoadApartmentsByOwnerId(int id);
         //Interface methods
     }
 }

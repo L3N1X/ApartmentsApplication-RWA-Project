@@ -112,3 +112,51 @@ CREATE PROCEDURE LoadUserById
 @Id INT
 AS
 	SELECT * FROM AspNetUsers WHERE AspNetUsers.Id = @Id
+/*Special select procedures*/
+CREATE PROCEDURE LoadApartmentPicturesByApartmentId
+@Id INT
+AS
+	SELECT * 
+	FROM ApartmentPicture 
+	WHERE ApartmentPicture.ApartmentId = @Id
+GO
+CREATE PROCEDURE LoadApartmentsByOwnerId
+@Id INT
+AS
+	SELECT *
+	FROM Apartment
+	WHERE Apartment.OwnerId = @Id
+/*Delete procedures*/
+GO
+CREATE PROCEDURE DeleteApartment
+@Id INT
+AS
+	UPDATE Apartment
+	SET Apartment.DeletedAt = GETDATE()
+	WHERE Apartment.Id = @Id
+GO
+CREATE PROCEDURE DeleteApartmentPicture
+@Id INT
+AS 
+	DELETE ApartmentPicture
+	WHERE ApartmentPicture.Id = @Id
+Go
+CREATE PROCEDURE DeleteTag
+@Id INT
+AS 
+	DELETE Tag
+	WHERE Tag.Id = @Id
+GO
+CREATE PROCEDURE DeleteTaggedApartment
+@Id INT
+AS 
+	DELETE TaggedApartment
+	WHERE TaggedApartment.Id = @Id
+GO
+CREATE PROCEDURE DeleteUser
+@Id INT
+AS 
+	UPDATE AspNetUsers
+	SET AspNetUsers.DeletedAt = GETDATE()
+	WHERE AspNetUsers.Id = @Id
+GO

@@ -13,11 +13,12 @@ namespace RwaApartmaniDataLayer.Models
         public DateTime CreatedAt { get; set;} 
         public int ApartmentId { get; set; }
         public string Details { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public string UserName { get; set; }
         public string UserEmail { get; set; }
         public string UserPhone { get; set; }
         public string UserAddress { get; set; }
-        
+        public User User { get; set; }
+        public Apartment Apartment { get; set; }
     }
 }

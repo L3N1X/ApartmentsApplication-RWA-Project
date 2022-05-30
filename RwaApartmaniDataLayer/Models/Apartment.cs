@@ -23,5 +23,6 @@ namespace RwaApartmaniDataLayer.Models
         public int MaxChildren { get; set; }
         public int TotalRooms { get; set; }
         public int BeachDistance { get; set; }
+        public IList<ApartmentPicture> Pictures { get; set; }
     }
 }

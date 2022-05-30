@@ -3,6 +3,7 @@ using RwaApartmaniDataLayer.Models;
 using RwaApartmaniDataLayer.Repositories.Abstracts;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -99,42 +100,80 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override Apartment LoadApartmentById(int id)
         {
-            throw new NotImplementedException();
+            var apartment = this.LoadApartmentByIdRaw(id);
+            var pictures = this.LoadApartmentPicturesByApartmentId(apartment.Id);
+
+            apartment.Pictures = new List<ApartmentPicture>(pictures);
+
+            return apartment;
         }
 
         public override ApartmentOwner LoadApartmentOwnerById(int id)
         {
-            throw new NotImplementedException();
+            var apartmentOwner = this.LoadApartmentOwnerByIdRaw(id);
+            var apartments = this.LoadApartmentsByOwnerId(apartmentOwner.Id);
+
+            apartmentOwner.Apartments = new List<Apartment>(apartments);
+
+            return apartmentOwner;
         }
 
         public override IList<ApartmentOwner> LoadApartmentOwners()
         {
-            throw new NotImplementedException();
+            return this.LoadApartmentOwnersRaw();
         }
 
         public override ApartmentPicture LoadApartmentPictureById(int id)
         {
-            throw new NotImplementedException();
+            return this.LoadApartmentPictureByIdRaw(id);
         }
 
         public override IList<ApartmentPicture> LoadApartmentPictures()
         {
-            throw new NotImplementedException();
+            return this.LoadApartmentPicturesRaw();
         }
 
         public override IList<ApartmentPicture> LoadApartmentPicturesByApartmentId(int id)
         {
-            throw new NotImplementedException();
+            IList<ApartmentPicture> apartmentPictures = new List<ApartmentPicture>();
+
+            var tblApartmentPictures = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentPicturesByApartmentId), id).Tables[0];
+            foreach (DataRow row in tblApartmentPictures.Rows)
+            {
+                apartmentPictures.Add(
+                    new ApartmentPicture
+                    {
+                        Id = (int)(row[nameof(ApartmentPicture.Id)]),
+                        Name = (string)row[nameof(ApartmentPicture.Name)],
+                        CreatedAt = (DateTime)row[nameof(ApartmentPicture.CreatedAt)],
+                        Guid = (Guid)row[nameof(ApartmentPicture.Guid)],
+                        ApartmentId = (int)row[nameof(ApartmentPicture.ApartmentId)],
+                        //Base64Content = (string)row[nameof(ApartmentPicture.Base64Content)],
+                        IsRepresentative = (bool)row[nameof(ApartmentPicture.IsRepresentative)],
+                        Path = (string)row[nameof(ApartmentPicture.Path)],
+                    }
+                );
+            }
+
+            return apartmentPictures;
         }
 
         public override ApartmentReservation LoadApartmentReservationById(int id)
         {
-            throw new NotImplementedException();
+            var reservation = this.LoadApartmentReservationById(id);
+            if(reservation.UserId != null)
+            var user = this.LoadUserByIdRaw(reservation.UserId);
+            var apartment = this.LoadApartmentByIdRaw(reservation.ApartmentId);
+
+            reservation.User = user;
+            reservation.Apartment = apartment;
+
+            return reservation;
         }
 
         public override IList<ApartmentReservation> LoadApartmentReservations()
         {
-            throw new NotImplementedException();
+            return this.LoadApartmentReservationsRaw();
         }
 
         public override ApartmentReview LoadApartmentReviewById(int id)
@@ -156,6 +195,37 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
         {
             var apartments = this.LoadApartmentsRaw();
             throw new NotImplementedException();
+        }
+
+        public override IList<Apartment> LoadApartmentsByOwnerId(int id)
+        {
+            IList<Apartment> apartments = new List<Apartment>();
+
+            var tblApartments = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentsByOwnerId), id).Tables[0];
+            foreach (DataRow row in tblApartments.Rows)
+            {
+                apartments.Add(
+                    new Apartment
+                    {
+                        Id = (int)(row[nameof(Apartment.Id)]),
+                        Name = (string)row[nameof(Apartment.Name)],
+                        Address = (string)row[nameof(Apartment.Address)],
+                        CityId = (int)(row[nameof(Apartment.CityId)]),
+                        BeachDistance = (int)row[nameof(Apartment.BeachDistance)],
+                        CreatedAt = (DateTime)row[nameof(Apartment.CreatedAt)],
+                        Guid = (Guid)row[nameof(Apartment.Guid)],
+                        MaxAdults = (int)row[nameof(Apartment.MaxAdults)],
+                        MaxChildren = (int)row[nameof(Apartment.MaxChildren)],
+                        OwnerId = (int)row[nameof(Apartment.OwnerId)],
+                        Price = (decimal)row[nameof(Apartment.Price)],
+                        StatusId = (int)row[nameof(Apartment.StatusId)],
+                        TotalRooms = (int)row[nameof(Apartment.TotalRooms)],
+                        TypeId = (int)row[nameof(Apartment.TypeId)]
+                    }
+                );
+            }
+
+            return apartments;
         }
 
         public override IList<ApartmentStatus> LoadApartmentStatus()

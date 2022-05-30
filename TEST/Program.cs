@@ -24,10 +24,15 @@ namespace TEST
             //{
             //    Console.WriteLine(owner.Name);
             //}
-            var pictures = repo.LoadApartmentPictures();
-            foreach (var picture in pictures)
+            var owners = repo.LoadApartmentOwners();
+            foreach (var owner in owners)
             {
-                Console.WriteLine(picture.Name);
+                Console.WriteLine(owner.Name);
+                var temp = repo.LoadApartmentOwnerById(owner.Id);
+                foreach (var apartment in temp.Apartments)
+                {
+                    Console.WriteLine($"\t{apartment.Name}");
+                }
             }
         }
     }

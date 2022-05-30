@@ -12,5 +12,6 @@ namespace RwaApartmaniDataLayer.Models
         public Guid Guid { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Name { get; set; }
+        public IList<Apartment> Apartments { get; set; }
     }
 }

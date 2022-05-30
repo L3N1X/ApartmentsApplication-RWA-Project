@@ -13,5 +13,12 @@ namespace RwaApartmaniDataLayer.Utilities
             DateTime date;
             return DateTime.TryParse(text, out date) ? date : (DateTime?)null;
         }
+        public static int? TryParseInt(string text)
+        {
+            int val;
+            if(int.TryParse(text, out val))
+                return val;
+            return null;
+        }
     }
 }

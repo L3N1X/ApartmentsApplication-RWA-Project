@@ -15,6 +15,7 @@ namespace RwaApartmaniDataLayer.Repositories.Interfaces
         void InsertApartment(Apartment apartment);
         void DeleteApartment(int id);
         IList<Apartment> LoadApartments(params Predicate<Apartment>[] filters);
+        IList<Apartment> LoadApartmentsByOwnerId(int id);
         //ApartmentOwner
         IList<ApartmentOwner> LoadApartmentOwners();
         ApartmentOwner LoadApartmentOwnerById(int id);
