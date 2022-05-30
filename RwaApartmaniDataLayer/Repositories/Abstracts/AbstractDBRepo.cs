@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using RwaApartmaniDataLayer.Utilities;
 
 namespace RwaApartmaniDataLayer.Repositories.Abstracts
 {
@@ -16,6 +17,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         private static string APARTMENS_CS = ConfigurationManager.ConnectionStrings["apartments"].ConnectionString;
         //Abstract Repo methods
 
+        //Apartments
         private IList<Apartment> LoadApartmentsRaw()
         {
             IList<Apartment> apartments = new List<Apartment>();
@@ -32,8 +34,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                         CityId = (int)(row[nameof(Apartment.CityId)]),
                         BeachDistance = (int)row[nameof(Apartment.BeachDistance)],
                         CreatedAt = (DateTime)row[nameof(Apartment.CreatedAt)],
-                        DeletedAt = (DateTime)row[nameof(Apartment.DeletedAt)] == null ?  null : (DateTime)row[nameof(Apartment.DeletedAt)],
-                        //Guid = Guid.Parse((string)row[nameof(Apartment.Guid)]),
+                        Guid = (Guid)row[nameof(Apartment.Guid)],
                         MaxAdults = (int)row[nameof(Apartment.MaxAdults)],
                         MaxChildren = (int)row[nameof(Apartment.MaxChildren)],
                         OwnerId = (int)row[nameof(Apartment.OwnerId)],
@@ -46,6 +47,76 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             }
 
             return apartments;
+        }
+
+        //ApartmentOwners
+        private IList<ApartmentOwner> LoadApartmentOwnersRaw()
+        {
+            IList<ApartmentOwner> apartmentsPictures = new List<ApartmentOwner>();
+
+            var tblApartmentOwners = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentOwners)).Tables[0];
+            foreach (DataRow row in tblApartmentOwners.Rows)
+            {
+                apartmentsPictures.Add(
+                    new ApartmentOwner
+                    {
+                        Id = (int)(row[nameof(ApartmentOwner.Id)]),
+                        Name = (string)row[nameof(ApartmentOwner.Name)],
+                        CreatedAt = (DateTime)row[nameof(ApartmentOwner.CreatedAt)],
+                        Guid = (Guid)row[nameof(ApartmentOwner.Guid)],
+                    }
+                );
+            }
+
+            return apartmentsPictures;
+        }
+
+        //ApartmentPictures
+        private IList<ApartmentPicture> LoadApartmentPicturesRaw()
+        {
+            IList<ApartmentPicture> apartmentPictures = new List<ApartmentPicture>();
+
+            var tblApartmentPictures = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentPictures)).Tables[0];
+            foreach (DataRow row in tblApartmentPictures.Rows)
+            {
+                apartmentPictures.Add(
+                    new ApartmentPicture
+                    {
+                        Id = (int)(row[nameof(ApartmentPicture.Id)]),
+                        Name = (string)row[nameof(ApartmentPicture.Name)],
+                        CreatedAt = (DateTime)row[nameof(ApartmentPicture.CreatedAt)],
+                        Guid = (Guid)row[nameof(ApartmentPicture.Guid)],
+                        ApartmentId = (int)row[nameof(ApartmentPicture.ApartmentId)],
+                        //Base64Content = (string)row[nameof(ApartmentPicture.Base64Content)],
+                        IsRepresentative = (bool)row[nameof(ApartmentPicture.IsRepresentative)],
+                        Path = (string)row[nameof(ApartmentPicture.Path)],
+                    }
+                );
+            }
+
+            return apartmentPictures;
+        }
+
+        //ApartmentReservations
+        private IList<ApartmentPicture> LoadApartmentReservationsRaw()
+        {
+            IList<ApartmentReservation> apartmentOwners = new List<ApartmentReservation>();
+
+            var tblApartmentReservations = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentReservations)).Tables[0];
+            foreach (DataRow row in tblApartmentReservations.Rows)
+            {
+                apartmentOwners.Add(
+                    new ApartmentReservation
+                    {
+                        Id = (int)(row[nameof(ApartmentReservation.Id)]),
+                        CreatedAt = (DateTime)row[nameof(ApartmentReservation.CreatedAt)],
+                        Guid = (Guid)row[nameof(ApartmentReservation.Guid)],
+                        ApartmentId = (int)row[nameof(ApartmentReservation.ApartmentId)],
+                    }
+                );
+            }
+
+            return apartmentOwners;
         }
 
         //Abstract Repo methods
@@ -162,12 +233,12 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return LoadApartmentsRaw();
         }
 
-        public IList<ApartmentPicture> LoadApartmentsPictures()
+        public IList<ApartmentPicture> LoadApartmentPictures()
         {
-            throw new NotImplementedException();
+            return LoadApartmentPicturesRaw();
         }
 
-        public IList<ApartmentReservation> LoadApartmentsReservations()
+        public IList<ApartmentReservation> LoadApartmentReservations()
         {
             throw new NotImplementedException();
         }
@@ -228,6 +299,21 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         public IList<User> LoadUsers()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IList<ApartmentOwner> LoadApartmentOwners()
+        {
+            return LoadApartmentOwnersRaw();
+        }
+
+        public ApartmentOwner LoadApartmentOwnerById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertApartmentOwner(ApartmentOwner apartmentOwner)
         {
             throw new NotImplementedException();
         }

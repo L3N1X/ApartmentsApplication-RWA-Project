@@ -14,13 +14,17 @@ namespace RwaApartmaniDataLayer.Repositories.Interfaces
         Apartment LoadApartmentById(int id);
         void InsertApartment(Apartment apartment);
         void DeleteApartment(int id);
+        //ApartmentOwner
+        IList<ApartmentOwner> LoadApartmentOwners();
+        ApartmentOwner LoadApartmentOwnerById(int id);
+        void InsertApartmentOwner(ApartmentOwner apartmentOwner);
         //ApartmentPicture
-        IList<ApartmentPicture> LoadApartmentsPictures();
+        IList<ApartmentPicture> LoadApartmentPictures();
         ApartmentPicture LoadApartmentPictureById(int id);
         void InsertApartmentPicture(ApartmentPicture apartmentPicture);
         void DeleteApartmentPicture(int id);
         //ApartmentReservation
-        IList<ApartmentReservation> LoadApartmentsReservations();
+        IList<ApartmentReservation> LoadApartmentReservations();
         ApartmentReservation LoadApartmentReservationById(int id);
         void InsertApartmentReservation(ApartmentReservation apartmentReservation);
         //ApartmentReview

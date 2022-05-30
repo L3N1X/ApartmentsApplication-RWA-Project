@@ -13,10 +13,20 @@ namespace TEST
         static void Main(string[] args)
         {
             IRepo repo = new AbstractDBRepo();
-            var apartments = repo.LoadApartments();
-            foreach (var apartment in apartments)
+            //var apartments = repo.LoadApartments();
+            //foreach (var apartment in apartments)
+            //{
+            //    Console.WriteLine(apartment.Name);
+            //}
+            //var owners = repo.LoadApartmentOwners();
+            //foreach (var owner in owners)
+            //{
+            //    Console.WriteLine(owner.Name);
+            //}
+            var pictures = repo.LoadApartmentPictures();
+            foreach (var picture in pictures)
             {
-                Console.WriteLine(apartment.Name);
+                Console.WriteLine(picture.Name);
             }
         }
     }
