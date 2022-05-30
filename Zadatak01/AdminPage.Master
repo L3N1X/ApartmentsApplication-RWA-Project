@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminPage.master.cs" Inherits="Zadatak01.AdminPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+
+    <!-- TITLE -->
+    <title></title>
+
+    <!-- HEAD -->
+    <asp:ContentPlaceHolder ID="Head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <!-- BOOTSTRAP -->
+    <link href="Content/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- CUSTOM CSS -->
+    <style>
+        fieldset { border: 1px solid #ced4da; padding: inherit; border-radius: 4px; } 
+        fieldset > legend { float: initial; width: auto; padding: revert; font-size: initial; margin: 0; }
+    </style>
+
+    <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <form id="Web_app" runat="server">
+        <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+            <div class='container-fluid'>
+                <a class='navbar-brand' href='/'>App</a>
+                <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
+                    <span class='navbar-toggler-icon'></span>
+                </button>
+                <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+                    <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
+		               <% if (Session["user"] == null) { %>
+		                     <li class='nav-item'>
+		                         <a class='nav-link' href='/' runat="server" meta:resourcekey="aLogin">Login</a>
+		                     </li>
+		                     <li class='nav-item'>
+		                         <a class='nav-link' href='/Registration' runat="server" meta:resourcekey="aRegistration">Registration</a>
+		                     </li>
+                        <% } else { %>
+                            <li class='nav-item'>
+                                <a class='nav-link' href="/Dashboard" runat="server" meta:resourcekey="aDashboard">Dashboard</a>
+                           </li>
+                            <li class='nav-item'>
+                                <a class='nav-link' href='/Settings' runat="server" meta:resourcekey="aSettings">Settings</a>
+                           </li>
+                            <li class='nav-item'>
+                                <a class='nav-link' href='/Users' runat="server" meta:resourcekey="aUsers">Users</a>
+                            </li>
+	                    <% }  %>
+                    </ul>
+
+                    <% if (Session["user"] != null) { %>
+                        <ul class='navbar-nav d-flex'>
+                            <li class='nav-item'>
+                                <asp:Button class='nav-link btn btn-danger text-white' OnClick="btnLogout_Click" ID="btnLogout" meta:resourcekey="btnLogout" runat="server" Text="Logout" />
+                            </li>
+                        </ul>
+                    <% }  %>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <asp:ContentPlaceHolder ID="Content" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <hr class='mt-4'><div class='text-center'><p>RWA- <%: DateTime.Now.Year %> &copy;</p></div>
+    </form>
+
+     <!-- JQUERY -->
+    <script src="Scripts/jquery-3.6.0.min.js"></script>
+
+    <!-- BOOTSTRAP -->
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <!--DATATABLES-->
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+</body>
+</html>
