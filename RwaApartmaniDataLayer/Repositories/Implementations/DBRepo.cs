@@ -162,10 +162,22 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
         {
             var reservation = this.LoadApartmentReservationById(id);
             if(reservation.UserId != null)
-            var user = this.LoadUserByIdRaw(reservation.UserId);
+            {
+                int userId = (int)reservation.UserId;
+                var user = this.LoadUserByIdRaw(userId);
+                reservation.User = user;
+            }
+            else
+            {
+                var tempUser = new User();
+                tempUser.Address = reservation.UserAddress;
+                tempUser.Email = reservation.UserEmail;
+                tempUser.UserName = reservation.UserName;
+                tempUser.PhoneNumber = reservation.UserPhone;
+                reservation.User = tempUser;
+            }
             var apartment = this.LoadApartmentByIdRaw(reservation.ApartmentId);
 
-            reservation.User = user;
             reservation.Apartment = apartment;
 
             return reservation;
