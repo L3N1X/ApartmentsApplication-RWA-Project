@@ -172,11 +172,11 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                         Guid = (Guid)row[nameof(ApartmentReservation.Guid)],
                         ApartmentId = (int)row[nameof(ApartmentReservation.ApartmentId)],
                         Details = (string)row[nameof(ApartmentReservation.Details)],
-                        UserAddress = !DBNull.Value.Equals((string)row[nameof(ApartmentReservation.UserAddress)]) ? (string)row[nameof(ApartmentReservation.UserAddress)] : null,
-                        UserEmail = !DBNull.Value.Equals((string)row[nameof(ApartmentReservation.UserEmail)]) ? (string)row[nameof(ApartmentReservation.UserEmail)] : null,
-                        UserId = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserId)]) ? Parsers.TryParseInt((string)row[nameof(ApartmentReservation.UserId)]) : null,
-                        UserName = !DBNull.Value.Equals((string)row[nameof(ApartmentReservation.UserName)]) ? (string)row[nameof(ApartmentReservation.UserName)] : null,
-                        UserPhone = !DBNull.Value.Equals((string)row[nameof(ApartmentReservation.UserPhone)]) ? (string)row[nameof(ApartmentReservation.UserPhone)] : null,
+                        UserAddress = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserAddress)]) ? (string)row[nameof(ApartmentReservation.UserAddress)] : null,
+                        UserEmail = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserEmail)]) ? (string)row[nameof(ApartmentReservation.UserEmail)] : null,
+                        UserId = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserId)]) ? (int?)row[nameof(ApartmentReservation.UserId)] : null,
+                        UserName = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserName)]) ? (string)row[nameof(ApartmentReservation.UserName)] : null,
+                        UserPhone = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserPhone)]) ? (string)row[nameof(ApartmentReservation.UserPhone)] : null,
                     }
                 );
             }
@@ -197,11 +197,11 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                 Guid = (Guid)row[nameof(ApartmentReservation.Guid)],
                 ApartmentId = (int)row[nameof(ApartmentReservation.ApartmentId)],
                 Details = (string)row[nameof(ApartmentReservation.Details)],
-                UserAddress = !DBNull.Value.Equals((string)row[nameof(ApartmentReservation.UserAddress)]) ? (string)row[nameof(ApartmentReservation.UserAddress)] : null,
-                UserEmail = !DBNull.Value.Equals((string)row[nameof(ApartmentReservation.UserEmail)]) ? (string)row[nameof(ApartmentReservation.UserEmail)] : null,
-                UserId = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserId)]) ? Parsers.TryParseInt((string)row[nameof(ApartmentReservation.UserId)]) : null,
-                UserName = !DBNull.Value.Equals((string)row[nameof(ApartmentReservation.UserName)]) ? (string)row[nameof(ApartmentReservation.UserName)] : null,
-                UserPhone = !DBNull.Value.Equals((string)row[nameof(ApartmentReservation.UserPhone)]) ? (string)row[nameof(ApartmentReservation.UserPhone)] : null,
+                UserAddress = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserAddress)]) ? (string)row[nameof(ApartmentReservation.UserAddress)] : null,
+                UserEmail = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserEmail)]) ? (string)row[nameof(ApartmentReservation.UserEmail)] : null,
+                UserId = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserId)]) ? (int?)row[nameof(ApartmentReservation.UserId)] : null,
+                UserName = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserName)]) ? (string)row[nameof(ApartmentReservation.UserName)] : null,
+                UserPhone = !DBNull.Value.Equals(row[nameof(ApartmentReservation.UserPhone)]) ? (string)row[nameof(ApartmentReservation.UserPhone)] : null,
             };
         }
 
@@ -452,7 +452,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                         CreatedAt = (DateTime)row[nameof(User.CreatedAt)],
                         //DeletedAt = (DateTime)row[nameof(User.DeletedAt)],
                         Email = (string)row[nameof(User.Email)],
-                        PasswordHash = (string)row[nameof(User.PasswordHash)],
+                        PasswordHash = !DBNull.Value.Equals(row[nameof(User.PasswordHash)]) ? (string)row[nameof(User.PasswordHash)] : null,
                         PhoneNumber = (string)row[nameof(User.PhoneNumber)],
                         UserName = (string)row[nameof(User.UserName)],
                     }
@@ -476,7 +476,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                 CreatedAt = (DateTime)row[nameof(User.CreatedAt)],
                 //DeletedAt = (DateTime)row[nameof(User.DeletedAt)],
                 Email = (string)row[nameof(User.Email)],
-                PasswordHash = (string)row[nameof(User.PasswordHash)],
+                PasswordHash = !DBNull.Value.Equals(row[nameof(User.PasswordHash)]) ? (string)row[nameof(User.PasswordHash)] : null,
                 PhoneNumber = (string)row[nameof(User.PhoneNumber)],
                 UserName = (string)row[nameof(User.UserName)],
             };

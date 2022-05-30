@@ -160,7 +160,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override ApartmentReservation LoadApartmentReservationById(int id)
         {
-            var reservation = this.LoadApartmentReservationById(id);
+            var reservation = this.LoadApartmentReservationByIdRaw(id);
             if(reservation.UserId != null)
             {
                 int userId = (int)reservation.UserId;
