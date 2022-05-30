@@ -1,4 +1,5 @@
-﻿using RwaApartmaniDataLayer.Models;
+﻿using Microsoft.ApplicationBlocks.Data;
+using RwaApartmaniDataLayer.Models;
 using RwaApartmaniDataLayer.Repositories.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -18,27 +19,27 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override void DeleteApartment(int id)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteApartment), id);
         }
 
         public override void DeleteApartmentPicture(int id)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteApartmentPicture), id);
         }
 
         public override void DeleteTag(int id)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteTag), id);
         }
 
         public override void DeleteTaggedApartment(int id)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteTaggedApartment), id);
         }
 
         public override void DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteUser), id);
         }
 
         public override void InsertApartment(Apartment apartment)
@@ -148,6 +149,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override IList<Apartment> LoadApartments(params Predicate<Apartment>[] filters)
         {
+            var apartments = this.LoadApartmentsRaw();
             throw new NotImplementedException();
         }
 

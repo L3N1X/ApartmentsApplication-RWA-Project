@@ -14,12 +14,12 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
 {
     public abstract class AbstractDBRepo : IRepo
     {
-        private static string APARTMENS_CS = ConfigurationManager.ConnectionStrings["apartments"].ConnectionString;
+        public static string APARTMENS_CS = ConfigurationManager.ConnectionStrings["apartments"].ConnectionString;
 
         //Abstract Repo methods
 
         //Apartments
-        private IList<Apartment> LoadApartmentsRaw()
+        internal IList<Apartment> LoadApartmentsRaw()
         {
             IList<Apartment> apartments = new List<Apartment>();
 
@@ -49,7 +49,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
 
             return apartments;
         }
-        private Apartment LoadApartmentByIdRaw()
+        internal Apartment LoadApartmentByIdRaw()
         {
             var tblApartments = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentById)).Tables[0];
             if (tblApartments.Rows.Count == 0) return null;
@@ -75,7 +75,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //ApartmentOwners
-        private IList<ApartmentOwner> LoadApartmentOwnersRaw()
+        internal IList<ApartmentOwner> LoadApartmentOwnersRaw()
         {
             IList<ApartmentOwner> apartmentsPictures = new List<ApartmentOwner>();
 
@@ -96,7 +96,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return apartmentsPictures;
         }
 
-        private ApartmentOwner LoadApartmentOwnerByIdRaw()
+        internal ApartmentOwner LoadApartmentOwnerByIdRaw()
         {
             var tblApartmentOwners = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentOwnerById)).Tables[0];
             if (tblApartmentOwners.Rows.Count == 0) return null;
@@ -112,7 +112,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //ApartmentPictures
-        private IList<ApartmentPicture> LoadApartmentPicturesRaw()
+        internal IList<ApartmentPicture> LoadApartmentPicturesRaw()
         {
             IList<ApartmentPicture> apartmentPictures = new List<ApartmentPicture>();
 
@@ -137,7 +137,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return apartmentPictures;
         }
 
-        private ApartmentPicture LoadApartmentPictureByIdRaw()
+        internal ApartmentPicture LoadApartmentPictureByIdRaw()
         {
             var tblApartmentPictures = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentPictureById)).Tables[0];
             if (tblApartmentPictures.Rows.Count == 0) return null;
@@ -157,7 +157,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //ApartmentReservations
-        private IList<ApartmentReservation> LoadApartmentReservationsRaw()
+        internal IList<ApartmentReservation> LoadApartmentReservationsRaw()
         {
             IList<ApartmentReservation> apartmentReservations = new List<ApartmentReservation>();
 
@@ -184,7 +184,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return apartmentReservations;
         }
 
-        private ApartmentReservation LoadApartmentReservationByIdRaw()
+        internal ApartmentReservation LoadApartmentReservationByIdRaw()
         {
             var tblApartmentReservations = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentReservationById)).Tables[0];
             if (tblApartmentReservations.Rows.Count == 0) return null;
@@ -206,7 +206,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //ApartmentReview
-        private IList<ApartmentReview> LoadApartmentReviewsRaw()
+        internal IList<ApartmentReview> LoadApartmentReviewsRaw()
         {
             IList<ApartmentReview> apartmentReviews = new List<ApartmentReview>();
 
@@ -230,7 +230,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return apartmentReviews;
         }
 
-        private ApartmentReview LoadApartmentReviewByIdRaw()
+        internal ApartmentReview LoadApartmentReviewByIdRaw()
         {
             var tblApartmentReviews = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentReviewById)).Tables[0];
             if (tblApartmentReviews.Rows.Count == 0) return null;
@@ -249,7 +249,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //ApartmentStatus
-        private IList<ApartmentStatus> LoadApartmentStatusRaw()
+        internal IList<ApartmentStatus> LoadApartmentStatusRaw()
         {
             IList<ApartmentStatus> apartmentStatus = new List<ApartmentStatus>();
 
@@ -270,7 +270,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return apartmentStatus;
         }
 
-        private ApartmentStatus LoadApartmentStatusByIdRaw()
+        internal ApartmentStatus LoadApartmentStatusByIdRaw()
         {
             var tblApartmentStatus = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentStatusById)).Tables[0];
             if (tblApartmentStatus.Rows.Count == 0) return null;
@@ -286,7 +286,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //Cities
-        private IList<City> LoadCitiesRaw()
+        internal IList<City> LoadCitiesRaw()
         {
             IList<City> cities = new List<City>();
 
@@ -306,7 +306,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return cities;
         }
 
-        private City LoadCityByIdRaw()
+        internal City LoadCityByIdRaw()
         {
             var tblCities = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadCitiyById)).Tables[0];
             if (tblCities.Rows.Count == 0) return null;
@@ -321,7 +321,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //Tags
-        private IList<Tag> LoadTagsRaw()
+        internal IList<Tag> LoadTagsRaw()
         {
             IList<Tag> tags = new List<Tag>();
 
@@ -344,7 +344,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return tags;
         }
 
-        private Tag LoadTagByIdRaw()
+        internal Tag LoadTagByIdRaw()
         {
             var tblTags = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTagById)).Tables[0];
             if (tblTags.Rows.Count == 0) return null;
@@ -362,7 +362,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //TaggedApartments
-        private IList<TaggedApartment> LoadTaggedApartmentsRaw()
+        internal IList<TaggedApartment> LoadTaggedApartmentsRaw()
         {
             IList<TaggedApartment> taggedApartments = new List<TaggedApartment>();
 
@@ -383,7 +383,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return taggedApartments;
         }
 
-        private TaggedApartment LoadTaggedApartmentsByIdRaw()
+        internal TaggedApartment LoadTaggedApartmentsByIdRaw()
         {
             var tblTaggedApartmets = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTaggedApartmentById)).Tables[0];
             if (tblTaggedApartmets.Rows.Count == 0) return null;
@@ -399,7 +399,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //TagTypes
-        private IList<TagType> LoadTagTypesRaw()
+        internal IList<TagType> LoadTagTypesRaw()
         {
             IList<TagType> tagTypes = new List<TagType>();
 
@@ -420,9 +420,9 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return tagTypes;
         }
 
-        private TagType LoadTagTypesByIdRaw()
+        internal TagType LoadTagTypesByIdRaw()
         {
-            var tblTagTypes = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTagTypesByIdRaw)).Tables[0];
+            var tblTagTypes = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTagTypeById)).Tables[0];
             if (tblTagTypes.Rows.Count == 0) return null;
 
             DataRow row = tblTagTypes.Rows[0];
@@ -436,7 +436,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         }
 
         //Users
-        private IList<User> LoadUsersRaw()
+        internal IList<User> LoadUsersRaw()
         {
             IList<User> users = new List<User>();
 
@@ -462,7 +462,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             return users;
         }
 
-        private User LoadUserByIdRaw()
+        internal User LoadUserByIdRaw()
         {
             var tblUsers = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadUserById)).Tables[0];
             if (tblUsers.Rows.Count == 0) return null;
@@ -565,6 +565,11 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         public abstract void InsertApartmentOwner(ApartmentOwner apartmentOwner);
 
         public abstract IList<Apartment> LoadApartments(params Predicate<Apartment>[] filters);
+
+        public IList<ApartmentPicture> LoadApartmentPicturesByApartmentId(int id)
+        {
+            throw new NotImplementedException();
+        }
         //Interface methods
     }
 }

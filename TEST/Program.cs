@@ -1,4 +1,5 @@
 ﻿using RwaApartmaniDataLayer.Repositories.Abstracts;
+using RwaApartmaniDataLayer.Repositories.Implementations;
 using RwaApartmaniDataLayer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace TEST
     {
         static void Main(string[] args)
         {
-            IRepo repo = new AbstractDBRepo();
+            IRepo repo = new DBRepo();
             //var apartments = repo.LoadApartments();
             //foreach (var apartment in apartments)
             //{
