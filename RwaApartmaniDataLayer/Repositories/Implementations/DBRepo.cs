@@ -190,7 +190,14 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override ApartmentReview LoadApartmentReviewById(int id)
         {
-            throw new NotImplementedException();
+            var review = this.LoadApartmentReviewByIdRaw(id);
+            var apartment = this.LoadApartmentByIdRaw(review.ApartmentId);
+            var user = this.LoadUserByIdRaw(review.UserId);
+
+            review.Apartment = apartment;
+            review.User = user;
+
+            return review;
         }
 
         public override IList<ApartmentReview> LoadApartmentReviews()

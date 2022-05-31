@@ -220,7 +220,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                         CreatedAt = (DateTime)row[nameof(ApartmentReview.CreatedAt)],
                         Guid = (Guid)row[nameof(ApartmentReview.Guid)],
                         ApartmentId = (int)row[nameof(ApartmentReview.ApartmentId)],
-                        Details = (string)row[nameof(ApartmentReview.Details)],
+                        Details = !DBNull.Value.Equals(row[nameof(ApartmentReview.Details)]) ? (string)row[nameof(ApartmentReview.Details)] : null,
                         Stars = (int)row[nameof(ApartmentReview.Stars)],
                         UserId = (int)row[nameof(ApartmentReview.UserId)],
                     }
@@ -242,7 +242,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                 CreatedAt = (DateTime)row[nameof(ApartmentReview.CreatedAt)],
                 Guid = (Guid)row[nameof(ApartmentReview.Guid)],
                 ApartmentId = (int)row[nameof(ApartmentReview.ApartmentId)],
-                Details = (string)row[nameof(ApartmentReview.Details)],
+                Details = !DBNull.Value.Equals(row[nameof(ApartmentReview.Details)]) ? (string)row[nameof(ApartmentReview.Details)] : null,
                 Stars = (int)row[nameof(ApartmentReview.Stars)],
                 UserId = (int)row[nameof(ApartmentReview.UserId)],
             };

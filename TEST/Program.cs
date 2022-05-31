@@ -35,7 +35,12 @@ namespace TEST
             //{
             //    Console.WriteLine(apartment.Name);
             //}
-            Console.WriteLine("Hehe");
+            //var reviews = repo.LoadApartmentReviews();
+            //foreach (var review in reviews)
+            //{
+            //    var temp = repo.LoadApartmentReviewById(review.Id);
+            //    Console.WriteLine($"Apartment: {temp.Apartment.Name} User: {temp.User.UserName} Review: {temp.Details} Stars: {temp.Stars}");
+            //}
         }
     }
 }
