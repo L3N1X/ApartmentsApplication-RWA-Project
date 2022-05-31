@@ -571,6 +571,8 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         public abstract IList<Apartment> LoadApartmentsByOwnerId(int id);
 
         public abstract IList<Tag> LoadTagsByApartmentId(int id);
+
+        public abstract IList<Tuple<Tag, int>> LoadTagsCounted();
         //Interface methods
     }
 }

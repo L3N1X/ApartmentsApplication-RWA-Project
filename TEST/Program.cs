@@ -32,16 +32,25 @@ namespace TEST
             //    var temp = repo.LoadApartmentReservationById(reservation.Id);
             //    Console.WriteLine($"Apartment: {temp.Apartment.Name} Username: {temp.User.UserName}");
             //}
-            var apartments = repo.LoadApartments(a => a.City.Name.Equals("Opatija"));
-            foreach (var apartment in apartments)
-            {
-                Console.WriteLine(apartment.Name);
-            }
+            //var apartments = repo.LoadApartments(a => a.City.Name.Equals("Opatija"));
+            //foreach (var apartment in apartments)
+            //{
+            //    Console.WriteLine(apartment.Name);
+            //    foreach (var tag in apartment.Tags)
+            //    {
+            //        Console.WriteLine($"\t{tag.Name}");
+            //    }
+            //}
             //var reviews = repo.LoadApartmentReviews();
             //foreach (var review in reviews)
             //{
             //    var temp = repo.LoadApartmentReviewById(review.Id);
             //    Console.WriteLine($"Apartment: {temp.Apartment.Name} User: {temp.User.UserName} Review: {temp.Details} Stars: {temp.Stars}");
+            //}
+            //var tuples = repo.LoadTagsCounted();
+            //foreach (var tuple in tuples)
+            //{
+            //    Console.WriteLine($"{tuple.Item1.Name}- ({tuple.Item2}) {(tuple.Item2.Equals(0) ? "- DELETE" : string.Empty)}");
             //}
         }
     }

@@ -332,6 +332,27 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             return tags;
         }
 
+        public override IList<Tuple<Tag, int>> LoadTagsCounted()
+        {
+            var taggedApartments = this.LoadTaggedApartmentsRaw();
+            Dictionary<Tag, int> dict = new Dictionary<Tag, int>();
+            foreach (var taggedApartment in taggedApartments)
+            {
+                var tempTag = this.LoadTagByIdRaw(taggedApartment.TagId);
+                if (!dict.Keys.Contains(tempTag))
+                    dict.Add(tempTag, 1);
+                else
+                    dict[tempTag]++;
+            }
+            var allTags = this.LoadTagsRaw();
+            foreach (var tag in allTags)
+            {
+                if (!dict.Keys.Contains(tag))
+                    dict.Add(tag, 0);
+            }
+            return dict.Select(x => new Tuple<Tag, int>(x.Key, x.Value)).ToList();
+        }
+
         public override TagType LoadTagTypeById(int id)
         {
             throw new NotImplementedException();
