@@ -47,6 +47,7 @@ namespace RwaApartmaniDataLayer.Repositories.Interfaces
         Tag LoadTagById(int id);
         void InsertTag(Tag tag);
         void DeleteTag(int id);
+        IList<Tag> LoadTagsByApartmentId(int id);
         //TaggedApartment
         IList<TaggedApartment> LoadTaggedApartments();
         TaggedApartment LoadTaggedApartmentById(int id);

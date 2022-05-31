@@ -113,6 +113,15 @@ CREATE PROCEDURE LoadUserById
 AS
 	SELECT * FROM AspNetUsers WHERE AspNetUsers.Id = @Id
 /*Special select procedures*/
+GO
+CREATE PROCEDURE LoadTagsByApartmentId
+@Id INT
+AS
+	SELECT t.Id, t.Guid, t.CreatedAt, t.Name, t.NameEng, t.TypeId
+	FROM Tag as t
+	INNER JOIN TaggedApartment as ta ON ta.TagId = t.Id
+	WHERE ta.ApartmentId = @Id
+GO
 CREATE PROCEDURE LoadApartmentPicturesByApartmentId
 @Id INT
 AS
@@ -165,4 +174,5 @@ SELECT * FROM ApartmentStatus
 SELECT * FROM ApartmentReview
 SELECT * FROM Apartment
 SELECT * FROM ApartmentPicture
+SELECT * FROM TaggedApartment
 SELECT * FROM City

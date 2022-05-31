@@ -105,10 +105,12 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             var pictures = this.LoadApartmentPicturesByApartmentId(apartment.Id);
             var status = this.LoadApartmentStatusByIdRaw(apartment.StatusId);
             var city = this.LoadCityByIdRaw(apartment.CityId);
+            var tags = this.LoadTagsByApartmentId(apartment.Id);
 
             apartment.Pictures = new List<ApartmentPicture>(pictures);
             apartment.Status = status;
             apartment.City = city;
+            apartment.Tags = new List<Tag>(tags);
 
             return apartment;
         }
@@ -214,8 +216,6 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
         {
             return this.LoadApartmentsRaw();
         }
-
-        [assembly: DebuggerDisplay("This methods returns fully initlaized apartments list")]
         public override IList<Apartment> LoadApartments(params Predicate<Apartment>[] filters)
         {
             var apartments = this.LoadApartmentsRaw();
@@ -291,7 +291,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override Tag LoadTagById(int id)
         {
-            throw new NotImplementedException();
+            return this.LoadTagByIdRaw(id);
         }
 
         public override TaggedApartment LoadTaggedApartmentById(int id)
@@ -306,7 +306,30 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override IList<Tag> LoadTags()
         {
-            throw new NotImplementedException();
+            return this.LoadTagsRaw();
+        }
+
+        public override IList<Tag> LoadTagsByApartmentId(int id)
+        {
+            IList<Tag> tags = new List<Tag>();
+
+            var tblTags = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadTagsByApartmentId), id).Tables[0];
+            foreach (DataRow row in tblTags.Rows)
+            {
+                tags.Add(
+                    new Tag
+                    {
+                        Id = (int)(row[nameof(Tag.Id)]),
+                        Guid = (Guid)row[nameof(Tag.Guid)],
+                        Name = (string)row[nameof(Tag.Name)],
+                        CreatedAt = (DateTime)row[nameof(Tag.CreatedAt)],
+                        NameEng = (string)row[nameof(Tag.NameEng)],
+                        TypeId = (int)row[nameof(Tag.TypeId)],
+                    }
+                );
+            }
+
+            return tags;
         }
 
         public override TagType LoadTagTypeById(int id)

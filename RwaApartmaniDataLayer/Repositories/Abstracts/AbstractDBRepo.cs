@@ -569,6 +569,8 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         public abstract IList<ApartmentPicture> LoadApartmentPicturesByApartmentId(int id);
 
         public abstract IList<Apartment> LoadApartmentsByOwnerId(int id);
+
+        public abstract IList<Tag> LoadTagsByApartmentId(int id);
         //Interface methods
     }
 }
