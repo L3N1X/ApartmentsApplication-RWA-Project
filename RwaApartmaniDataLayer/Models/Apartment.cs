@@ -29,5 +29,6 @@ namespace RwaApartmaniDataLayer.Models
         public IList<Tag> Tags { get; set; }
         public ApartmentStatus Status { get; set; }
         public City City { get; set; } = new City();
+        public string PriceString { get => String.Format("{0:0.00}", Price) + "€"; }
     }
 }

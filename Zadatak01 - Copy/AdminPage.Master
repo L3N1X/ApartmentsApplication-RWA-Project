@@ -34,6 +34,10 @@
         .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
             background-color: rgb(253,253,253);
         }
+
+        .table td, th{
+            text-align: center;
+        }
     </style>
 
     <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -58,8 +62,8 @@
                             <a class='nav-link' href='/Registration' runat="server" meta:resourcekey="aRegistration">Registration</a>
                         </li>
                         <% }
-                        else
-                        { %>
+                            else
+                            { %>
                         <li class='nav-item'>
                             <a class='nav-link' href="/Dashboard" runat="server" meta:resourcekey="aDashboard">Apartments</a>
                         </li>
