@@ -195,18 +195,33 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override IList<ApartmentReview> LoadApartmentReviews()
         {
-            throw new NotImplementedException();
+            return this.LoadApartmentReviewsRaw();
         }
 
         public override IList<Apartment> LoadApartments()
         {
-            throw new NotImplementedException();
+            return this.LoadApartmentsRaw();
         }
 
         public override IList<Apartment> LoadApartments(params Predicate<Apartment>[] filters)
         {
             var apartments = this.LoadApartmentsRaw();
-            throw new NotImplementedException();
+            var filteredApartments = new List<Apartment>();
+            foreach (var apartment in apartments)
+            {
+                bool valid = true;
+                foreach (var filter in filters)
+                {
+                    if (!filter(apartment))
+                    {
+                        valid = false;
+                        break;
+                    }
+                }
+                if (valid)
+                    filteredApartments.Add(apartment);
+            }
+            return filteredApartments;
         }
 
         public override IList<Apartment> LoadApartmentsByOwnerId(int id)

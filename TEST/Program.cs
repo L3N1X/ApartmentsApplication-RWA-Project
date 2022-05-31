@@ -24,12 +24,18 @@ namespace TEST
             //{
             //    Console.WriteLine(owner.Name);
             //}
-            var reservations = repo.LoadApartmentReservations();
-            foreach (var reservation in reservations)
-            {
-                var temp = repo.LoadApartmentReservationById(reservation.Id);
-                Console.WriteLine($"Apartment: {temp.Apartment.Name} Username: {temp.User.UserName}");
-            }
+            //var reservations = repo.LoadApartmentReservations();
+            //foreach (var reservation in reservations)
+            //{
+            //    var temp = repo.LoadApartmentReservationById(reservation.Id);
+            //    Console.WriteLine($"Apartment: {temp.Apartment.Name} Username: {temp.User.UserName}");
+            //}
+            //var apartments = repo.LoadApartments(a => a.Name.StartsWith("P"));
+            //foreach (var apartment in apartments)
+            //{
+            //    Console.WriteLine(apartment.Name);
+            //}
+            Console.WriteLine("Hehe");
         }
     }
 }

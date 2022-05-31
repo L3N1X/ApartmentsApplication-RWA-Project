@@ -160,3 +160,5 @@ AS
 	SET AspNetUsers.DeletedAt = GETDATE()
 	WHERE AspNetUsers.Id = @Id
 GO
+
+SELECT * FROM ApartmentReservation
