@@ -83,10 +83,10 @@ CREATE PROCEDURE LoadApartmentReviewById
 AS
 	SELECT * FROM ApartmentReview WHERE ApartmentReview.Id = @Id
 GO
-CREATE PROCEDURE LoadApartmentStatusById
+ALTER PROCEDURE LoadApartmentStatusById
 @Id INT
 AS
-	SELECT * FROM ApartmentReview WHERE ApartmentReview.Id = @Id
+	SELECT * FROM ApartmentStatus WHERE ApartmentStatus.Id = @Id
 GO
 CREATE PROCEDURE LoadCitiyById
 @Id INT
@@ -161,4 +161,8 @@ AS
 	WHERE AspNetUsers.Id = @Id
 GO
 
-SELECT * FROM ApartmentReservation
+SELECT * FROM ApartmentStatus
+SELECT * FROM ApartmentReview
+SELECT * FROM Apartment
+SELECT * FROM ApartmentPicture
+SELECT * FROM City

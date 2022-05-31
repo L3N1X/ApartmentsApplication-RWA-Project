@@ -1,4 +1,5 @@
-﻿using RwaApartmaniDataLayer.Repositories.Abstracts;
+﻿using RwaApartmaniDataLayer.Models;
+using RwaApartmaniDataLayer.Repositories.Abstracts;
 using RwaApartmaniDataLayer.Repositories.Implementations;
 using RwaApartmaniDataLayer.Repositories.Interfaces;
 using System;
@@ -17,7 +18,8 @@ namespace TEST
             //var apartments = repo.LoadApartments();
             //foreach (var apartment in apartments)
             //{
-            //    Console.WriteLine(apartment.Name);
+            //    var statis = repo.LoadApartmentStatusById(apartment.StatusId);
+            //    Console.WriteLine(statis.Name);
             //}
             //var owners = repo.LoadApartmentOwners();
             //foreach (var owner in owners)
@@ -30,11 +32,11 @@ namespace TEST
             //    var temp = repo.LoadApartmentReservationById(reservation.Id);
             //    Console.WriteLine($"Apartment: {temp.Apartment.Name} Username: {temp.User.UserName}");
             //}
-            //var apartments = repo.LoadApartments(a => a.Name.StartsWith("P"));
-            //foreach (var apartment in apartments)
-            //{
-            //    Console.WriteLine(apartment.Name);
-            //}
+            var apartments = repo.LoadApartments(a => a.City.Name.Equals("Opatija"));
+            foreach (var apartment in apartments)
+            {
+                Console.WriteLine(apartment.Name);
+            }
             //var reviews = repo.LoadApartmentReviews();
             //foreach (var review in reviews)
             //{

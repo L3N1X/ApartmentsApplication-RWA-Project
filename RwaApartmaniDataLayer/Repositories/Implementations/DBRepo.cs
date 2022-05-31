@@ -4,6 +4,7 @@ using RwaApartmaniDataLayer.Repositories.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -102,8 +103,12 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
         {
             var apartment = this.LoadApartmentByIdRaw(id);
             var pictures = this.LoadApartmentPicturesByApartmentId(apartment.Id);
+            var status = this.LoadApartmentStatusByIdRaw(apartment.StatusId);
+            var city = this.LoadCityByIdRaw(apartment.CityId);
 
             apartment.Pictures = new List<ApartmentPicture>(pictures);
+            apartment.Status = status;
+            apartment.City = city;
 
             return apartment;
         }
@@ -210,23 +215,25 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             return this.LoadApartmentsRaw();
         }
 
+        [assembly: DebuggerDisplay("This methods returns fully initlaized apartments list")]
         public override IList<Apartment> LoadApartments(params Predicate<Apartment>[] filters)
         {
             var apartments = this.LoadApartmentsRaw();
             var filteredApartments = new List<Apartment>();
             foreach (var apartment in apartments)
             {
+                var fullApartment = this.LoadApartmentById(apartment.Id);
                 bool valid = true;
                 foreach (var filter in filters)
                 {
-                    if (!filter(apartment))
+                    if (!filter(fullApartment))
                     {
                         valid = false;
                         break;
                     }
                 }
                 if (valid)
-                    filteredApartments.Add(apartment);
+                    filteredApartments.Add(fullApartment);
             }
             return filteredApartments;
         }
@@ -264,22 +271,22 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override IList<ApartmentStatus> LoadApartmentStatus()
         {
-            throw new NotImplementedException();
+            return this.LoadApartmentStatusRaw();
         }
 
         public override ApartmentStatus LoadApartmentStatusById(int id)
         {
-            throw new NotImplementedException();
+            return this.LoadApartmentStatusByIdRaw(id); //Extra information not necesarry
         }
 
         public override IList<City> LoadCities()
         {
-            throw new NotImplementedException();
+            return this.LoadCitiesRaw();
         }
 
         public override City LoadCitiyById(int id)
         {
-            throw new NotImplementedException();
+            return this.LoadCityByIdRaw(id);
         }
 
         public override Tag LoadTagById(int id)
