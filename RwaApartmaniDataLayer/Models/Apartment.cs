@@ -25,6 +25,7 @@ namespace RwaApartmaniDataLayer.Models
         public int BeachDistance { get; set; }
         public IList<ApartmentPicture> Pictures { get; set; }
         public int PicturesCount { get => Pictures.Count; } //dangerous right now
+        public string CityName { get => this.City.Name; } //dangerous right now
         public IList<Tag> Tags { get; set; }
         public ApartmentStatus Status { get; set; }
         public City City { get; set; } = new City();

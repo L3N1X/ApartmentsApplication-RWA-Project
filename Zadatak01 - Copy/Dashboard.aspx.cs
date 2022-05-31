@@ -1,4 +1,6 @@
-﻿using rwaLib.Models;
+﻿using RwaApartmaniDataLayer.Models;
+using RwaApartmaniDataLayer.Repositories.Interfaces;
+using rwaLib.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,21 @@ namespace Zadatak01
 {
     public partial class Dashboard : DefaultPage
     {
+        private IList<Apartment> _allApartments;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["user"] == null)
             {
                 Response.Redirect("Default.aspx");
             }
+            _allApartments = ((IRepo)Application["database"]).LoadApartments(a => true);
+            LoadApartments();
+        }
+
+        private void LoadApartments()
+        {
+            this.rptApartments.DataSource = _allApartments;
+            rptApartments.DataBind();
         }
 
         protected override void OnPreRender(EventArgs e)
@@ -25,6 +36,11 @@ namespace Zadatak01
             //pLName.InnerText = u.LName;
             //bUsername.InnerText = u.Username;
             base.OnPreRender(e);
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

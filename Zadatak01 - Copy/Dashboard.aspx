@@ -19,10 +19,10 @@
                 </div>
            </fieldset>
         </div>--%>
-    <div class="container p-4">
-        <asp:Repeater ID="rptTags" runat="server">
+    <div class="container p-3" style="height:84vh">
+        <asp:Repeater ID="rptApartments" runat="server">
             <HeaderTemplate>
-                <table class="table" style="width: 100%" id="myTable">
+                <table class="table table-hover">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
@@ -31,9 +31,9 @@
                             <th scope="col">Adults</th>
                             <th scope="col">Children</th>
                             <th scope="col">Rooms</th>
-                            <%--<th scope="col">Pictures</th>--%>
+                            <th scope="col">Pictures</th>
                             <th scope="col">Price</th>
-                            <th scope="col">#</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,14 +42,14 @@
                 <tr>
                     <th scope="row"><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %></th>
                     <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Name)) %></td>
-                    <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.City.Name)) %></td>
+                    <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.CityName)) %></td>
                     <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.MaxAdults)) %></td>
                     <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.MaxChildren)) %></td>
                     <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.TotalRooms)) %></td>
-                    <%--<td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.PicturesCount)) %></td>--%>
+                    <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.PicturesCount)) %></td>
                     <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Price)) %></td>
-                    <td>
-                        <%--<asp:LinkButton ID="LinkButton1" OnClick="LinkButton1_Click" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %>" runat="server">Open</asp:LinkButton>--%>
+                    <td style="display:flex; justify-content:right">
+                        <asp:LinkButton ID="LinkButton1" OnClick="LinkButton1_Click" class="btn btn-outline-primary" style="width:100%" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %>" runat="server">Open</asp:LinkButton>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -58,5 +58,8 @@
                     </table>
             </FooterTemplate>
         </asp:Repeater>
+        <div class="container" style="display:flex; justify-content:right">
+            <asp:Button ID="btnAdd" runat="server" class="btn btn-primary" Text="Add new apartment" />
+        </div>
     </div>
 </asp:Content>
