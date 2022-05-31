@@ -52,6 +52,11 @@ namespace TEST
             //{
             //    Console.WriteLine($"{tuple.Item1.Name}- ({tuple.Item2}) {(tuple.Item2.Equals(0) ? "- DELETE" : string.Empty)}");
             //}
+            var apartments = repo.LoadApartments(a => a.StatusId.Equals(2));
+            foreach (var item in apartments)
+            {
+                Console.WriteLine(item.Name);
+            }
         }
     }
 }

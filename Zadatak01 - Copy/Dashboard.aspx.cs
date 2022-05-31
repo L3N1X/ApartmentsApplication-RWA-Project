@@ -23,17 +23,21 @@ namespace Zadatak01
             {
                 FillDropDownLists();
             }
-            if (Session["user"] == null)
-            {
-                Response.Redirect("Default.aspx");
-            }
-            if (Session["SelectedStatusFilterValue"] == null || Session["SelectedStatusFilterValue"].ToString() == "0")
+            if (Session["SelectedStatusFilterValue"] == null)
+                Session["SelectedStatusFilterValue"] = "0";
+            //if (Session["user"] == null)
+            //{
+            //    Response.Redirect("Default.aspx");
+            //}
+            this.lblId.Text = Session["SelectedStatusFilterValue"].ToString();
+            if (Session["SelectedStatusFilterValue"].ToString() == "0")
             {
                 _allApartments = ((IRepo)Application["database"]).LoadApartments(a => true);
             }
             else
             {
-                _allApartments = ((IRepo)Application["database"]).LoadApartments(a => a.StatusId.Equals(int.Parse(Session["SelectedStatusFilterValue"].ToString())));
+                int id = int.Parse(Session["SelectedStatusFilterValue"].ToString());
+                _allApartments = ((IRepo)Application["database"]).LoadApartments(a => a.StatusId.Equals(id));
             }
 
             LoadApartments();
@@ -46,13 +50,13 @@ namespace Zadatak01
             this.ddlCityFilter.DataValueField = "Id";
             this.ddlCityFilter.DataTextField = "Name";
             this.ddlCityFilter.DataBind();
-            this.ddlCityFilter.Items.Insert(0, new ListItem(" - Any - ", "NA"));
+            //this.ddlCityFilter.Items.Insert(0, new ListItem(" - Any - ", "0"));
 
             this.ddlStatusFilter.DataSource = _allStatuses;
             this.ddlStatusFilter.DataValueField = "Id";
             this.ddlStatusFilter.DataTextField = "NameEng";
             this.ddlStatusFilter.DataBind();
-            this.ddlStatusFilter.Items.Insert(0, new ListItem(" - Any - ", "0"));
+            //this.ddlStatusFilter.Items.Insert(0, new ListItem(" - Any - ", "0"));
 
         }
 
@@ -78,6 +82,7 @@ namespace Zadatak01
 
         protected void ddlStatusFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int id = int.Parse(ddlStatusFilter.SelectedValue); 
             Session["SelectedStatusFilterValue"] = this.ddlStatusFilter.SelectedValue;
         }
     }

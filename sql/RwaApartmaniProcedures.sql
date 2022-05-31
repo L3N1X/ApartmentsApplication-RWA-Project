@@ -170,9 +170,14 @@ AS
 	WHERE AspNetUsers.Id = @Id
 GO
 
+USE RwaApartmani
 SELECT * FROM ApartmentStatus
 SELECT * FROM ApartmentReview
 SELECT * FROM Apartment
 SELECT * FROM ApartmentPicture
 SELECT * FROM TaggedApartment
 SELECT * FROM City
+
+/*1 - Occupied
+2 - Reserved
+3 - Vacant*/
