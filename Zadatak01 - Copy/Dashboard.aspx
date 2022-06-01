@@ -26,16 +26,15 @@
                 <div style="display: flex; justify-content: space-between">
                     <div style="width: 20%; margin: 10px">
                         <asp:Label ID="lblStatusFilter" runat="server" Text="Status:"></asp:Label>
-                        <asp:DropDownList class="form-select" ID="ddlStatusFilter" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlStatusFilter_SelectedIndexChanged">
+                        <asp:DropDownList class="form-select" ID="ddlStatusFilter" runat="server" AutoPostBack="true">
                         </asp:DropDownList>
 
                         <asp:Label ID="lblCityFilter" runat="server" Text="City:"></asp:Label>
-                        <asp:DropDownList class="form-select" ID="ddlCityFilter" runat="server">
+                        <asp:DropDownList class="form-select" ID="ddlCityFilter" AutoPostBack="true" runat="server">
                         </asp:DropDownList>
 
                     </div>
                     <div style="width: 20%; margin: 10px">
-                        <asp:Label ID="lblId" runat="server" Text="Label"></asp:Label>
                     </div>
                 </div>
             </fieldset>

@@ -17,28 +17,37 @@ namespace Zadatak01
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _allCities = ((IRepo)Application["database"]).LoadCities();
-            _allStatuses = ((IRepo)Application["database"]).LoadApartmentStatus();
-            if (!IsPostBack)
-            {
-                FillDropDownLists();
-            }
-            if (Session["SelectedStatusFilterValue"] == null)
-                Session["SelectedStatusFilterValue"] = "0";
             //if (Session["user"] == null)
             //{
             //    Response.Redirect("Default.aspx");
             //}
-            this.lblId.Text = Session["SelectedStatusFilterValue"].ToString();
-            if (Session["SelectedStatusFilterValue"].ToString() == "0")
+            if (!IsPostBack)
             {
-                _allApartments = ((IRepo)Application["database"]).LoadApartments(a => true);
+                _allCities = ((IRepo)Application["database"]).LoadCities();
+                _allStatuses = ((IRepo)Application["database"]).LoadApartmentStatus();
+                FillDropDownLists();
             }
+            int selectedStatusId = int.Parse(this.ddlStatusFilter.SelectedValue);
+            int selectedCityId = int.Parse(this.ddlCityFilter.SelectedValue);
+
+            Predicate<Apartment> statusFilter;
+            Predicate<Apartment> cityFilter;
+
+            if (selectedStatusId == 0)
+                statusFilter = (apartment => true);
             else
-            {
-                int id = int.Parse(Session["SelectedStatusFilterValue"].ToString());
-                _allApartments = ((IRepo)Application["database"]).LoadApartments(a => a.StatusId.Equals(id));
-            }
+                statusFilter = (apartment => apartment.StatusId.Equals(selectedStatusId));
+
+            if (selectedCityId == 0)
+                cityFilter = (apartment => true);
+            else
+                cityFilter = (apartment => apartment.CityId.Equals(selectedCityId));
+
+            if (selectedStatusId == 0 && selectedCityId == 0)
+                _allApartments = ((IRepo)Application["database"]).LoadApartments(apartment => true);
+
+            else
+                _allApartments = ((IRepo)Application["database"]).LoadApartments(statusFilter, cityFilter);
 
             LoadApartments();
         }
@@ -50,13 +59,13 @@ namespace Zadatak01
             this.ddlCityFilter.DataValueField = "Id";
             this.ddlCityFilter.DataTextField = "Name";
             this.ddlCityFilter.DataBind();
-            //this.ddlCityFilter.Items.Insert(0, new ListItem(" - Any - ", "0"));
+            this.ddlCityFilter.Items.Insert(0, new ListItem(" - Any - ", "0"));
 
             this.ddlStatusFilter.DataSource = _allStatuses;
             this.ddlStatusFilter.DataValueField = "Id";
             this.ddlStatusFilter.DataTextField = "NameEng";
             this.ddlStatusFilter.DataBind();
-            //this.ddlStatusFilter.Items.Insert(0, new ListItem(" - Any - ", "0"));
+            this.ddlStatusFilter.Items.Insert(0, new ListItem(" - Any - ", "0"));
 
         }
 
@@ -68,22 +77,12 @@ namespace Zadatak01
 
         protected override void OnPreRender(EventArgs e)
         {
-            //User u = (User)Session["user"];
-            //pFName.InnerText = u.FName;
-            //pLName.InnerText = u.LName;
-            //bUsername.InnerText = u.Username;
             base.OnPreRender(e);
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        protected void ddlStatusFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int id = int.Parse(ddlStatusFilter.SelectedValue); 
-            Session["SelectedStatusFilterValue"] = this.ddlStatusFilter.SelectedValue;
         }
     }
 }
