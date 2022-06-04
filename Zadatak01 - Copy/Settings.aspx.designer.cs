@@ -15,39 +15,21 @@ namespace Zadatak01
     {
 
         /// <summary>
-        /// lblTheme control.
+        /// fieldset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTheme;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fieldset;
 
         /// <summary>
-        /// ddlTheme control.
+        /// tblTags control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTheme;
-
-        /// <summary>
-        /// lblLang control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLang;
-
-        /// <summary>
-        /// ddlLang control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLang;
+        protected global::System.Web.UI.HtmlControls.HtmlTable tblTags;
     }
 }

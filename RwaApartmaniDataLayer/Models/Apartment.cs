@@ -30,5 +30,13 @@ namespace RwaApartmaniDataLayer.Models
         public ApartmentStatus Status { get; set; }
         public City City { get; set; } = new City();
         public string PriceString { get => String.Format("{0:0.00}", Price) + "€"; }
+
+        public static Comparison<Apartment> PriceLowToHighComparison = ((left, right) => left.Price.CompareTo(right.Price));
+        public static Comparison<Apartment> PriceHighToLowComparison = ((left, right) => -left.Price.CompareTo(right.Price));
+        public static Comparison<Apartment> TotalRoomsLowToHighComparison = ((left, right) => left.TotalRooms.CompareTo(right.TotalRooms));
+        public static Comparison<Apartment> TotalRoomsHighToLowComparison = ((left, right) => -left.TotalRooms.CompareTo(right.TotalRooms));
+        public static Comparison<Apartment> TotalSpaceLowToHighComparison = ((left, right) => (left.MaxAdults + left.MaxChildren).CompareTo(right.MaxAdults + right.MaxChildren));
+        public static Comparison<Apartment> TotalSpaceHighToLowComparison = ((left, right) => -(left.MaxAdults + left.MaxChildren).CompareTo(right.MaxAdults + right.MaxChildren));
+        
     }
 }

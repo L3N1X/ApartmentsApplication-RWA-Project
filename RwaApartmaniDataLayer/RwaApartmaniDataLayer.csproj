@@ -58,6 +58,7 @@
     <Compile Include="Models\ApartmentStatus.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\TagCount.cs" />
     <Compile Include="Models\TaggedApartment.cs" />
     <Compile Include="Models\TagType.cs" />
     <Compile Include="Models\User.cs" />

@@ -20,6 +20,11 @@ namespace Zadatak01
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //UKLOVNI
+            Session["user"] = new User();
+            //UKLONI
+
             //if (Session["user"] == null)
             //{
             //    Response.Redirect("Default.aspx");
@@ -59,33 +64,28 @@ namespace Zadatak01
 
         private void SortApartments()
         {
-            //< asp:ListItem meta:resourcekey = "liPriceLH" Selected = "True" Value = "0" > Price: low to high </ asp:ListItem >
-            //                < asp:ListItem meta:resourcekey = "liPriceHL" Value = "1" > Price: high to low </ asp:ListItem >
-            //                < asp:ListItem meta:resourcekey = "liRoomsLH" Value = "2" > Rooms: least to most </ asp:ListItem >
-            //                < asp:ListItem meta:resourcekey = "liRoomsHL" Value = "3" > Rooms: most to least </ asp:ListItem >
-            //                < asp:ListItem meta:resourcekey = "liRoomsLH" Value = "4" > Rooms: least to most </ asp:ListItem >
-            //                < asp:ListItem meta:resourcekey = "liRoomsHL" Value = "5" > Rooms: most to least </ asp:ListItem >
             int sortBy = int.Parse(this.ddlSortBy.SelectedValue);
             List<Apartment> sortedApartments = new List<Apartment>(_allApartments);
+            //Move comparers to Apartment.cs
             switch (sortBy)
             {
                 case 0:
-                    sortedApartments.Sort((left, right) => left.Price.CompareTo(right.Price));
+                    sortedApartments.Sort(Apartment.PriceLowToHighComparison);
                     break;
                 case 1:
-                    sortedApartments.Sort((left, right) => -left.Price.CompareTo(right.Price));
+                    sortedApartments.Sort(Apartment.PriceHighToLowComparison);
                     break;
                 case 2:
-                    sortedApartments.Sort((left, right) => left.TotalRooms.CompareTo(right.TotalRooms));
+                    sortedApartments.Sort(Apartment.TotalRoomsLowToHighComparison);
                     break;
                 case 3:
-                    sortedApartments.Sort((left, right) => -left.TotalRooms.CompareTo(right.TotalRooms));
+                    sortedApartments.Sort(Apartment.TotalRoomsHighToLowComparison);
                     break;
                 case 4:
-                    sortedApartments.Sort((left, right) => (left.MaxAdults + left.MaxChildren).CompareTo(right.MaxAdults + right.MaxChildren));
+                    sortedApartments.Sort(Apartment.TotalSpaceLowToHighComparison);
                     break;
                 case 5:
-                    sortedApartments.Sort((left, right) => -(left.MaxAdults + left.MaxChildren).CompareTo(right.MaxAdults + right.MaxChildren));
+                    sortedApartments.Sort(Apartment.TotalSpaceHighToLowComparison);
                     break;
             }
             _allApartments = sortedApartments;

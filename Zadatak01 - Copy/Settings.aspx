@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminPage.Master" AutoEventWireup="true" CodeBehind="Settings.aspx.cs" Inherits="Zadatak01.Settings" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-    <div class='container p-4'>
+    <%--<div class='container p-4'>
         <fieldset>
             <legend runat="server" meta:resourcekey="legendSettings">Settings</legend>
             <div class="mb-3">
@@ -21,6 +22,14 @@
                     <asp:ListItem meta:resourcekey="liCro" Value="hr">Croatian</asp:ListItem>
                 </asp:DropDownList>
             </div>
+        </fieldset>
+</div>--%>
+    <div class='container p-4'>
+        <fieldset runat="server" id="fieldset">  
+            <legend runat="server" meta:resourcekey="legendSettings">Settings</legend>
+            <table class="table" id="tblTags" runat="server">
+
+            </table>
         </fieldset>
 </div>
 </asp:Content>
