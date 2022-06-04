@@ -19,6 +19,12 @@ namespace Zadatak01
             //{
             //    Response.Redirect("Default.aspx");
             //}
+
+            if (!IsPostBack)
+            {
+                FillTagTypeDdl();
+            }
+
             Session["user"] = new User();
 
             var tagscounts = ((IRepo)Application["database"]).LoadTagsCounted();
@@ -43,6 +49,16 @@ namespace Zadatak01
             //}
         }
 
+        private void FillTagTypeDdl()
+        {
+            var tagTypes = ((IRepo)Application["database"]).LoadTagTypes();
+            this.ddlTagType.DataSource = tagTypes;
+            this.ddlTagType.DataValueField = "Id";
+            this.ddlTagType.DataTextField = "Name";
+            this.ddlTagType.DataBind();
+            this.ddlTagType.SelectedIndex = 0;
+        }
+
         private void Filltable()
         {
             this.rptTags.DataSource = _tagCounts;
@@ -54,6 +70,7 @@ namespace Zadatak01
                 int count = int.Parse(countLabel.Text);
                 if (!count.Equals(0))
                     button.Style.Add("visibility", "hidden");
+                   
             }
         }
 
@@ -73,6 +90,22 @@ namespace Zadatak01
             //{
             //    var count = (e.Item.FindControl("count")).;
             //}
+        }
+
+        protected void btnCreateTag_Click(object sender, EventArgs e)
+        {
+            int tagTypeId = int.Parse(this.ddlTagType.SelectedValue);
+            Tag tag = new Tag
+            {
+                CreatedAt = DateTime.Now,
+                Guid = new Guid(),
+                Name = this.txtTagName.Text,
+                NameEng = this.txtTagNameEng.Text,
+                TypeId = tagTypeId, 
+            };
+            ((IRepo)Application["database"]).InsertTag(tag);
+            this.txtTagName.Text = String.Empty;
+            this.txt
         }
 
         //private void PreselectDDLAfterRefresh()

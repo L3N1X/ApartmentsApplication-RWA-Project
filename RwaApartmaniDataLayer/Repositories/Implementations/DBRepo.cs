@@ -81,7 +81,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override void InsertTag(Tag tag)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(InsertTag), tag.Guid, tag.CreatedAt, tag.TypeId, tag.Name, tag.NameEng);
         }
 
         public override void InsertTaggedApartment(TaggedApartment taggedApartment)
@@ -360,7 +360,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override IList<TagType> LoadTagTypes()
         {
-            throw new NotImplementedException();
+            return this.LoadTagTypesRaw();
         }
 
         public override User LoadUserById(int id)
