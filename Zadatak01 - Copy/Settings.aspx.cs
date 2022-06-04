@@ -76,7 +76,10 @@ namespace Zadatak01
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-
+            LinkButton button = sender as LinkButton;
+            int tagId = int.Parse(button.CommandArgument);
+            ((IRepo)Application["database"]).DeleteTag(tagId);
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
         protected void rptTags_DataBinding(object sender, EventArgs e)
@@ -105,7 +108,9 @@ namespace Zadatak01
             };
             ((IRepo)Application["database"]).InsertTag(tag);
             this.txtTagName.Text = String.Empty;
-            this.txt
+            this.txtTagNameEng.Text = String.Empty;
+            this.ddlTagType.SelectedIndex = 0;
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
         //private void PreselectDDLAfterRefresh()

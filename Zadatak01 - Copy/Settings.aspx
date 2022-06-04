@@ -46,7 +46,7 @@
                 <asp:DropDownList ID="ddlTagType" runat="server" AutoPostBack="true" class="form-select"></asp:DropDownList>
             </div>
 
-            <asp:Button ID="btnCreateTag" runat="server" Text="Create new tag" class="btn btn-primary" Style="width: 100%;" OnClick="btnCreateTag_Click" />
+            <asp:Button ID="btnCreateTag" runat="server" Text="Create new tag" class="btn btn-primary" Style="width: 100%;" OnClick="btnCreateTag_Click"/>
 
         </fieldset>
 
@@ -71,7 +71,7 @@
                             <asp:Label ID="lblCount" runat="server" style="font-size: 1.5rem" Text="<%#Eval(nameof(RwaApartmaniDataLayer.Models.TagCount.Count)) %>"></asp:Label>
                         </td>
                         <td style="display: flex; justify-content: right; height: 100%">
-                            <asp:LinkButton ID="btnDelete" class="btn btn-outline-danger" OnClick="btnDelete_Click" Style="width: 100%" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.TagCount.Id)) %>" runat="server">Delete</asp:LinkButton>
+                            <asp:LinkButton ID="btnDelete" class="btn btn-outline-danger" OnClick="btnDelete_Click" Style="width: 100%" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.TagCount.Id)) %>" runat="server" CausesValidation="false" >Delete</asp:LinkButton>
                         </td>
                     </tr>
                 </ItemTemplate>
