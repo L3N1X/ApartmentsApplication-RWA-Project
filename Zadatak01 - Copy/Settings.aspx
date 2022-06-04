@@ -23,13 +23,41 @@
                 </asp:DropDownList>
             </div>
         </fieldset>
-</div>--%>
-    <div class='container p-4'>
+</div>--%>s
+    <div class='container-sm p-5' style="width:50%">
         <fieldset runat="server" id="fieldset">  
             <legend runat="server" meta:resourcekey="legendSettings">Settings</legend>
-            <table class="table" id="tblTags" runat="server">
+            <%--<table class="table" id="tblTags" runat="server">
 
-            </table>
+            </table>--%>
+            <asp:Repeater ID="rptTags" runat="server" OnItemDataBound="rptTags_ItemDataBound">
+            <HeaderTemplate>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="text-align:left">Tag</th>
+                            <th scope="col" style="text-align:left">Times used</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr>
+                    <th scope="row" style="text-align:left"><%#Eval(nameof(RwaApartmaniDataLayer.Models.TagCount.Name)) %></th>
+                    <td id="count" style="text-align:left">
+                        <asp:Label ID="lblCount" runat="server" Text="<%#Eval(nameof(RwaApartmaniDataLayer.Models.TagCount.Count)) %>"></asp:Label>
+                    </td>
+                    <td style="display: flex; justify-content: right; height:100%">
+                        <asp:LinkButton ID="btnDelete" class="btn btn-outline-danger" OnClick="btnDelete_Click" Style="width: 100%" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.TagCount.Id)) %>" runat="server">Delete</asp:LinkButton>
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <FooterTemplate>
+                </tbody>
+                    </table>
+            </FooterTemplate>
+        </asp:Repeater>
         </fieldset>
 </div>
 </asp:Content>

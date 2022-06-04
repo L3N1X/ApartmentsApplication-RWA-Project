@@ -12,6 +12,7 @@ namespace Zadatak01
 {
     public partial class Settings : DefaultPage
     {
+        private IEnumerable<TagCount> _tagCounts;
         protected void Page_Load(object sender, EventArgs e)
         {
             //if (Session["user"] == null)
@@ -19,22 +20,58 @@ namespace Zadatak01
             //    Response.Redirect("Default.aspx");
             //}
             Session["user"] = new User();
+
             var tagscounts = ((IRepo)Application["database"]).LoadTagsCounted();
-            var countedTags = tagscounts.Select(t => new TagCount { Name = t.Item1.Name, NameEng = t.Item1.NameEng, Count = t.Item2 });
-            StringBuilder sb = new StringBuilder().Append(@"<table>");
-            foreach (var tagCount in countedTags)
-            {
-                sb
-                    .AppendLine("<tr>")
-                    .AppendLine($"<td style='width:30%'>{tagCount.Name}</td>")
-                    .AppendLine($"<td style='width:30%'>{tagCount.Count}</td>")
-                    .AppendLine($"{(tagCount.Count == 0 ? "<td style='width:30%'>DELETE</td>" : "<td style='width:30%'></td>")}");
-            }
-            sb.AppendLine("</table>");
-            this.fieldset.InnerHtml = sb.ToString();
+            _tagCounts = tagscounts.Select(t => new TagCount { Id = t.Item1.Id, Name = t.Item1.Name, NameEng = t.Item1.NameEng, Count = t.Item2 });
+            Filltable();
+
+
+            //StringBuilder sb = new StringBuilder().Append(@"<table>");
+            //foreach (var tagCount in countedTags)
+            //{
+            //    sb
+            //        .AppendLine("<tr>")
+            //        .AppendLine($"<td style='width:30%'>{tagCount.Name}</td>")
+            //        .AppendLine($"<td style='width:30%'>{tagCount.Count}</td>")
+            //        .AppendLine($"{(tagCount.Count == 0 ? "<td style='width:30%'>DELETE</td>" : "<td style='width:30%'></td>")}");
+            //}
+            //sb.AppendLine("</table>");
+            //this.fieldset.InnerHtml = sb.ToString();
             //else
             //{
             //    PreselectDDLAfterRefresh();
+            //}
+        }
+
+        private void Filltable()
+        {
+            this.rptTags.DataSource = _tagCounts;
+            this.rptTags.DataBind();
+            foreach (RepeaterItem item in rptTags.Items)
+            {
+                Label countLabel = (Label)item.FindControl("lblCount");
+                LinkButton button = (LinkButton)item.FindControl("btnDelete");
+                int count = int.Parse(countLabel.Text);
+                if (!count.Equals(0))
+                    button.Style.Add("visibility", "hidden");
+            }
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void rptTags_DataBinding(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void rptTags_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            //if(e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            //{
+            //    var count = (e.Item.FindControl("count")).;
             //}
         }
 

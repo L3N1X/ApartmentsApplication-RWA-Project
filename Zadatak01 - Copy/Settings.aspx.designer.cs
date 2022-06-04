@@ -24,12 +24,12 @@ namespace Zadatak01
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl fieldset;
 
         /// <summary>
-        /// tblTags control.
+        /// rptTags control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable tblTags;
+        protected global::System.Web.UI.WebControls.Repeater rptTags;
     }
 }
