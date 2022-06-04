@@ -4,26 +4,11 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-    <%--<div class="container p-4">
-            <fieldset>
-                <legend>User: <b runat="server" id="bUsername"></b></legend>
-
-                <div class='mb-3'>
-                    <asp:Label ID="lblFName" runat="server" Text="First name:"></asp:Label>
-                    <p id="pFName" runat="server"></p>
-                </div>
-
-                <div class='mb-3'>
-                     <asp:Label ID="lblLName" runat="server" Text="Last name:"></asp:Label>
-                     <p id="pLName" runat="server"></p>
-                </div>
-           </fieldset>
-        </div>--%>
     <div class="container p-3" style="height: 84vh">
         <div class="container">
             <fieldset>
                 <legend>Filters</legend>
-                <div style="display: flex; justify-content: space-between">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end">
                     <div style="width: 20%; margin: 10px">
                         <asp:Label ID="lblStatusFilter" runat="server" Text="Status:"></asp:Label>
                         <asp:DropDownList class="form-select" ID="ddlStatusFilter" runat="server" AutoPostBack="true">
@@ -35,6 +20,15 @@
 
                     </div>
                     <div style="width: 20%; margin: 10px">
+                        <asp:Label ID="lblSortBy"  runat="server" Text="Sort by:"></asp:Label>
+                        <asp:DropDownList class="form-select" ID="ddlSortBy" AutoPostBack="true" runat="server">
+                            <asp:ListItem meta:resourcekey="liPriceLH" Selected="True" Value="0">Price: low to high</asp:ListItem>
+                            <asp:ListItem meta:resourcekey="liPriceHL" Value="1">Price: high to low</asp:ListItem>
+                            <asp:ListItem meta:resourcekey="liRoomsLH" Value="2">Rooms: least to most</asp:ListItem>
+                            <asp:ListItem meta:resourcekey="liRoomsHL" Value="3">Rooms: most to least</asp:ListItem>
+                            <asp:ListItem meta:resourcekey="liSpacesLH" Value="4">Spaces: least to most</asp:ListItem>
+                            <asp:ListItem meta:resourcekey="liSpacesHL" Value="5">Spaces: most to least</asp:ListItem>
+                        </asp:DropDownList>
                     </div>
                 </div>
             </fieldset>

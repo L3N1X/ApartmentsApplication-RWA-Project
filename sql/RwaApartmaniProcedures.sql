@@ -178,6 +178,8 @@ SELECT * FROM ApartmentPicture
 SELECT * FROM TaggedApartment
 SELECT * FROM City
 
+
+
 /*1 - Occupied
 2 - Reserved
 3 - Vacant*/

@@ -11,6 +11,9 @@ namespace Zadatak01
 {
     public partial class Dashboard : DefaultPage
     {
+        //TO DO: Avoid always calling the database when refreshing
+        //Add constant apartments then filter them (maybe??)
+
         private IList<Apartment> _allApartments;
         private IList<City> _allCities;
         private IList<ApartmentStatus> _allStatuses;
@@ -49,7 +52,43 @@ namespace Zadatak01
             else
                 _allApartments = ((IRepo)Application["database"]).LoadApartments(statusFilter, cityFilter);
 
+            SortApartments();
+
             LoadApartments();
+        }
+
+        private void SortApartments()
+        {
+            //< asp:ListItem meta:resourcekey = "liPriceLH" Selected = "True" Value = "0" > Price: low to high </ asp:ListItem >
+            //                < asp:ListItem meta:resourcekey = "liPriceHL" Value = "1" > Price: high to low </ asp:ListItem >
+            //                < asp:ListItem meta:resourcekey = "liRoomsLH" Value = "2" > Rooms: least to most </ asp:ListItem >
+            //                < asp:ListItem meta:resourcekey = "liRoomsHL" Value = "3" > Rooms: most to least </ asp:ListItem >
+            //                < asp:ListItem meta:resourcekey = "liRoomsLH" Value = "4" > Rooms: least to most </ asp:ListItem >
+            //                < asp:ListItem meta:resourcekey = "liRoomsHL" Value = "5" > Rooms: most to least </ asp:ListItem >
+            int sortBy = int.Parse(this.ddlSortBy.SelectedValue);
+            List<Apartment> sortedApartments = new List<Apartment>(_allApartments);
+            switch (sortBy)
+            {
+                case 0:
+                    sortedApartments.Sort((left, right) => left.Price.CompareTo(right.Price));
+                    break;
+                case 1:
+                    sortedApartments.Sort((left, right) => -left.Price.CompareTo(right.Price));
+                    break;
+                case 2:
+                    sortedApartments.Sort((left, right) => left.TotalRooms.CompareTo(right.TotalRooms));
+                    break;
+                case 3:
+                    sortedApartments.Sort((left, right) => -left.TotalRooms.CompareTo(right.TotalRooms));
+                    break;
+                case 4:
+                    sortedApartments.Sort((left, right) => (left.MaxAdults + left.MaxChildren).CompareTo(right.MaxAdults + right.MaxChildren));
+                    break;
+                case 5:
+                    sortedApartments.Sort((left, right) => -(left.MaxAdults + left.MaxChildren).CompareTo(right.MaxAdults + right.MaxChildren));
+                    break;
+            }
+            _allApartments = sortedApartments;
         }
 
         private void FillDropDownLists()

@@ -52,10 +52,12 @@ namespace TEST
             //{
             //    Console.WriteLine($"{tuple.Item1.Name}- ({tuple.Item2}) {(tuple.Item2.Equals(0) ? "- DELETE" : string.Empty)}");
             //}
-            var apartments = repo.LoadApartments(a => a.StatusId.Equals(2));
-            foreach (var item in apartments)
+            var apartments = repo.LoadApartments(a => true);
+            IList<Apartment> aps = new List<Apartment>(apartments);
+            aps.ToList().Sort((left, right) => left.PicturesCount.CompareTo(right.PicturesCount));
+            foreach (var item in aps)
             {
-                Console.WriteLine(item.Name);
+                Console.WriteLine(item.PicturesCount);
             }
         }
     }
