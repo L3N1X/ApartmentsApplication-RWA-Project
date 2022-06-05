@@ -38,6 +38,16 @@
         .table td, th{
             text-align: center;
         }
+
+        #tagsContainer{
+            height: 30vh;
+            overflow-y:scroll;
+        }
+
+        #tagsContainer input{
+            margin:10px;
+        }
+
     </style>
 
     <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />

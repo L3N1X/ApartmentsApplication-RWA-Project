@@ -169,9 +169,21 @@ AS
 	SET AspNetUsers.DeletedAt = GETDATE()
 	WHERE AspNetUsers.Id = @Id
 GO
+/*Create procedures*/
+CREATE PROCEDURE InsertTag
+@Guid UNIQUEIDENTIFIER,
+@CreatedAt DATETIME,
+@TypeId INT,
+@Name NVARCHAR(250),
+@NameEng NVARCHAR(250)
+AS
+	INSERT INTO Tag (Guid, CreatedAt, TypeId, Name, NameEng)
+	VALUES (@Guid, @CreatedAt, @TypeId, @Name, @NameEng)
+GO
 
 USE RwaApartmani
 SELECT * FROM ApartmentStatus
+SELECT * FROM TagType
 SELECT * FROM ApartmentReview
 SELECT * FROM Apartment
 SELECT * FROM ApartmentPicture

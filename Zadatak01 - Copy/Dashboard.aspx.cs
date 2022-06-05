@@ -13,15 +13,17 @@ namespace Zadatak01
     {
         //TO DO: Avoid always calling the database when refreshing
         //Add constant apartments then filter them (maybe??)
+        //START USING NAMEOF!!!!!!
 
         private IList<Apartment> _allApartments;
         private IList<City> _allCities;
         private IList<ApartmentStatus> _allStatuses;
+        private IList<Tag> _allTags;
 
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            //UKLOVNI
+            //UKLONI
             Session["user"] = new User();
             //UKLONI
 
@@ -29,12 +31,23 @@ namespace Zadatak01
             //{
             //    Response.Redirect("Default.aspx");
             //}
+
             if (!IsPostBack)
             {
                 _allCities = ((IRepo)Application["database"]).LoadCities();
                 _allStatuses = ((IRepo)Application["database"]).LoadApartmentStatus();
+                _allTags = ((IRepo)Application["database"]).LoadTags();
                 FillDropDownLists();
             }
+
+            FilterAndSortApartments();
+            LoadApartments();
+        }
+
+        private void FilterAndSortApartments()
+        {
+
+
             int selectedStatusId = int.Parse(this.ddlStatusFilter.SelectedValue);
             int selectedCityId = int.Parse(this.ddlCityFilter.SelectedValue);
 
@@ -57,16 +70,9 @@ namespace Zadatak01
             else
                 _allApartments = ((IRepo)Application["database"]).LoadApartments(statusFilter, cityFilter);
 
-            SortApartments();
-
-            LoadApartments();
-        }
-
-        private void SortApartments()
-        {
             int sortBy = int.Parse(this.ddlSortBy.SelectedValue);
             List<Apartment> sortedApartments = new List<Apartment>(_allApartments);
-            //Move comparers to Apartment.cs
+            
             switch (sortBy)
             {
                 case 0:
@@ -93,13 +99,27 @@ namespace Zadatak01
 
         private void FillDropDownLists()
         {
+            //Create new apartment cites
+            this.ddlCity.DataSource = _allCities;
+            this.ddlCity.DataValueField = "Id";
+            this.ddlCity.DataTextField = "Name";
+            this.ddlCity.DataBind();
+            this.ddlCity.SelectedIndex = 0;
 
+            //Tags checked listbox
+            this.cblTags.DataSource = _allTags;
+            this.cblTags.DataValueField = "Id";
+            this.cblTags.DataTextField = "Name";
+            this.cblTags.DataBind();
+
+            //City filter
             this.ddlCityFilter.DataSource = _allCities;
             this.ddlCityFilter.DataValueField = "Id";
             this.ddlCityFilter.DataTextField = "Name";
             this.ddlCityFilter.DataBind();
             this.ddlCityFilter.Items.Insert(0, new ListItem(" - Any - ", "0"));
 
+            //Status filter
             this.ddlStatusFilter.DataSource = _allStatuses;
             this.ddlStatusFilter.DataValueField = "Id";
             this.ddlStatusFilter.DataTextField = "NameEng";
