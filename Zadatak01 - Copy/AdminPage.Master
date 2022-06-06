@@ -17,6 +17,14 @@
 
     <!-- CUSTOM CSS -->
     <style>
+        body {
+            font-family: 'Century Gothic';
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
         fieldset {
             border: 1px solid #ced4da;
             padding: inherit;
@@ -35,19 +43,18 @@
             background-color: rgb(253,253,253);
         }
 
-        .table td, th{
+        .table td, th {
             text-align: center;
         }
 
-        #tagsContainer{
-            height: 30vh;
-            overflow-y:scroll;
+        #tagsContainer {
+            height: 27vh;
+            overflow-y: scroll;
         }
 
-        #tagsContainer input{
-            margin:10px;
-        }
-
+            #tagsContainer input {
+                margin: 10px;
+            }
     </style>
 
     <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -55,9 +62,10 @@
 </head>
 <body>
     <form id="Web_app" runat="server">
-        <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+        <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <div class='container-fluid'>
-                <a class='navbar-brand' href='/' style="padding-right: 2rem">RWA Apartments Admin</a>
+                <a class='navbar-brand' href='/'>
+                    <img src="Images/apartment.png" alt="logo" style="height: 2rem; width: 2rem;" /></a>
                 <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation'>
                     <span class='navbar-toggler-icon'></span>
                 </button>
@@ -117,8 +125,8 @@
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('#myTable').DataTable();
-        });
-    </script>
+    $('#myTable').DataTable();
+});
+    </script >
 </body>
 </html>
