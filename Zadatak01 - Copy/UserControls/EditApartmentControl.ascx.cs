@@ -41,12 +41,20 @@ namespace Zadatak01.UserControls
                 item.Selected = false;
             this.txtApartmentName.Text = _apartment.Name;
             this.txtApartmentNameEng.Text = _apartment.NameEng;
-            this.txtPrice.Text = _apartment.Price.ToString();
+            this.txtPrice.Text = ((int)_apartment.Price).ToString();
             this.txtTotalRooms.Text = _apartment.TotalRooms.ToString();
             this.txtAdults.Text = _apartment.MaxAdults.ToString();
             this.txtChildren.Text = _apartment.MaxChildren.ToString();
             this.txtBeach.Text = _apartment.BeachDistance.ToString();
             this.txtAddress.Text = _apartment.Address;
+            foreach (var tag in _apartment.Tags)
+            {
+                ListItem foundTag = cblTags.Items.FindByValue(tag.Id.ToString());
+                foundTag.Selected = true;
+            }
+            this.pnlUpdate.Visible = true;
+            this.pnlCreate.Visible = false;
+            this.lblTitle.Text = "Edit apartment";
         }
 
         protected void btnClose_Click(object sender, EventArgs e)
@@ -62,6 +70,12 @@ namespace Zadatak01.UserControls
             this.txtChildren.Text = string.Empty;
             this.txtBeach.Text = string.Empty;
             this.txtAdults.Text = string.Empty;
+
+            this.pnlCreate.Visible = true;
+            this.pnlUpdate.Visible = false;
+
+            this.lblTitle.Text = "Create new apartment";
+
             Response.Redirect("/Dashboard");
         }
     }

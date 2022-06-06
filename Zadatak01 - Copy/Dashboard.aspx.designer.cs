@@ -78,6 +78,15 @@ namespace Zadatak01
         protected global::System.Web.UI.WebControls.Repeater rptApartments;
 
         /// <summary>
+        /// btnCreate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreate;
+
+        /// <summary>
         /// pnlApartment control.
         /// </summary>
         /// <remarks>

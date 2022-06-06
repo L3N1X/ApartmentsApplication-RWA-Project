@@ -164,5 +164,10 @@ namespace Zadatak01
             //this.pnlApartment.Visible = true;
 
         }
+
+        protected void btnCreate_Click(object sender, EventArgs e)
+        {
+            this.pnlApartment.Visible = true;
+        }
     }
 }

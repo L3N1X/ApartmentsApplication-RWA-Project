@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditApartmentControl.ascx.cs" Inherits="Zadatak01.UserControls.EditApartmentControl" %>
 <div class="offcanvas-header" id="popup-header">
-    <h4 runat="server" class="offcanvas-title" id="offcanvasTitle">Edit apartment</h4>
+    <%--<h4 runat="server" class="offcanvas-title" id="offcanvasTitle">Edit apartment</h4>--%>
+    <asp:Label ID="lblTitle" runat="server" Text="Create new apartment"></asp:Label>
 </div>
 <div id="offcanvas" class="offcanvas-body small d-flex justify-content-center">
     <div class="container">
@@ -66,21 +67,26 @@
                 <fieldset>
                     <legend>Tags</legend>
                     <div class="mb-3" id="tagsContainer">
-                    <asp:CheckBoxList ID="cblTags" runat="server" CssClass="form-check"></asp:CheckBoxList>
-                </div>
+                        <asp:CheckBoxList ID="cblTags" runat="server" CssClass="form-check"></asp:CheckBoxList>
+                    </div>
                 </fieldset>
-                <%--<div class="mb-3">
-                    <asp:Label ID="Label10" runat="server" Text="Tags"></asp:Label>
-                </div>--%>
-                
             </div>
-
             <div class="mb-3">
                 <asp:Label ID="Label9" runat="server" Text="City"></asp:Label>
                 <asp:DropDownList class="form-select" ID="ddlCity" AutoPostBack="true" runat="server"></asp:DropDownList>
             </div>
-
-            <asp:Button ID="btnClose" class="btn btn-primary" OnClick="btnClose_Click" runat="server" CausesValidation="false" Text="Close" />
+        </div>
+        <div class="mb-3 float-end">
+            <asp:Panel ID="pnlUpdate" runat="server" Visible="false">
+                <asp:Button ID="btnDelete" class="btn btn-danger" runat="server" Text="Delete" />
+                <asp:Button ID="btnUpdate" class="btn btn-warning" runat="server" Text="Update" />
+                <asp:Button ID="btnClose2" class="btn btn-secondary" OnClick="btnClose_Click" runat="server" CausesValidation="false" Text="Close" />
+            </asp:Panel>
+            <asp:Panel ID="pnlCreate" runat="server" Visible="true">
+                <asp:Button ID="btnCreate" runat="server" class="btn btn-primary" Text="Create new apartment" />
+                <asp:Button ID="btnClose1" class="btn btn-secondary" OnClick="btnClose_Click" runat="server" CausesValidation="false" Text="Close" />
+            </asp:Panel>
+                
         </div>
     </div>
 </div>
