@@ -31,6 +31,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                     {
                         Id = (int)(row[nameof(Apartment.Id)]),
                         Name = (string)row[nameof(Apartment.Name)],
+                        NameEng = (string)row[nameof(Apartment.NameEng)],
                         Address = (string)row[nameof(Apartment.Address)],
                         CityId = (int)(row[nameof(Apartment.CityId)]),
                         BeachDistance = (int)row[nameof(Apartment.BeachDistance)],
@@ -59,6 +60,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             {
                 Id = (int)(row[nameof(Apartment.Id)]),
                 Name = (string)row[nameof(Apartment.Name)],
+                NameEng = (string)row[nameof(Apartment.NameEng)],
                 Address = (string)row[nameof(Apartment.Address)],
                 CityId = (int)(row[nameof(Apartment.CityId)]),
                 BeachDistance = (int)row[nameof(Apartment.BeachDistance)],

@@ -18,6 +18,7 @@ namespace RwaApartmaniDataLayer.Models
         public int CityId { get; set; } //Add reference field
         public string Address { get; set; }
         public string Name { get; set; }
+        public string NameEng { get; set; }
         public decimal Price { get; set; }
         public int MaxAdults { get; set; }
         public int MaxChildren { get; set; }

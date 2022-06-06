@@ -21,8 +21,18 @@
             font-family: 'Century Gothic';
         }
 
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+        #popup {
+            padding: 0;
+            border-radius: .7em;
+            background-color: white;
+            overflow: hidden;
+            width: 70vw;
+            position: absolute;
+            left: 15vw;
+            right: 15vw;
+            top: 10em;
+            z-index: 1000;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
         }
 
         fieldset {
@@ -125,8 +135,8 @@
     <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
-    $('#myTable').DataTable();
-});
+            $('#myTable').DataTable();
+        });
     </script >
-</body>
-</html>
+</body >
+</html >
