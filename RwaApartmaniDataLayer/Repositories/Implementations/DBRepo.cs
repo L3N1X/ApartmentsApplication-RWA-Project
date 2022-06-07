@@ -13,10 +13,10 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 {
     public partial class DBRepo : AbstractDBRepo
     {
-        private int LoadApartmentIdByGuid(Guid guid)
+        public int LoadApartmentIdByGuid(Guid guid)
         {
             int apartmentId = 1;
-            var tblApartments = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentPicturesByApartmentId), guid).Tables[0];
+            var tblApartments = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentIdByGuid), guid).Tables[0];
             foreach (DataRow row in tblApartments.Rows)
             {
                 apartmentId = (int)(row[nameof(Apartment.Id)]);
@@ -71,7 +71,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
                 apartment.MaxChildren,
                 apartment.TotalRooms,
                 apartment.BeachDistance);
-            int apartmentId = LoadApartmentIdByGuid(apartment.Guid);
+            int apartmentId = LoadApartmentIdByGuid(apartment.Guid); //Gets id from database to resolve foreign key errors
             foreach (Tag tag in apartment.Tags)
                 InsertTaggedApartment(new TaggedApartment { Guid = Guid.NewGuid(), ApartmentId = apartmentId, TagId = tag.Id });
         }

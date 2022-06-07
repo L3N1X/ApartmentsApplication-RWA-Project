@@ -14,7 +14,7 @@ namespace TEST
     {
         static void Main(string[] args)
         {
-            IRepo repo = new DBRepo();
+            DBRepo repo = new DBRepo();
             //var apartments = repo.LoadApartments();
             //foreach (var apartment in apartments)
             //{
@@ -64,7 +64,8 @@ namespace TEST
             //{
             //    Console.WriteLine(owner.Name);
             //}
-            Console.WriteLine(new Guid());
+            int id = repo.LoadApartmentIdByGuid(new Guid("ACCCA4CB-B351-4605-8606-B134E814075D"));
+            Console.WriteLine(id);
         }
     }
 }

@@ -575,6 +575,11 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         public abstract IList<Tag> LoadTagsByApartmentId(int id);
 
         public abstract IList<Tuple<Tag, int>> LoadTagsCounted();
+
+        public void UpdateApartment(Apartment apartment)
+        {
+            throw new NotImplementedException();
+        }
         //Interface methods
     }
 }

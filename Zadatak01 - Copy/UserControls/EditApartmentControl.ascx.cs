@@ -128,6 +128,7 @@ namespace Zadatak01.UserControls
                     apartment.Tags.Add(new Tag { Id = int.Parse(item.Value)});
             }
             ((IRepo)Application["database"]).InsertApartment(apartment);
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
     }
 }
