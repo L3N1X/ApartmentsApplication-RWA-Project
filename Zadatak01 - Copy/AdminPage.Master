@@ -17,6 +17,23 @@
 
     <!-- CUSTOM CSS -->
     <style>
+        /* ===== Scrollbar CSS ===== */
+
+        /* Chrome, Edge, and Safari */
+        *::-webkit-scrollbar {
+            width: 16px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: #6d7583;
+            border-radius: 10px;
+            border: 3px solid #ffffff;
+        }
+
         body {
             font-family: 'Century Gothic';
         }
@@ -35,8 +52,8 @@
             box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
         }
 
-        #popup_confirm{
-             padding: 0;
+        #popup_confirm {
+            padding: 0;
             border-radius: .6em;
             background-color: white;
             overflow: hidden;
@@ -79,13 +96,17 @@
             #tagsContainer input {
                 margin: 10px;
             }
+
+        .master_form {
+            min-height: 90vh;
+        }
     </style>
 
     <link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
 
 </head>
 <body>
-    <form id="Web_app" runat="server">
+    <form id="Web_app" runat="server" class="master_form">
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
             <div class='container-fluid'>
                 <a class='navbar-brand' href='/'>
@@ -133,12 +154,13 @@
             <asp:ContentPlaceHolder ID="Content" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-        <hr class='mt-4'>
-        <div class='text-center'>
-            <p>RWA- <%: DateTime.Now.Year %> &copy;</p>
-        </div>
     </form>
-
+    <hr />
+    <footer class="mt-auto">
+        <div class='text-center'>
+            <p>RWA - Leon Krušlin 2022 &copy;</p>
+        </div>
+    </footer>
     <!-- JQUERY -->
     <script src="Scripts/jquery-3.6.0.min.js"></script>
 
@@ -151,6 +173,6 @@
         $(document).ready(function () {
             $('#myTable').DataTable();
         });
-    </script >
-</body >
-</html >
+    </script>
+</body>
+</html>

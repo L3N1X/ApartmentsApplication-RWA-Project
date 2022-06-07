@@ -122,7 +122,9 @@
     <Content Include="Settings.aspx" />
     <Content Include="Tags.aspx" />
     <Content Include="UserControls\ApartmentDeleteControl.ascx" />
+    <Content Include="UserControls\CreateTagControl.ascx" />
     <Content Include="UserControls\EditApartmentControl.ascx" />
+    <Content Include="UserControls\TagDeleteControl.ascx" />
     <Content Include="Users.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -214,12 +216,26 @@
     <Compile Include="UserControls\ApartmentDeleteControl.ascx.designer.cs">
       <DependentUpon>ApartmentDeleteControl.ascx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CreateTagControl.ascx.cs">
+      <DependentUpon>CreateTagControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\CreateTagControl.ascx.designer.cs">
+      <DependentUpon>CreateTagControl.ascx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\EditApartmentControl.ascx.cs">
       <DependentUpon>EditApartmentControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UserControls\EditApartmentControl.ascx.designer.cs">
       <DependentUpon>EditApartmentControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\TagDeleteControl.ascx.cs">
+      <DependentUpon>TagDeleteControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\TagDeleteControl.ascx.designer.cs">
+      <DependentUpon>TagDeleteControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="Users.aspx.cs">
       <DependentUpon>Users.aspx</DependentUpon>

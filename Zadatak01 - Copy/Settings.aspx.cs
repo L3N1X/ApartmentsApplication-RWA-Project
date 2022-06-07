@@ -15,6 +15,8 @@ namespace Zadatak01
         private IEnumerable<TagCount> _tagCounts;
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.pnlCreateTag.Visible = false;
+            this.pnlConfirm.Visible = false;
             //if (Session["user"] == null)
             //{
             //    Response.Redirect("Default.aspx");
@@ -22,7 +24,7 @@ namespace Zadatak01
 
             if (!IsPostBack)
             {
-                FillTagTypeDdl();
+                //FillTagTypeDdl();
             }
 
             Session["user"] = new User();
@@ -49,15 +51,6 @@ namespace Zadatak01
             //}
         }
 
-        private void FillTagTypeDdl()
-        {
-            var tagTypes = ((IRepo)Application["database"]).LoadTagTypes();
-            this.ddlTagType.DataSource = tagTypes;
-            this.ddlTagType.DataValueField = "Id";
-            this.ddlTagType.DataTextField = "Name";
-            this.ddlTagType.DataBind();
-            this.ddlTagType.SelectedIndex = 0;
-        }
 
         private void Filltable()
         {
@@ -78,8 +71,8 @@ namespace Zadatak01
         {
             LinkButton button = sender as LinkButton;
             int tagId = int.Parse(button.CommandArgument);
-            ((IRepo)Application["database"]).DeleteTag(tagId);
-            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            this.TagDeleteControl.FillForm(tagId);
+            this.pnlConfirm.Visible = true;
         }
 
         protected void rptTags_DataBinding(object sender, EventArgs e)
@@ -97,20 +90,21 @@ namespace Zadatak01
 
         protected void btnCreateTag_Click(object sender, EventArgs e)
         {
-            int tagTypeId = int.Parse(this.ddlTagType.SelectedValue);
-            Tag tag = new Tag
-            {
-                CreatedAt = DateTime.Now,
-                Guid = new Guid(),
-                Name = this.txtTagName.Text,
-                NameEng = this.txtTagNameEng.Text,
-                TypeId = tagTypeId, 
-            };
-            ((IRepo)Application["database"]).InsertTag(tag);
-            this.txtTagName.Text = String.Empty;
-            this.txtTagNameEng.Text = String.Empty;
-            this.ddlTagType.SelectedIndex = 0;
-            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            this.pnlCreateTag.Visible = true;
+            //int tagTypeId = int.Parse(this.ddlTagType.SelectedValue);
+            //Tag tag = new Tag
+            //{
+            //    CreatedAt = DateTime.Now,
+            //    Guid = new Guid(),
+            //    Name = this.txtTagName.Text,
+            //    NameEng = this.txtTagNameEng.Text,
+            //    TypeId = tagTypeId, 
+            //};
+            //((IRepo)Application["database"]).InsertTag(tag);
+            //this.txtTagName.Text = String.Empty;
+            //this.txtTagNameEng.Text = String.Empty;
+            //this.ddlTagType.SelectedIndex = 0;
+            //Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
         //private void PreselectDDLAfterRefresh()

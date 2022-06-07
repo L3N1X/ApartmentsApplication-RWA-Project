@@ -70,8 +70,8 @@
                             <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.PicturesCount)) %></td>
                             <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.PriceString)) %></td>
                             <td style="display: flex; justify-content: right">
-                                <asp:LinkButton ID="btnDelete" OnClick="btnDelete_Click" Style="margin-right:10px" class="btn btn-outline-danger" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %>" CausesValidation="false">Delete</asp:LinkButton>
-                                <asp:LinkButton ID="btnSelect" OnClick="btnSelect_Click" class="btn btn-outline-dark" Style="width:50%" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %>" runat="server" CausesValidation="false">Open</asp:LinkButton>
+                                <asp:LinkButton ID="btnDelete" OnClick="btnDelete_Click" Style="margin-right: 10px" class="btn btn-outline-danger" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %>" CausesValidation="false">Delete</asp:LinkButton>
+                                <asp:LinkButton ID="btnSelect" OnClick="btnSelect_Click" class="btn btn-outline-dark" Style="width: 50%" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %>" runat="server" CausesValidation="false">Open</asp:LinkButton>
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -80,11 +80,10 @@
                     </table>
                     </FooterTemplate>
                 </asp:Repeater>
-                 <div class="mb-3 float-end">
-                <asp:Button ID="btnCreate" OnClick="btnCreate_Click" runat="server" class="btn btn-outline-primary" Text="Create new Apartment" />
+                <div class="mb-3">
+                    <asp:Button ID="btnCreate" OnClick="btnCreate_Click" Style="width:100%" runat="server" class="btn btn-outline-primary" Text="Create new Apartment" />
+                </div>
             </div>
-            </div>
-           
         </div>
     </div>
     <!-- Modal Edit/Create apartment form-->

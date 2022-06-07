@@ -7,65 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Zadatak01
+namespace Zadatak01.UserControls
 {
 
 
-    public partial class Settings
+    public partial class TagDeleteControl
     {
 
         /// <summary>
-        /// rptTags control.
+        /// lblTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptTags;
+        protected global::System.Web.UI.WebControls.Label lblTitle;
 
         /// <summary>
-        /// btnCreateTag control.
+        /// pnlButtons control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreateTag;
+        protected global::System.Web.UI.WebControls.Panel pnlButtons;
 
         /// <summary>
-        /// pnlCreateTag control.
+        /// btnNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCreateTag;
+        protected global::System.Web.UI.WebControls.Button btnNo;
 
         /// <summary>
-        /// CreateTagControl control.
+        /// btnYes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Zadatak01.UserControls.CreateTagControl CreateTagControl;
-
-        /// <summary>
-        /// pnlConfirm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlConfirm;
-
-        /// <summary>
-        /// TagDeleteControl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Zadatak01.UserControls.TagDeleteControl TagDeleteControl;
+        protected global::System.Web.UI.WebControls.Button btnYes;
     }
 }

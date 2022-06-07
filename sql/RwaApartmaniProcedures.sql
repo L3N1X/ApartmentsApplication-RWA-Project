@@ -156,11 +156,13 @@ AS
 	DELETE Tag
 	WHERE Tag.Id = @Id
 GO
-CREATE PROCEDURE DeleteTaggedApartment
-@Id INT
+ALTER PROCEDURE DeleteTaggedApartment
+@ApartmentId INT,
+@TagId INT
 AS 
 	DELETE TaggedApartment
-	WHERE TaggedApartment.Id = @Id
+	WHERE ApartmentId = @ApartmentId
+	AND TagId = @TagId
 GO
 CREATE PROCEDURE DeleteUser
 @Id INT
@@ -238,9 +240,9 @@ AS
 
 
 CREATE PROCEDURE DeleteTaggedApartmentByApartmentId
-@ApartmentId
+@ApartmentId INT
 AS
-	DELETE TaggedApartment
+	DELETE TaggedApartment WHERE ApartmentId = @ApartmentId
 
 USE RwaApartmani
 SELECT * FROM ApartmentStatus
@@ -253,6 +255,13 @@ SELECT * FROM City
 
 DELETE FROM Apartment WHERE Id = 9
 DELETE FROM TaggedApartment WHERE ApartmentId = 10
+
+UPDATE Apartment SET DeletedAt = null WHERE Id = 3
+
+SELECT * FROM Tag WHERE NameEng LIKE 'Wash%'
+UPDATE Tag
+SET NameEng = 'Washing machine'
+WHERE Id = 14
 
 /*1 - Occupied
 2 - Reserved

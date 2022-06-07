@@ -1,13 +1,10 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ApartmentDeleteControl.ascx.cs" Inherits="Zadatak01.UserControls.ApartmentDeleteControl" %>
-<%--<div class="offcanvas-header" id="popup-header">
-    <asp:Label ID="lblTitle" runat="server" Text="Are you sure?"></asp:Label>
-</div>--%>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TagDeleteControl.ascx.cs" Inherits="Zadatak01.UserControls.TagDeleteControl" %>
 <div id="offcanvas" class="offcanvas-body small d-flex justify-content-center">
     <div class="container">
         <div class="container">
             <div class="container">
                 <h5 style="text-align: center">
-                    <asp:Label ID="lblTitle" runat="server" Text="Are you sure you want to delete Bijela villa?"></asp:Label>
+                    <asp:Label ID="lblTitle" runat="server" Text="Are you sure you want to delete ?"></asp:Label>
                 </h5>
             </div>
             <div class="mb-3">
@@ -21,4 +18,3 @@
         </div>
     </div>
 </div>
-
