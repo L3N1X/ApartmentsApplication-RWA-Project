@@ -13,6 +13,17 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 {
     public partial class DBRepo : AbstractDBRepo
     {
+        private int LoadApartmentIdByGuid(Guid guid)
+        {
+            int apartmentId = 1;
+            var tblApartments = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentPicturesByApartmentId), guid).Tables[0];
+            foreach (DataRow row in tblApartments.Rows)
+            {
+                apartmentId = (int)(row[nameof(Apartment.Id)]);
+            }
+
+            return apartmentId;
+        }
         //Move to abstract class as much as possible
         public override User AuthUser(string username, string password)
         {
@@ -46,7 +57,23 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override void InsertApartment(Apartment apartment)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(InsertApartment),
+                apartment.Guid,
+                apartment.CreatedAt,
+                apartment.OwnerId,
+                apartment.StatusId,
+                apartment.CityId,
+                apartment.Address,
+                apartment.Name,
+                apartment.NameEng,
+                apartment.Price,
+                apartment.MaxAdults,
+                apartment.MaxChildren,
+                apartment.TotalRooms,
+                apartment.BeachDistance);
+            int apartmentId = LoadApartmentIdByGuid(apartment.Guid);
+            foreach (Tag tag in apartment.Tags)
+                InsertTaggedApartment(new TaggedApartment { Guid = Guid.NewGuid(), ApartmentId = apartmentId, TagId = tag.Id });
         }
 
         public override void InsertApartmentOwner(ApartmentOwner apartmentOwner)
@@ -86,7 +113,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override void InsertTaggedApartment(TaggedApartment taggedApartment)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(InsertTaggedApartment), taggedApartment.Guid, taggedApartment.ApartmentId, taggedApartment.TagId);
         }
 
         public override void InsertTagType(TagType tagType)

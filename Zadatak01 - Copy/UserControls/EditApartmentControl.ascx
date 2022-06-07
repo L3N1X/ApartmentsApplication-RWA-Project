@@ -71,9 +71,27 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="mb-3">
-                <asp:Label ID="Label9" runat="server" Text="City"></asp:Label>
-                <asp:DropDownList class="form-select" ID="ddlCity" AutoPostBack="true" runat="server"></asp:DropDownList>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="mb-3">
+                            <asp:Label ID="Label9" runat="server" Text="City"></asp:Label>
+                            <asp:DropDownList class="form-select" ID="ddlCity" runat="server"></asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="mb-3">
+                            <asp:Label ID="Label10" runat="server" Text="Apartment owner"></asp:Label>
+                            <asp:DropDownList class="form-select" ID="ddlApartmentOwner" runat="server"></asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="mb-3">
+                            <asp:Label ID="Label11" runat="server" Text="Current status"></asp:Label>
+                            <asp:DropDownList class="form-select" ID="ddlStatus" runat="server"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="mb-3 float-end">
@@ -83,10 +101,10 @@
                 <asp:Button ID="btnClose2" class="btn btn-secondary" OnClick="btnClose_Click" runat="server" CausesValidation="false" Text="Close" />
             </asp:Panel>
             <asp:Panel ID="pnlCreate" runat="server" Visible="true">
-                <asp:Button ID="btnCreate" runat="server" class="btn btn-primary" Text="Create new apartment" />
+                <asp:Button ID="btnCreate" runat="server" class="btn btn-primary" OnClick="btnCreate_Click" Text="Create new apartment" />
                 <asp:Button ID="btnClose1" class="btn btn-secondary" OnClick="btnClose_Click" runat="server" CausesValidation="false" Text="Close" />
             </asp:Panel>
-                
+
         </div>
     </div>
 </div>

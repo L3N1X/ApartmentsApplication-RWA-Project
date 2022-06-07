@@ -52,13 +52,19 @@ namespace TEST
             //{
             //    Console.WriteLine($"{tuple.Item1.Name}- ({tuple.Item2}) {(tuple.Item2.Equals(0) ? "- DELETE" : string.Empty)}");
             //}
-            var apartments = repo.LoadApartments(a => true);
-            IList<Apartment> aps = new List<Apartment>(apartments);
-            aps.ToList().Sort((left, right) => left.PicturesCount.CompareTo(right.PicturesCount));
-            foreach (var item in aps)
-            {
-                Console.WriteLine(item.PicturesCount);
-            }
+            //var apartments = repo.LoadApartments(a => true);
+            //IList<Apartment> aps = new List<Apartment>(apartments);
+            //aps.ToList().Sort((left, right) => left.PicturesCount.CompareTo(right.PicturesCount));
+            //foreach (var item in aps)
+            //{
+            //    Console.WriteLine(item.PicturesCount);
+            //}
+            //var owners = repo.LoadApartmentOwners();
+            //foreach (var owner in owners)
+            //{
+            //    Console.WriteLine(owner.Name);
+            //}
+            Console.WriteLine(new Guid());
         }
     }
 }

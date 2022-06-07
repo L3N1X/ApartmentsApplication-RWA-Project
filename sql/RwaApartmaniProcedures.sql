@@ -181,6 +181,44 @@ AS
 	VALUES (@Guid, @CreatedAt, @TypeId, @Name, @NameEng)
 GO
 
+CREATE PROCEDURE InsertApartment
+@Guid UNIQUEIDENTIFIER,
+@CreatedAt DATETIME,
+@OwnerId INT,
+@StatusId INT,
+@CityId INT,
+@Address NVARCHAR(250),
+@Name NVARCHAR(250),
+@NameEng NVARCHAR(250),
+@Price MONEY,
+@MaxAdults INT,
+@MaxChildren INT,
+@TotalRooms INT,
+@BeachDistance INT
+AS
+	INSERT INTO Apartment (Guid, CreatedAt, OwnerId, StatusId, CityId, Address, Name, NameEng, Price, MaxAdults, MaxChildren, TotalRooms, BeachDistance, TypeId)
+	VALUES(@Guid, @CreatedAt, @OwnerId, @StatusId, @CityId, @Address, @Name, @NameEng, @Price, @MaxAdults, @MaxChildren, @TotalRooms, @BeachDistance, 999)
+
+GO
+
+CREATE PROCEDURE InsertTaggedApartment
+@Guid UNIQUEIDENTIFIER,
+@ApartmentId INT,
+@TagId INT
+AS
+	INSERT INTO TaggedApartment (Guid, ApartmentId, TagId)
+	VALUES(@Guid, @ApartmentId, @TagId)
+
+GO
+
+CREATE PROCEDURE LoadApartmentIdByGuid
+@Guid UNIQUEIDENTIFIER
+AS
+	SELECT Apartment.Id
+	FROM Apartment 
+	WHERE Guid = @Guid
+
+
 USE RwaApartmani
 SELECT * FROM ApartmentStatus
 SELECT * FROM TagType
@@ -189,6 +227,7 @@ SELECT * FROM Apartment
 SELECT * FROM ApartmentPicture
 SELECT * FROM TaggedApartment
 SELECT * FROM City
+
 
 
 

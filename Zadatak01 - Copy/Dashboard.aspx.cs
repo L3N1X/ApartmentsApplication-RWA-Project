@@ -99,19 +99,6 @@ namespace Zadatak01
 
         private void FillDropDownLists()
         {
-            ////Create new apartment cites
-            //this.ddlCity.DataSource = _allCities;
-            //this.ddlCity.DataValueField = "Id";
-            //this.ddlCity.DataTextField = "Name";
-            //this.ddlCity.DataBind();
-            //this.ddlCity.SelectedIndex = 0;
-
-            ////Tags checked listbox
-            //this.cblTags.DataSource = _allTags;
-            //this.cblTags.DataValueField = "Id";
-            //this.cblTags.DataTextField = "Name";
-            //this.cblTags.DataBind();
-
             //City filter
             this.ddlCityFilter.DataSource = _allCities;
             this.ddlCityFilter.DataValueField = "Id";
@@ -144,25 +131,6 @@ namespace Zadatak01
             int apartmentId = int.Parse(((LinkButton)sender).CommandArgument);
             this.EditApartmentControl.FillForm(apartmentId);
             this.pnlApartment.Visible = true;
-            //var apartment = ((IRepo)Application["database"]).LoadApartmentById(apartmentId);
-            //FillModalForm(apartment);
-        }
-
-        private void FillModalForm(Apartment apartment)
-        {
-            
-            //foreach (ListItem item in cblTags.Items)
-            //    item.Selected = false;
-            //this.txtApartmentName.Text = apartment.Name;
-            //this.txtApartmentNameEng.Text = apartment.NameEng;
-            //this.txtPrice.Text = apartment.Price.ToString();
-            //this.txtTotalRooms.Text = apartment.TotalRooms.ToString();
-            //this.txtAdults.Text = apartment.MaxAdults.ToString();
-            //this.txtChildren.Text = apartment.MaxChildren.ToString();
-            //this.txtBeach.Text = apartment.BeachDistance.ToString();
-            //this.txtAdults.Text = apartment.Address;
-            //this.pnlApartment.Visible = true;
-
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
