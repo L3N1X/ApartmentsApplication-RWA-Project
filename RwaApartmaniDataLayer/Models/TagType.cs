@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace RwaApartmaniDataLayer.Models
 {
+    [Serializable]
     public class TagType
     {
         public int Id { get; set; }

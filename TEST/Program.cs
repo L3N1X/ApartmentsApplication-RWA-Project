@@ -64,8 +64,25 @@ namespace TEST
             //{
             //    Console.WriteLine(owner.Name);
             //}
-            int id = repo.LoadApartmentIdByGuid(new Guid("ACCCA4CB-B351-4605-8606-B134E814075D"));
-            Console.WriteLine(id);
+            //List<int> tagoviIzBaze = new List<int>() { 1,2,3,4 };
+            //List<int> trenutniTagovi = new List<int>() { 1, 2, 5};
+            //List<int> tagoviZaMaknuti = tagoviIzBaze.Except(trenutniTagovi).ToList();
+            //List<int> tagoviZaDodati = trenutniTagovi.Except(tagoviIzBaze).ToList();
+            //Console.WriteLine("Tagovi za maknuti");
+            //foreach (var num in tagoviZaMaknuti)
+            //{
+            //    Console.WriteLine(num);
+            //}
+            //Console.WriteLine("Tagovi za dodati");
+            //foreach (var num in tagoviZaDodati)
+            //{
+            //    Console.WriteLine(num);
+            //}
+            var tags = repo.LoadTagsByApartmentId(11);
+            foreach (var tag in tags)
+            {
+                Console.WriteLine(tag.Name);
+            }
         }
     }
 }

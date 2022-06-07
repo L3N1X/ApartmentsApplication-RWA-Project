@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace RwaApartmaniDataLayer.Models
 {
+    [Serializable]
     public class ApartmentReview
     {
         private string details;

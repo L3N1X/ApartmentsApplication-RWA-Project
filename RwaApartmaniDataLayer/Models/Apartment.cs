@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace RwaApartmaniDataLayer.Models
 {
+    [Serializable]
     public class Apartment
     {
         public int Id { get; set; }
@@ -38,6 +39,6 @@ namespace RwaApartmaniDataLayer.Models
         public static Comparison<Apartment> TotalRoomsHighToLowComparison = ((left, right) => -left.TotalRooms.CompareTo(right.TotalRooms));
         public static Comparison<Apartment> TotalSpaceLowToHighComparison = ((left, right) => (left.MaxAdults + left.MaxChildren).CompareTo(right.MaxAdults + right.MaxChildren));
         public static Comparison<Apartment> TotalSpaceHighToLowComparison = ((left, right) => -(left.MaxAdults + left.MaxChildren).CompareTo(right.MaxAdults + right.MaxChildren));
-        
+
     }
 }

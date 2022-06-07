@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace RwaApartmaniDataLayer.Models
 {
+    [Serializable]
     public class ApartmentOwner
     {
         public int Id { get; set; }

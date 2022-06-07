@@ -490,7 +490,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         //Interface methods
         public abstract User AuthUser(string username, string password);
 
-        public abstract void DeleteApartment(int id);
+        public abstract void DeleteApartment(Apartment apartment);
 
         public abstract void DeleteApartmentPicture(int id);
 
@@ -576,10 +576,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
 
         public abstract IList<Tuple<Tag, int>> LoadTagsCounted();
 
-        public void UpdateApartment(Apartment apartment)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void UpdateApartment(Apartment apartment);
         //Interface methods
     }
 }

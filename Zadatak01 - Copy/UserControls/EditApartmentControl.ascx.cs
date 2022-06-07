@@ -11,7 +11,6 @@ namespace Zadatak01.UserControls
 {
     public partial class EditApartmentControl : System.Web.UI.UserControl
     {
-        private Apartment _apartment;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -50,27 +49,28 @@ namespace Zadatak01.UserControls
 
         public void FillForm(int apartmentId)
         {
-            this._apartment = ((IRepo)Application["database"]).LoadApartmentById(apartmentId);
+            var apartment = ((IRepo)Application["database"]).LoadApartmentById(apartmentId);
+            ViewState["apartment"] = apartment;
             foreach (ListItem item in cblTags.Items)
                 item.Selected = false;
-            this.txtApartmentName.Text = _apartment.Name;
-            this.txtApartmentNameEng.Text = _apartment.NameEng;
-            this.txtPrice.Text = ((int)_apartment.Price).ToString();
-            this.txtTotalRooms.Text = _apartment.TotalRooms.ToString();
-            this.txtAdults.Text = _apartment.MaxAdults.ToString();
-            this.txtChildren.Text = _apartment.MaxChildren.ToString();
-            this.txtBeach.Text = _apartment.BeachDistance.ToString();
-            this.txtAddress.Text = _apartment.Address;
+            this.txtApartmentName.Text = apartment.Name;
+            this.txtApartmentNameEng.Text = apartment.NameEng;
+            this.txtPrice.Text = ((int)apartment.Price).ToString();
+            this.txtTotalRooms.Text = apartment.TotalRooms.ToString();
+            this.txtAdults.Text = apartment.MaxAdults.ToString();
+            this.txtChildren.Text = apartment.MaxChildren.ToString();
+            this.txtBeach.Text = apartment.BeachDistance.ToString();
+            this.txtAddress.Text = apartment.Address;
 
-            foreach (var tag in _apartment.Tags)
+            foreach (var tag in apartment.Tags)
             {
                 ListItem foundTag = cblTags.Items.FindByValue(tag.Id.ToString());
                 foundTag.Selected = true;
             }
 
-            this.ddlCity.SelectedValue = this._apartment.CityId.ToString();
-            this.ddlApartmentOwner.SelectedValue = this._apartment.OwnerId.ToString();
-            this.ddlStatus.SelectedValue = this._apartment.StatusId.ToString();
+            this.ddlCity.SelectedValue = apartment.CityId.ToString();
+            this.ddlApartmentOwner.SelectedValue = apartment.OwnerId.ToString();
+            this.ddlStatus.SelectedValue = apartment.StatusId.ToString();
 
             this.pnlUpdate.Visible = true;
             this.pnlCreate.Visible = false;
@@ -79,7 +79,7 @@ namespace Zadatak01.UserControls
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            this._apartment = null;
+            ViewState["apartment"] = null;
             foreach (ListItem item in cblTags.Items)
                 item.Selected = false;
             this.txtApartmentName.Text = string.Empty;
@@ -99,7 +99,6 @@ namespace Zadatak01.UserControls
             this.ddlStatus.SelectedIndex = 0;
 
             this.lblTitle.Text = "Create new apartment";
-
             Response.Redirect("/Dashboard");
         }
 
@@ -128,6 +127,20 @@ namespace Zadatak01.UserControls
                     apartment.Tags.Add(new Tag { Id = int.Parse(item.Value)});
             }
             ((IRepo)Application["database"]).InsertApartment(apartment);
+            Page.Response.Redirect(Page.Request.Url.ToString(), true);
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            IList<Tag> tags = new List<Tag>();
+            foreach (ListItem item in this.cblTags.Items)
+            {
+                if (item.Selected)
+                    tags.Add(new Tag { Id = int.Parse(item.Value) });
+            }
+            var selectedApartment = ((Apartment)ViewState["apartment"]);
+            selectedApartment.Tags = tags;
+            ((IRepo)Application["database"]).UpdateApartment(selectedApartment);
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
     }

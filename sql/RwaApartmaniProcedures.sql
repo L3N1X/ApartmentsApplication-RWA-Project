@@ -218,6 +218,29 @@ AS
 	FROM Apartment 
 	WHERE Guid = @Guid
 
+CREATE PROCEDURE UpdateApartment
+@Id INT,
+@OwnerId INT,
+@StatusId INT,
+@CityId INT,
+@Address NVARCHAR(250),
+@Name NVARCHAR(250),
+@NameEng NVARCHAR(250),
+@Price MONEY,
+@MaxAdults INT,
+@MaxChildren INT,
+@TotalRooms INT,
+@BeachDistance INT
+AS
+	UPDATE Apartment
+	SET OwnerId = @OwnerId, StatusId = @StatusId, CityId = @CityId, Address = @Address, Name =  @Name, NameEng = @NameEng, Price = @Price, MaxAdults = @MaxAdults, MaxChildren = @MaxChildren, TotalRooms = @TotalRooms, BeachDistance = @BeachDistance
+	WHERE Id = @Id
+
+
+CREATE PROCEDURE DeleteTaggedApartmentByApartmentId
+@ApartmentId
+AS
+	DELETE TaggedApartment
 
 USE RwaApartmani
 SELECT * FROM ApartmentStatus
@@ -228,8 +251,8 @@ SELECT * FROM ApartmentPicture
 SELECT * FROM TaggedApartment
 SELECT * FROM City
 
-
-
+DELETE FROM Apartment WHERE Id = 9
+DELETE FROM TaggedApartment WHERE ApartmentId = 10
 
 /*1 - Occupied
 2 - Reserved

@@ -13,7 +13,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 {
     public partial class DBRepo : AbstractDBRepo
     {
-        public int LoadApartmentIdByGuid(Guid guid)
+        private int LoadApartmentIdByGuid(Guid guid)
         {
             int apartmentId = 1;
             var tblApartments = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentIdByGuid), guid).Tables[0];
@@ -24,15 +24,28 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
             return apartmentId;
         }
+
+        private void DeleteTaggedApartmentByApartmentId(int apartmentId)
+        {
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteTaggedApartmentByApartmentId), apartmentId);
+        }
+
+        private void DeleteTaggedApartment(TaggedApartment taggedApartment)
+        {
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteTaggedApartment), taggedApartment.ApartmentId, taggedApartment.TagId);
+        }
+
         //Move to abstract class as much as possible
         public override User AuthUser(string username, string password)
         {
             throw new NotImplementedException();
         }
 
-        public override void DeleteApartment(int id)
+        public override void DeleteApartment(Apartment apartment)
         {
-            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteApartment), id);
+            foreach (var tag in apartment.Tags)
+                this.DeleteTag(tag.Id);
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteApartment), apartment.Id);
         }
 
         public override void DeleteApartmentPicture(int id)
@@ -47,6 +60,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override void DeleteTaggedApartment(int id)
         {
+            //Don't use!!!!!
             SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteTaggedApartment), id);
         }
 
@@ -399,5 +413,35 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
         {
             throw new NotImplementedException();
         }
+
+        public override void UpdateApartment(Apartment apartment)
+        {
+            int id = apartment.Id;
+            var tagsFromDatabase = this.LoadTagsByApartmentId(apartment.Id);
+            var currentTags = apartment.Tags;
+
+            IList<Tag> tagsToDelete = tagsFromDatabase.Except(currentTags).ToList();
+            IList<Tag> tagsToAdd = currentTags.Except(tagsFromDatabase).ToList();
+
+            foreach (var tag in tagsToDelete)
+                this.DeleteTaggedApartment(new TaggedApartment { ApartmentId = apartment.Id, TagId = tag.Id});
+            foreach (var tag in tagsToAdd)
+                this.InsertTaggedApartment(new TaggedApartment { Guid = Guid.NewGuid(), ApartmentId = apartment.Id, TagId = tag.Id });
+
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(UpdateApartment), 
+                apartment.Id,
+                apartment.OwnerId,
+                apartment.StatusId,
+                apartment.CityId,
+                apartment.Address,
+                apartment.Name,
+                apartment.NameEng,
+                apartment.Price,
+                apartment.MaxAdults,
+                apartment.MaxChildren,
+                apartment.TotalRooms,
+                apartment.BeachDistance);
+        }
+
     }
 }
