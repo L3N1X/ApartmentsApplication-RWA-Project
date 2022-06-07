@@ -23,6 +23,7 @@ namespace Zadatak01
         protected void Page_Load(object sender, EventArgs e)
         {
             this.pnlApartment.Visible = false;
+            this.pnlConfirm.Visible = false;
             //UKLONI
             Session["user"] = new User();
             //UKLONI
@@ -136,6 +137,13 @@ namespace Zadatak01
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             this.pnlApartment.Visible = true;
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            int apartmentId = int.Parse(((LinkButton)sender).CommandArgument);
+            this.ApartmentDeleteControl.FillForm(apartmentId);
+            pnlConfirm.Visible = true;
         }
     }
 }

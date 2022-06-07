@@ -124,7 +124,7 @@ namespace Zadatak01.UserControls
             foreach (ListItem item in this.cblTags.Items)
             {
                 if (item.Selected)
-                    apartment.Tags.Add(new Tag { Id = int.Parse(item.Value)});
+                    apartment.Tags.Add(new Tag { Id = int.Parse(item.Value) });
             }
             ((IRepo)Application["database"]).InsertApartment(apartment);
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
@@ -132,13 +132,25 @@ namespace Zadatak01.UserControls
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            var selectedApartment = ((Apartment)ViewState["apartment"]);
+            selectedApartment.Name = this.txtApartmentName.Text.Trim();
+            selectedApartment.NameEng = this.txtApartmentNameEng.Text.Trim();
+            selectedApartment.Address = this.txtAddress.Text.Trim();
+            selectedApartment.CreatedAt = DateTime.Now;
+            selectedApartment.MaxAdults = int.Parse(this.txtAdults.Text.Trim());
+            selectedApartment.MaxChildren = int.Parse(this.txtChildren.Text.Trim());
+            selectedApartment.BeachDistance = int.Parse(this.txtBeach.Text.Trim());
+            selectedApartment.OwnerId = int.Parse(this.ddlApartmentOwner.SelectedValue);
+            selectedApartment.CityId = int.Parse(this.ddlCity.SelectedValue);
+            selectedApartment.StatusId = int.Parse(this.ddlStatus.SelectedValue);
+            selectedApartment.Price = decimal.Parse(this.txtPrice.Text.Trim());
+            selectedApartment.TotalRooms = int.Parse(this.txtTotalRooms.Text.Trim());
             IList<Tag> tags = new List<Tag>();
             foreach (ListItem item in this.cblTags.Items)
             {
                 if (item.Selected)
                     tags.Add(new Tag { Id = int.Parse(item.Value) });
             }
-            var selectedApartment = ((Apartment)ViewState["apartment"]);
             selectedApartment.Tags = tags;
             ((IRepo)Application["database"]).UpdateApartment(selectedApartment);
             Page.Response.Redirect(Page.Request.Url.ToString(), true);

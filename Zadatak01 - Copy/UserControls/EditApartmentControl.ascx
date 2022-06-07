@@ -96,7 +96,6 @@
         </div>
         <div class="mb-3 float-end">
             <asp:Panel ID="pnlUpdate" runat="server" Visible="false">
-                <asp:Button ID="btnDelete" class="btn btn-danger" runat="server" Text="Delete" />
                 <asp:Button ID="btnUpdate" class="btn btn-warning" runat="server" OnClick="btnUpdate_Click" Text="Update" />
                 <asp:Button ID="btnClose2" class="btn btn-secondary" OnClick="btnClose_Click" runat="server" CausesValidation="false" Text="Close" />
             </asp:Panel>

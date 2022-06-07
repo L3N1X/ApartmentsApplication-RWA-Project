@@ -44,7 +44,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
         public override void DeleteApartment(Apartment apartment)
         {
             foreach (var tag in apartment.Tags)
-                this.DeleteTag(tag.Id);
+                this.DeleteTaggedApartment(new TaggedApartment { TagId = tag.Id, ApartmentId = apartment.Id });
             SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteApartment), apartment.Id);
         }
 

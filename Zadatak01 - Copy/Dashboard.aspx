@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Dashboard" Language="C#" MasterPageFile="~/AdminPage.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="Zadatak01.Dashboard" %>
 
-<%@ Register Src="~/UserControls/EditApartmentControl.ascx" TagPrefix="uc1" TagName="EditApartmentControl" %>
-
+<%@ Register Src="~/UserControls/EditApartmentControl.ascx" TagPrefix="uc" TagName="EditApartmentControl" %>
+<%@ Register Src="~/UserControls/ApartmentDeleteControl.ascx" TagPrefix="uc" TagName="ApartmentDeleteControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
 </asp:Content>
@@ -70,7 +70,8 @@
                             <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.PicturesCount)) %></td>
                             <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.PriceString)) %></td>
                             <td style="display: flex; justify-content: right">
-                                <asp:LinkButton ID="btnSelect" OnClick="btnSelect_Click" class="btn btn-outline-dark" Style="width: 100%" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %>" runat="server" CausesValidation="false">Open</asp:LinkButton>
+                                <asp:LinkButton ID="btnDelete" OnClick="btnDelete_Click" Style="margin-right:10px" class="btn btn-outline-danger" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %>" CausesValidation="false">Delete</asp:LinkButton>
+                                <asp:LinkButton ID="btnSelect" OnClick="btnSelect_Click" class="btn btn-outline-dark" Style="width:50%" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %>" runat="server" CausesValidation="false">Open</asp:LinkButton>
                             </td>
                         </tr>
                     </ItemTemplate>
@@ -86,10 +87,16 @@
            
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal Edit/Create apartment form-->
     <asp:Panel ID="pnlApartment" runat="server">
         <div class="container animate__animated animate__slideInDown" id="popup">
-            <uc1:EditApartmentControl runat="server" ID="EditApartmentControl" />
+            <uc:EditApartmentControl runat="server" ID="EditApartmentControl" />
+        </div>
+    </asp:Panel>
+    <%--Modal confirm dialog--%>
+    <asp:Panel ID="pnlConfirm" runat="server">
+        <div class="container animate__animated animate__slideInDown" id="popup_confirm">
+            <uc:ApartmentDeleteControl runat="server" ID="ApartmentDeleteControl" />
         </div>
     </asp:Panel>
 </asp:Content>

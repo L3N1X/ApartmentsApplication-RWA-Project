@@ -121,6 +121,7 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
     <Content Include="Settings.aspx" />
     <Content Include="Tags.aspx" />
+    <Content Include="UserControls\ApartmentDeleteControl.ascx" />
     <Content Include="UserControls\EditApartmentControl.ascx" />
     <Content Include="Users.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -205,6 +206,13 @@
     </Compile>
     <Compile Include="Tags.aspx.designer.cs">
       <DependentUpon>Tags.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ApartmentDeleteControl.ascx.cs">
+      <DependentUpon>ApartmentDeleteControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ApartmentDeleteControl.ascx.designer.cs">
+      <DependentUpon>ApartmentDeleteControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\EditApartmentControl.ascx.cs">
       <DependentUpon>EditApartmentControl.ascx</DependentUpon>
