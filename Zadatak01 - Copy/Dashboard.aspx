@@ -10,9 +10,9 @@
     <div class="container p-3">
         <div class="container">
             <div class="container">
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col-sm">
-                        <div class="mb-3">
+                        <div class="mb-3>
                             <asp:Label ID="lblStatusFilter" runat="server" Text="Status:" class="font-weight-bold"></asp:Label>
                             <asp:DropDownList class="form-select" ID="ddlStatusFilter" runat="server" AutoPostBack="true">
                             </asp:DropDownList>
@@ -40,13 +40,13 @@
                     </div>
                 </div>
             </div>
-            <div class="container" style="overflow-x: scroll">
+            <div class="container" style="max-height:60vh; overflow-x: scroll; overflow-y: scroll;">
                 <asp:Repeater ID="rptApartments" runat="server">
                     <HeaderTemplate>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Id</th>
+                                  <%--  <th scope="col">Id</th>--%>
                                     <th scope="col">Name</th>
                                     <th scope="col">City</th>
                                     <th scope="col">Adults</th>
@@ -61,8 +61,8 @@
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>
-                            <th scope="row"><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %></th>
-                            <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Name)) %></td>
+                            <%--<th scope="row"><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %></th>--%>
+                            <th scope="row"><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Name)) %></th>
                             <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.CityName)) %></td>
                             <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.MaxAdults)) %></td>
                             <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.MaxChildren)) %></td>

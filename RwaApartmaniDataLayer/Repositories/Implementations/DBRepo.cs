@@ -411,7 +411,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override IList<User> LoadUsers()
         {
-            throw new NotImplementedException();
+            return this.LoadUsersRaw();
         }
 
         public override void UpdateApartment(Apartment apartment)

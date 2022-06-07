@@ -3,42 +3,56 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
-    <div class="container p-4">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <fieldset class="p-4">
-                    <legend>List of users</legend>
-                        <asp:ListBox runat="server"
-                            ID="lbUsers"
-                            CssClass="form-control"
-                            AutoPostBack="true" OnSelectedIndexChanged="lbUsers_SelectedIndexChanged" />
-                    </fieldset>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <fieldset class="p-4">
-                    <legend>Edit User</legend>
-                    <asp:Label ID="lblResult" runat="server" CssClass="alert alert-danger d-block w-100"></asp:Label>
-                    <div class="mb-3">
-                        <asp:Label ID="lblFname" for="txtFname" class="form-label" runat="server" Text="First name"></asp:Label>
-                        <asp:TextBox ID="txtFname" class="form-control" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFname" Display="Dynamic" ForeColor="Red">* Niste upisali ime</asp:RequiredFieldValidator>
-                    </div>
-                    <div class="mb-3">
-                        <asp:Label ID="lblLname" for="txtLname" class="form-label" runat="server" Text="Last name"></asp:Label>
-                        <asp:TextBox ID="txtLname" class="form-control" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLname" Display="Dynamic" ForeColor="Red">* Niste upisali prezime</asp:RequiredFieldValidator>
-                    </div>
-                    <div class="mb-3">
-                        <asp:Label ID="lblUsername" meta:resourcekey="lblUsername" class="form-label" runat="server" Text="Username"></asp:Label>
-                        <asp:TextBox ID="txtUsername" class="form-control" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtUsername" Display="Dynamic" ForeColor="Red">* Niste upisali korisničko ime</asp:RequiredFieldValidator>
-                    </div>
-                    <asp:Button ID="updateUser" class="btn btn-primary" runat="server" Text="Update" OnClick="updateUser_Click" />
-                </fieldset>
-            </div>
-        </div>
-
-    </div>
+   <div class="container mt-5">
+       <div class="row mb-3">
+           <div class="col-sm text-center">
+               <h5 style="text-align:center">Username</h5>
+           </div>
+           <div class="col-sm text-center">
+              <h5 style="text-align:center">E-mail</h5>
+           </div>
+           <div class="col-sm text-center">
+               <h5 style="text-align:center">Phone</h5>
+           </div>
+           <div class="col-sm text-center">
+              <h5 style="text-align:center">Address</h5>
+           </div>
+       </div>
+       <div class="container" style="max-height:70vh; overflow-y:scroll">
+           <asp:Repeater ID="rptUsers" runat="server">
+                <HeaderTemplate>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <%--<th scope="col" style="text-align: left">Tag</th>
+                                <th scope="col" style="text-align: left">Times used</th>
+                                <th scope="col"></th>--%>
+                            </tr>
+                        </thead>
+                        <tbody>
+                </HeaderTemplate>
+                <ItemTemplate>
+                    <tr class="row">
+                        <th scope="row" class="col-sm text-center">
+                            <%#Eval(nameof(RwaApartmaniDataLayer.Models.User.UserName)) %>
+                        </th>
+                        <td id="count" class="col-sm text-center"" style="text-align: left">
+                            <asp:Label ID="lblEmail" runat="server" Style="font-size: 1.1rem" Text="<%#Eval(nameof(RwaApartmaniDataLayer.Models.User.Email)) %>"></asp:Label>
+                        </td>
+                        <td class="col-sm text-center"" style="text-align: left">
+                            <asp:Label ID="Label1" runat="server" Style="font-size: 1.1rem" Text="<%#Eval(nameof(RwaApartmaniDataLayer.Models.User.PhoneNumber)) %>"></asp:Label>
+                        </td>
+                        <td class="col-sm text-center"" style="text-align: left">
+                            <asp:Label ID="Label2" runat="server" Style="font-size: 1.1rem" Text="<%#Eval(nameof(RwaApartmaniDataLayer.Models.User.Address)) %>"></asp:Label>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <FooterTemplate>
+                    </tbody>
+                    </table>
+                </FooterTemplate>
+            </asp:Repeater>
+       </div>
+       
+   </div>
 </asp:Content>

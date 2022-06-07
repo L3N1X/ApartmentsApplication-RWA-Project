@@ -2,7 +2,7 @@
 <div id="offcanvas" class="offcanvas-body small d-flex justify-content-center">
     <div class="container">
         <div class="container">
-            <div class="container">
+            <div class="mt-4">
                 <h5 style="text-align: center">
                     <asp:Label ID="lblTitle" runat="server" Text="Are you sure you want to delete ?"></asp:Label>
                 </h5>

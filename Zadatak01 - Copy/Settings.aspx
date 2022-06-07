@@ -13,19 +13,19 @@
             <div class="mb-3">
                 <div class="row">
                     <div class="col-sm">
-                        <h4 style="text-align: center">
+                        <h5 style="text-align: center">
                             Tag
-                        </h4>
+                        </h5>
                     </div>
                     <div class="col-sm">
-                        <h4 style="text-align: center">
+                        <h5 style="text-align: center">
                             Times used
-                        </h4>
+                        </h5>
                     </div>
                     <div class="col-sm">
-                        <h4 style="text-align: center">
+                        <h5 style="text-align: center">
                             #
-                        </h4>
+                        </h5>
                     </div>
                 </div>
             </div>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="aDashboard.InnerText" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Apartments</value>
   </data>
   <data name="aLogin.InnerText" xml:space="preserve">
     <value>Login</value>
@@ -127,7 +127,7 @@
     <value>Registration</value>
   </data>
   <data name="aSettings.InnerText" xml:space="preserve">
-    <value>Settings</value>
+    <value>Tags</value>
   </data>
   <data name="aUsers.InnerText" xml:space="preserve">
     <value>Users</value>
