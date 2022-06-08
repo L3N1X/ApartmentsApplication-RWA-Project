@@ -88,12 +88,70 @@
                     <div class="col-sm">
                         <div class="mb-3">
                             <asp:Label ID="Label11" runat="server" Text="Current status"></asp:Label>
-                            <asp:DropDownList class="form-select" ID="ddlStatus" runat="server"></asp:DropDownList>
+                            <asp:DropDownList CssClass="form-select" ID="ddlStatus" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged" Enabled="false"></asp:DropDownList>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <%if (this.ddlStatus.SelectedValue == "2" && ViewState["currentStatus"].ToString() != "2")
+            { %>
+        <div class="row">
+            <div class="col-xs-1 text-center">
+                <div class="mb-3">
+                    <span>Generate new reservation</span>
+                    <asp:CheckBox ID="cbGenerateNewReservation" CssClass="form-check" runat="server" />
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="mb-3">
+                    <asp:Label ID="Label12" runat="server" Text="Type of user"></asp:Label>
+                    <asp:DropDownList ID="ddlUserType" runat="server" AutoPostBack="true" CssClass="form-control">
+                        <asp:ListItem Selected="True" class="form-select" Value="registered">
+                        Registered user
+                        </asp:ListItem>
+                        <asp:ListItem Value="not_registered">
+                        Unregistered user
+                        </asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+            <%if (this.ddlUserType.SelectedValue == "registered")
+                { %>
+            <div class="col-sm">
+                <div class="mb-3">
+                    <asp:Label ID="Label13" runat="server" Text="User"></asp:Label>
+                    <asp:DropDownList ID="ddlUsers" CssClass="form-select" runat="server"></asp:DropDownList>
+                </div>
+            </div>
+            <%} else {%>
+            <div class="col-sm">
+                <div class="mb-3">
+                    <asp:Label ID="Label14" runat="server" Text="Name"></asp:Label>
+                    <asp:TextBox ID="txtUserName" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="mb-3">
+                    <asp:Label ID="Label15" runat="server" Text="E-mail"></asp:Label>
+                    <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="mb-3">
+                    <asp:Label ID="Label16" runat="server" Text="Phone"></asp:Label>
+                    <asp:TextBox ID="txtPhone" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="mb-3">
+                    <asp:Label ID="Label17" runat="server" Text="Person's address"></asp:Label>
+                    <asp:TextBox ID="txtUserAddress" CssClass="form-control" runat="server"></asp:TextBox>
+                </div>
+            </div>
+            <%} %>
+        </div>
+        <%} %>
         <div class="mb-3 float-end">
             <asp:Panel ID="pnlUpdate" runat="server" Visible="false">
                 <asp:Button ID="btnUpdate" class="btn btn-warning" runat="server" OnClick="btnUpdate_Click" Text="Update" />
@@ -103,7 +161,6 @@
                 <asp:Button ID="btnCreate" runat="server" class="btn btn-primary" OnClick="btnCreate_Click" Text="Create new apartment" />
                 <asp:Button ID="btnClose1" class="btn btn-secondary" OnClick="btnClose_Click" runat="server" CausesValidation="false" Text="Close" />
             </asp:Panel>
-
         </div>
     </div>
 </div>

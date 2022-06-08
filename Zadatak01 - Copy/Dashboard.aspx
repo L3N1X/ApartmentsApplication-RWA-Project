@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="row mt-4">
                     <div class="col-sm">
-                        <div class="mb-3>
+                        <div class="mb-3">
                             <asp:Label ID="lblStatusFilter" runat="server" Text="Status:" class="font-weight-bold"></asp:Label>
                             <asp:DropDownList class="form-select" ID="ddlStatusFilter" runat="server" AutoPostBack="true">
                             </asp:DropDownList>

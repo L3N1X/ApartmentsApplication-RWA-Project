@@ -22,7 +22,14 @@ namespace Zadatak01
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.pnlApartment.Visible = false;
+            if(Session["apartmentControlVisible"] == null || (bool)Session["apartmentControlVisible"] == false)
+            {
+                this.pnlApartment.Visible = false;
+            }
+            else
+            {
+                this.pnlApartment.Visible = true;
+            }
             this.pnlConfirm.Visible = false;
             //UKLONI
             Session["user"] = new User();

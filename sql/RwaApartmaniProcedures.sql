@@ -253,6 +253,7 @@ SELECT * FROM ApartmentPicture
 SELECT * FROM TaggedApartment
 SELECT * FROM City
 
+
 DELETE FROM Apartment WHERE Id = 9
 DELETE FROM TaggedApartment WHERE ApartmentId = 10
 

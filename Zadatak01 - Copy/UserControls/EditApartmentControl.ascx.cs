@@ -49,8 +49,11 @@ namespace Zadatak01.UserControls
 
         public void FillForm(int apartmentId)
         {
+            this.ddlStatus.Enabled = true;
+            Session["apartmentControlVisible"] = true;
             var apartment = ((IRepo)Application["database"]).LoadApartmentById(apartmentId);
             ViewState["apartment"] = apartment;
+            ViewState["currentStatus"] = apartment.StatusId;
             foreach (ListItem item in cblTags.Items)
                 item.Selected = false;
             this.txtApartmentName.Text = apartment.Name;
@@ -79,7 +82,9 @@ namespace Zadatak01.UserControls
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
+            this.ddlStatus.Enabled = false;
             ViewState["apartment"] = null;
+            ViewState["currentStatus"] = null;
             foreach (ListItem item in cblTags.Items)
                 item.Selected = false;
             this.txtApartmentName.Text = string.Empty;
@@ -99,11 +104,14 @@ namespace Zadatak01.UserControls
             this.ddlStatus.SelectedIndex = 0;
 
             this.lblTitle.Text = "Create new apartment";
+
+            Session["apartmentControlVisible"] = false;
             Response.Redirect("/Dashboard");
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
+            this.ddlStatus.Enabled = false;
             Apartment apartment = new Apartment
             {
                 Guid = Guid.NewGuid(),
@@ -127,11 +135,13 @@ namespace Zadatak01.UserControls
                     apartment.Tags.Add(new Tag { Id = int.Parse(item.Value) });
             }
             ((IRepo)Application["database"]).InsertApartment(apartment);
+            Session["apartmentControlVisible"] = false;
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            this.ddlStatus.Enabled = false;
             var selectedApartment = ((Apartment)ViewState["apartment"]);
             selectedApartment.Name = this.txtApartmentName.Text.Trim();
             selectedApartment.NameEng = this.txtApartmentNameEng.Text.Trim();
@@ -153,7 +163,13 @@ namespace Zadatak01.UserControls
             }
             selectedApartment.Tags = tags;
             ((IRepo)Application["database"]).UpdateApartment(selectedApartment);
+            Session["apartmentControlVisible"] = false;
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
+        }
+
+        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["apartmentControlVisible"] = true;
         }
     }
 }
