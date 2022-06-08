@@ -45,6 +45,13 @@ namespace Zadatak01.UserControls
             this.ddlStatus.DataTextField = "NameEng";
             this.ddlStatus.DataBind();
             this.ddlStatus.SelectedIndex = 2;
+
+            //Users drop down list
+            this.ddlUsers.DataSource = ((IRepo)Application["database"]).LoadUsers();
+            this.ddlUsers.DataValueField = "Id";
+            this.ddlUsers.DataValueField = "UserName";
+            this.ddlUsers.DataBind();
+            this.ddlUsers.SelectedIndex = 0;
         }
 
         public void FillForm(int apartmentId)
@@ -163,6 +170,19 @@ namespace Zadatak01.UserControls
             }
             selectedApartment.Tags = tags;
             ((IRepo)Application["database"]).UpdateApartment(selectedApartment);
+
+            if (this.cbGenerateNewReservation.Checked == true)
+            {
+                if(this.ddlUserType.SelectedValue == "registered")
+                {
+                    /*Generate reservation with registered user*/
+                }
+                else if (this.ddlUserType.SelectedValue == "not_registered")
+                {
+                    /*Generate resevation with unregistered user*/
+                }
+            }
+
             Session["apartmentControlVisible"] = false;
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
