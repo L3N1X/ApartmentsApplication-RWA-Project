@@ -175,6 +175,14 @@ namespace Zadatak01.UserControls
             {
                 if(this.ddlUserType.SelectedValue == "registered")
                 {
+                    ((IRepo)Application["database"]).InsertApartmentReservation(new ApartmentReservation
+                    {
+                        Guid = Guid.NewGuid(),
+                        CreatedAt = DateTime.Now,
+                        ApartmentId = selectedApartment.Id,
+                        Details = "",
+
+                    });
                     /*Generate reservation with registered user*/
                 }
                 else if (this.ddlUserType.SelectedValue == "not_registered")
