@@ -124,7 +124,9 @@
                     <asp:DropDownList ID="ddlUsers" CssClass="form-select" runat="server"></asp:DropDownList>
                 </div>
             </div>
-            <%} else {%>
+            <%}
+            else
+            {%>
             <div class="col-sm">
                 <div class="mb-3">
                     <asp:Label ID="Label14" runat="server" Text="Name"></asp:Label>
@@ -134,7 +136,7 @@
             <div class="col-sm">
                 <div class="mb-3">
                     <asp:Label ID="Label15" runat="server" Text="E-mail"></asp:Label>
-                    <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
                 </div>
             </div>
             <div class="col-sm">
@@ -150,6 +152,14 @@
                 </div>
             </div>
             <%} %>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="mb-3">
+                    <asp:Label ID="Label18" runat="server" Text="Details"></asp:Label>
+                    <asp:TextBox ID="txtDetails" runat="server" TextMode="MultiLine" CssClass="form-control" Rows="4"></asp:TextBox>
+                </div>
+            </div>
         </div>
         <%} %>
         <div class="mb-3 float-end">

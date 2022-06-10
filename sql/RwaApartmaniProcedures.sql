@@ -244,6 +244,21 @@ CREATE PROCEDURE DeleteTaggedApartmentByApartmentId
 AS
 	DELETE TaggedApartment WHERE ApartmentId = @ApartmentId
 
+GO
+CREATE PROCEDURE InsertApartmentReservation
+@Guid UNIQUEIDENTIFIER,
+@CreatedAt DATETIME,
+@ApartmentId INT,
+@Details NVARCHAR(1000),
+@UserId INT,
+@UserName NVARCHAR(250),
+@UserEmail NVARCHAR(250),
+@UserPhone NCHAR(20),
+@UserAddress NVARCHAR(1000)
+AS
+	INSERT INTO ApartmentReservation (Guid, CreatedAt, ApartmentId, Details, UserId, UserName, UserEmail, UserPhone, UserAddress)
+	VALUES (@Guid, @CreatedAt, @ApartmentId, @Details, @UserId, @UserName, @UserEmail, @UserPhone, @UserAddress)
+
 USE RwaApartmani
 SELECT * FROM ApartmentStatus
 SELECT * FROM TagType

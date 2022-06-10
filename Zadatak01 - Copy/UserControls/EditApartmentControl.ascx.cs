@@ -175,22 +175,32 @@ namespace Zadatak01.UserControls
             {
                 if(this.ddlUserType.SelectedValue == "registered")
                 {
+                    /*Generate reservation with registered user*/
                     ((IRepo)Application["database"]).InsertApartmentReservation(new ApartmentReservation
                     {
                         Guid = Guid.NewGuid(),
                         CreatedAt = DateTime.Now,
                         ApartmentId = selectedApartment.Id,
-                        Details = "",
-
+                        Details = this.txtDetails.Text,
+                        UserId = int.Parse(this.ddlUsers.SelectedValue),
                     });
-                    /*Generate reservation with registered user*/
                 }
                 else if (this.ddlUserType.SelectedValue == "not_registered")
                 {
                     /*Generate resevation with unregistered user*/
+                    ((IRepo)Application["database"]).InsertApartmentReservation(new ApartmentReservation
+                    {
+                        Guid = Guid.NewGuid(),
+                        CreatedAt = DateTime.Now,
+                        ApartmentId = selectedApartment.Id,
+                        Details = this.txtDetails.Text,
+                        UserEmail = this.txtEmail.Text,
+                        UserName = this.txtUserName.Text,
+                        UserAddress = this.txtUserAddress.Text,
+                        UserPhone = this.txtPhone.Text
+                    });
                 }
             }
-
             Session["apartmentControlVisible"] = false;
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }

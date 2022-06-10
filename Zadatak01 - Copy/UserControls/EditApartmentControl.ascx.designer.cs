@@ -465,6 +465,24 @@ namespace Zadatak01.UserControls
         protected global::System.Web.UI.WebControls.TextBox txtUserAddress;
 
         /// <summary>
+        /// Label18 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label18;
+
+        /// <summary>
+        /// txtDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDetails;
+
+        /// <summary>
         /// pnlUpdate control.
         /// </summary>
         /// <remarks>
