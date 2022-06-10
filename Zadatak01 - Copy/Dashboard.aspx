@@ -8,6 +8,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
     <div class="container p-3">
+        <asp:Image ID="imgTest" runat="server" />
         <div class="container">
             <div class="container">
                 <div class="row mt-4">

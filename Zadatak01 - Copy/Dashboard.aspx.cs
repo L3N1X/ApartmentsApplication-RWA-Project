@@ -22,7 +22,7 @@ namespace Zadatak01
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["apartmentControlVisible"] == null || (bool)Session["apartmentControlVisible"] == false)
+            if (Session["apartmentControlVisible"] == null || (bool)Session["apartmentControlVisible"] == false)
             {
                 this.pnlApartment.Visible = false;
             }
