@@ -72,7 +72,27 @@
                 </fieldset>
             </div>
 
-
+            <div class="col-sm">
+                <fieldset>
+                    <legend>Pictures</legend>
+                    <div class="mb-3" id="tagsContainer">
+                        <asp:GridView ID="gwPictures" AutoGenerateColumns="false" runat="server" CssClass="table table-borderless" BorderStyle="None">
+                            <Columns>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <div class="mb-2">
+                                            <asp:Image ID="img" ImageUrl='<%#Eval("Base64Content")%>' runat="server" Height="180" Width="230" CssClass="rounded mx-auto d-block" />
+                                        </div>
+                                        <div class="container">
+                                            <asp:TextBox ID="txtImageDescription" Text='<%#Eval("Name") %>' runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </fieldset>
+            </div>
 
             <div class="container">
                 <div class="row">
@@ -128,8 +148,8 @@
                 </div>
             </div>
             <%}
-            else
-            {%>
+                else
+                {%>
             <div class="col-sm">
                 <div class="mb-3">
                     <asp:Label ID="Label14" runat="server" Text="Name"></asp:Label>

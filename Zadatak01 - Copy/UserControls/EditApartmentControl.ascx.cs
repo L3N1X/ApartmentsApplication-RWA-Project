@@ -56,9 +56,11 @@ namespace Zadatak01.UserControls
 
         public void FillForm(int apartmentId)
         {
+            var apartment = ((IRepo)Application["database"]).LoadApartmentById(apartmentId);
+            this.gwPictures.DataSource = apartment.Pictures;
+            this.gwPictures.DataBind();
             this.ddlStatus.Enabled = true;
             Session["apartmentControlVisible"] = true;
-            var apartment = ((IRepo)Application["database"]).LoadApartmentById(apartmentId);
             ViewState["apartment"] = apartment;
             ViewState["currentStatus"] = apartment.StatusId;
             foreach (ListItem item in cblTags.Items)
@@ -89,6 +91,7 @@ namespace Zadatak01.UserControls
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
+            this.gwPictures.DataSource = null;
             this.ddlStatus.Enabled = false;
             ViewState["apartment"] = null;
             ViewState["currentStatus"] = null;
