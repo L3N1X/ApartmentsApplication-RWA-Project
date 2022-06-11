@@ -2,6 +2,7 @@
 using RwaApartmaniDataLayer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,6 +16,7 @@ namespace Zadatak01.UserControls
         {
             if (!IsPostBack)
                 FillListControls();
+            ViewState["newPictures"] = new List<string>();
         }
 
         private void FillListControls()
@@ -95,6 +97,7 @@ namespace Zadatak01.UserControls
             this.ddlStatus.Enabled = false;
             ViewState["apartment"] = null;
             ViewState["currentStatus"] = null;
+            ViewState["newPictures"] = new List<string>();
             foreach (ListItem item in cblTags.Items)
                 item.Selected = false;
             this.txtApartmentName.Text = string.Empty;
@@ -211,6 +214,17 @@ namespace Zadatak01.UserControls
         protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session["apartmentControlVisible"] = true;
+        }
+
+        protected void btnAddPicture_Click(object sender, EventArgs e)
+        {
+            System.IO.Stream fs = this.PictureUpload.PostedFile.InputStream;
+            string extention = Path.GetExtension(this.PictureUpload.PostedFile.FileName);
+            System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
+            byte[] bytes = br.ReadBytes((int)fs.Length);
+            string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+            string base64databaseString = $"data:image/{extention};base64," + base64String;
+            ((List<string>)ViewState["newPictures"]).Add(base64databaseString);
         }
     }
 }

@@ -75,15 +75,15 @@
             <div class="col-sm">
                 <fieldset>
                     <legend>Pictures</legend>
-                    <div class="mb-3" id="tagsContainer">
-                        <asp:GridView ID="gwPictures" AutoGenerateColumns="false" runat="server" CssClass="table table-borderless" BorderStyle="None">
+                    <div class="mb-3" id="imagesContainer">
+                        <asp:GridView ID="gwPictures" AutoGenerateColumns="false" ShowHeader="false" ShowFooter="false" runat="server" CssClass="table table-borderless" BorderStyle="None">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <div class="mb-2">
-                                            <asp:Image ID="img" ImageUrl='<%#Eval("Base64Content")%>' runat="server" Height="180" Width="230" CssClass="rounded mx-auto d-block" />
+                                        <div class="mb-3">
+                                            <asp:Image ID="img" ImageUrl='<%#Eval("Base64Content")%>' runat="server" Height="183" Width="240" CssClass="rounded mx-auto d-block" />
                                         </div>
-                                        <div class="container">
+                                        <div class="mb-3">
                                             <asp:TextBox ID="txtImageDescription" Text='<%#Eval("Name") %>' runat="server" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </ItemTemplate>
@@ -92,6 +92,16 @@
                         </asp:GridView>
                     </div>
                 </fieldset>
+                <div class="mt-3">
+                    <div class="d-flex flex-row">
+                        <div style="margin-right:.5em">
+                            <asp:Button ID="btnAddPicture" runat="server" Text="Add" OnClick="btnAddPicture_Click"/>
+                        </div>
+                        <div>
+                            <asp:FileUpload ID="PictureUpload" runat="server"  accept=".jpg, .jpeg .png"/>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="container">

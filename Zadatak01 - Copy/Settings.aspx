@@ -67,7 +67,7 @@
         </div>
     </div>
     <asp:Panel ID="pnlCreateTag" runat="server">
-        <div class="container animate__animated animate__slideInDown" id="popup_confirm">
+        <div class="container animate__animated animate__slideInDown" id="popup_create_tag">
             <uc1:CreateTagControl runat="server" id="CreateTagControl" />
         </div>
     </asp:Panel>
