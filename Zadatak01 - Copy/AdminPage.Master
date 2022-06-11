@@ -43,7 +43,7 @@
             border-radius: .6em;
             background-color: white;
             overflow: hidden;
-            width: 75vw;
+            width: 95vw;
             position: absolute;
             left: 15vw;
             right: 15vw;

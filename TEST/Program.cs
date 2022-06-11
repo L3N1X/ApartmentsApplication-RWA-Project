@@ -78,10 +78,10 @@ namespace TEST
             //{
             //    Console.WriteLine(num);
             //}
-            var tags = repo.LoadTagsByApartmentId(11);
-            foreach (var tag in tags)
+            var apartment = repo.LoadApartmentById(1);
+            foreach (var picture in apartment.Pictures)
             {
-                Console.WriteLine(tag.Name);
+                Console.WriteLine(picture.Base64Content);
             }
         }
     }

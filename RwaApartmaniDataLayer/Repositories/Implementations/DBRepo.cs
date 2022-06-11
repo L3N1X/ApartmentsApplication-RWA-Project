@@ -206,7 +206,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
                         CreatedAt = (DateTime)row[nameof(ApartmentPicture.CreatedAt)],
                         Guid = (Guid)row[nameof(ApartmentPicture.Guid)],
                         ApartmentId = (int)row[nameof(ApartmentPicture.ApartmentId)],
-                        //Base64Content = (string)row[nameof(ApartmentPicture.Base64Content)],
+                        Base64Content = (string)row[nameof(ApartmentPicture.Base64Content)],
                         IsRepresentative = (bool)row[nameof(ApartmentPicture.IsRepresentative)],
                         Path = (string)row[nameof(ApartmentPicture.Path)],
                     }
