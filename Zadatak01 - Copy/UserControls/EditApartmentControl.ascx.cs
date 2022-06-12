@@ -156,6 +156,7 @@ namespace Zadatak01.UserControls
                 if (item.Selected)
                     apartment.Tags.Add(new Tag { Id = int.Parse(item.Value) });
             }
+            apartment.Pictures = ((List<ApartmentPicture>)ViewState["dbPictures"]);
             ((IRepo)Application["database"]).InsertApartment(apartment);
 
             Session["apartmentControlVisible"] = false;
@@ -239,7 +240,9 @@ namespace Zadatak01.UserControls
             string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
             string base64databaseString = $"data:image/{extention};base64," + base64String;
 
-            ((List<ApartmentPicture>)ViewState["dbPictures"]).Add(new ApartmentPicture { Base64Content = base64databaseString, Name = string.Empty });
+            ((List<ApartmentPicture>)ViewState["dbPictures"]).Add(new ApartmentPicture { 
+                Guid = Guid.NewGuid(), CreatedAt = DateTime.Now, Base64Content = base64databaseString, Name = string.Empty
+            });
 
             this.gwPictures.DataSource = ((List<ApartmentPicture>)ViewState["dbPictures"]);
             this.gwPictures.DataBind();

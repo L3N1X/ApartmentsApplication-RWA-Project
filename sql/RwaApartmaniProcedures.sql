@@ -213,6 +213,19 @@ AS
 
 GO
 
+CREATE PROCEDURE InsertApartmentPicture
+@Guid UNIQUEIDENTIFIER,
+@CreatedAt DATETIME,
+@ApartmentId INT,
+@Path NVARCHAR(250),
+@Base64Content VARCHAR(MAX),
+@Name NVARCHAR(250),
+@IsRepresentative BIT
+AS
+	INSERT INTO ApartmentPicture (Guid, CreatedAt, ApartmentId, Path, Base64Content, Name, IsRepresentative)
+	VALUES (@Guid, @CreatedAt, @ApartmentId, @Path, @Base64Content, @Name, @IsRepresentative)
+
+GO
 CREATE PROCEDURE LoadApartmentIdByGuid
 @Guid UNIQUEIDENTIFIER
 AS
@@ -269,8 +282,8 @@ SELECT * FROM TaggedApartment
 SELECT * FROM City
 
 
-DELETE FROM Apartment WHERE Id = 9
-DELETE FROM TaggedApartment WHERE ApartmentId = 10
+DELETE FROM Apartment WHERE Id = 12
+DELETE FROM TaggedApartment WHERE ApartmentId = 12
 
 UPDATE Apartment SET DeletedAt = null WHERE Id = 3
 

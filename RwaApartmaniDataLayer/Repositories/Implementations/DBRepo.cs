@@ -88,6 +88,11 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             int apartmentId = LoadApartmentIdByGuid(apartment.Guid); //Gets id from database to resolve foreign key errors
             foreach (Tag tag in apartment.Tags)
                 InsertTaggedApartment(new TaggedApartment { Guid = Guid.NewGuid(), ApartmentId = apartmentId, TagId = tag.Id });
+            foreach (ApartmentPicture picture in apartment.Pictures)
+            {
+                picture.ApartmentId = apartmentId;
+                InsertApartmentPicture(picture);
+            }
         }
 
         public override void InsertApartmentOwner(ApartmentOwner apartmentOwner)
@@ -97,7 +102,15 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override void InsertApartmentPicture(ApartmentPicture apartmentPicture)
         {
-            throw new NotImplementedException();
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(InsertApartmentPicture),
+                    apartmentPicture.Guid,
+                    apartmentPicture.CreatedAt,
+                    apartmentPicture.ApartmentId,
+                    apartmentPicture.Path,
+                    apartmentPicture.Base64Content,
+                    apartmentPicture.Name,
+                    apartmentPicture.IsRepresentative
+                );
         }
 
         public override void InsertApartmentReservation(ApartmentReservation apartmentReservation)

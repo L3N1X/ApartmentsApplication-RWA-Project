@@ -88,7 +88,7 @@ namespace TEST
             //byte[] data = Encoding.ASCII.GetBytes(apartment.Pictures[0].Base64Content);
             //Console.WriteLine(ResizeImage(data));đ
             var pic = new ApartmentPicture { Name = "Kurac" };
-            Console.WriteLine(pic.Id);
+            Console.WriteLine(pic.Path);
             
 
         }
