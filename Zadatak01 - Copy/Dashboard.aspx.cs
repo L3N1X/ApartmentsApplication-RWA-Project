@@ -143,6 +143,7 @@ namespace Zadatak01
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
+            Session["apartmentControlVisible"] = true;
             this.pnlApartment.Visible = true;
         }
 

@@ -6,6 +6,7 @@
 <div id="offcanvas" class="offcanvas-body small d-flex justify-content-center">
     <div class="container">
         <div class="row">
+            <asp:Label ID="lblDebug" runat="server" Text="debug"></asp:Label>
             <div class="col-sm">
                 <div class="mb-3">
                     <asp:Label ID="Label1" runat="server" Text="Apartment name (Croatian)"></asp:Label>
@@ -95,7 +96,7 @@
                 <div class="mt-3">
                     <div class="d-flex flex-row">
                         <div style="margin-right:.5em">
-                            <asp:Button ID="btnAddPicture" runat="server" Text="Add" OnClick="btnAddPicture_Click"/>
+                            <asp:Button ID="btnAddPicture" runat="server" Text="Add" CausesValidation="false" OnClick="btnAddPicture_Click"/>
                         </div>
                         <div>
                             <asp:FileUpload ID="PictureUpload" runat="server"  accept=".jpg, .jpeg .png"/>

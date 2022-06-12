@@ -2,8 +2,10 @@
 using RwaApartmaniDataLayer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,8 +17,10 @@ namespace Zadatak01.UserControls
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+            {
                 FillListControls();
-            ViewState["newPictures"] = new List<string>();
+                ViewState["dbPictures"] = new List<ApartmentPicture>();
+            }
         }
 
         private void FillListControls()
@@ -62,9 +66,12 @@ namespace Zadatak01.UserControls
             this.gwPictures.DataSource = apartment.Pictures;
             this.gwPictures.DataBind();
             this.ddlStatus.Enabled = true;
+
             Session["apartmentControlVisible"] = true;
             ViewState["apartment"] = apartment;
             ViewState["currentStatus"] = apartment.StatusId;
+            ViewState["dbPictures"] = apartment.Pictures;
+
             foreach (ListItem item in cblTags.Items)
                 item.Selected = false;
             this.txtApartmentName.Text = apartment.Name;
@@ -95,9 +102,11 @@ namespace Zadatak01.UserControls
         {
             this.gwPictures.DataSource = null;
             this.ddlStatus.Enabled = false;
+
             ViewState["apartment"] = null;
             ViewState["currentStatus"] = null;
-            ViewState["newPictures"] = new List<string>();
+            ViewState["dbPictures"] = new List<ApartmentPicture>();
+
             foreach (ListItem item in cblTags.Items)
                 item.Selected = false;
             this.txtApartmentName.Text = string.Empty;
@@ -148,7 +157,9 @@ namespace Zadatak01.UserControls
                     apartment.Tags.Add(new Tag { Id = int.Parse(item.Value) });
             }
             ((IRepo)Application["database"]).InsertApartment(apartment);
+
             Session["apartmentControlVisible"] = false;
+            ViewState["dbPictures"] = new List<ApartmentPicture>();
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
@@ -179,7 +190,7 @@ namespace Zadatak01.UserControls
 
             if (this.cbGenerateNewReservation.Checked == true)
             {
-                if(this.ddlUserType.SelectedValue == "registered")
+                if (this.ddlUserType.SelectedValue == "registered")
                 {
                     /*Generate reservation with registered user*/
                     ((IRepo)Application["database"]).InsertApartmentReservation(new ApartmentReservation
@@ -208,6 +219,7 @@ namespace Zadatak01.UserControls
                 }
             }
             Session["apartmentControlVisible"] = false;
+            ViewState["dbPictures"] = new List<ApartmentPicture>();
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
@@ -218,13 +230,21 @@ namespace Zadatak01.UserControls
 
         protected void btnAddPicture_Click(object sender, EventArgs e)
         {
+            Session["apartmentControlVisible"] = true;
+
             System.IO.Stream fs = this.PictureUpload.PostedFile.InputStream;
             string extention = Path.GetExtension(this.PictureUpload.PostedFile.FileName);
             System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
             byte[] bytes = br.ReadBytes((int)fs.Length);
             string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
             string base64databaseString = $"data:image/{extention};base64," + base64String;
-            ((List<string>)ViewState["newPictures"]).Add(base64databaseString);
+
+            ((List<ApartmentPicture>)ViewState["dbPictures"]).Add(new ApartmentPicture { Base64Content = base64databaseString, Name = string.Empty });
+
+            this.gwPictures.DataSource = ((List<ApartmentPicture>)ViewState["dbPictures"]);
+            this.gwPictures.DataBind();
+
+            Session["apartmentControlVisible"] = true;
         }
     }
 }

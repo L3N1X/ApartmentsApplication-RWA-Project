@@ -80,13 +80,15 @@ namespace TEST
             //{
             //    Console.WriteLine(num);
             //}
-            var apartment = repo.LoadApartmentById(1);
-            foreach (var picture in apartment.Pictures)
-            {
-                Console.WriteLine(picture.Base64Content);
-            }
-            byte[] data = Encoding.ASCII.GetBytes(apartment.Pictures[0].Base64Content);
-            Console.WriteLine(ResizeImage(data));
+            //var apartment = repo.LoadApartmentById(1);
+            //foreach (var picture in apartment.Pictures)
+            //{
+            //    Console.WriteLine(picture.Base64Content);
+            //}
+            //byte[] data = Encoding.ASCII.GetBytes(apartment.Pictures[0].Base64Content);
+            //Console.WriteLine(ResizeImage(data));đ
+            var pic = new ApartmentPicture { Name = "Kurac" };
+            Console.WriteLine(pic.Id);
             
 
         }
