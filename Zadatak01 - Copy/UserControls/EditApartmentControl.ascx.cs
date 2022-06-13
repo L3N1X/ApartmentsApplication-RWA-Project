@@ -16,6 +16,7 @@ namespace Zadatak01.UserControls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.pnlConfirm.Visible = false;
             if (!IsPostBack)
             {
                 FillListControls();
@@ -264,6 +265,12 @@ namespace Zadatak01.UserControls
             this.gwPictures.DataBind();
 
             Session["apartmentControlVisible"] = true;
+        }
+
+        protected void btnDeletePicture_Click(object sender, EventArgs e)
+        {
+            Session["apartmentControlVisible"] = true;
+            this.pnlConfirm.Visible = true;
         }
     }
 }

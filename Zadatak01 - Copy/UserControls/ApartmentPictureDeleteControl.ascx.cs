@@ -19,14 +19,12 @@ namespace Zadatak01.UserControls
         protected void btnNo_Click(object sender, EventArgs e)
         {
             ViewState["picture"] = null;
-            Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
         protected void btnYes_Click(object sender, EventArgs e)
         {
             ApartmentPicture picture = (ApartmentPicture)ViewState["picture"];
             ((IRepo)Application["databae"]).DeleteApartmentPicture(picture.Id);
-            Page.Response.Redirect(Page.Request.Url.ToString(), true);
         }
 
         internal void FillForm(int pictureId)

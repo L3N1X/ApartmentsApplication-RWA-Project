@@ -86,7 +86,13 @@
                                         </div>
                                         <div class="mb-3">
                                             <asp:TextBox ID="txtImageDescription" Text='<%#Eval("Name") %>' runat="server" CssClass="form-control"></asp:TextBox>
-                                            <asp:LinkButton ID="btnDeletePicture" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>">X</asp:LinkButton>
+                                        </div>
+                                        <div class="mb-3" style="display: flex; flex-direction: row; align-items: center; justify-content:space-between">
+                                            <asp:LinkButton ID="btnDeletePicture" CssClass="btn btn-outline-danger" Style="width:45%" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" OnClick="btnDeletePicture_Click">X</asp:LinkButton>
+                                            <div style="display: flex; flex-direction: row; align-items: center; gap:.5em">
+                                                <asp:CheckBox ID="chbRepresentative" runat="server" />
+                                                <asp:Label ID="Label19" runat="server" Text="Representative"></asp:Label>
+                                            </div>
                                         </div>
                                     </ItemTemplate>
                                 </asp:TemplateField>
