@@ -122,6 +122,7 @@
     <Content Include="Settings.aspx" />
     <Content Include="Tags.aspx" />
     <Content Include="UserControls\ApartmentDeleteControl.ascx" />
+    <Content Include="UserControls\ApartmentPictureDeleteControl.ascx" />
     <Content Include="UserControls\CreateTagControl.ascx" />
     <Content Include="UserControls\EditApartmentControl.ascx" />
     <Content Include="UserControls\TagDeleteControl.ascx" />
@@ -215,6 +216,13 @@
     </Compile>
     <Compile Include="UserControls\ApartmentDeleteControl.ascx.designer.cs">
       <DependentUpon>ApartmentDeleteControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ApartmentPictureDeleteControl.ascx.cs">
+      <DependentUpon>ApartmentPictureDeleteControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ApartmentPictureDeleteControl.ascx.designer.cs">
+      <DependentUpon>ApartmentPictureDeleteControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CreateTagControl.ascx.cs">
       <DependentUpon>CreateTagControl.ascx</DependentUpon>

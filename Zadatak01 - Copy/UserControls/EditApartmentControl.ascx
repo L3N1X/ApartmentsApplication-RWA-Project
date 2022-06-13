@@ -1,12 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditApartmentControl.ascx.cs" Inherits="Zadatak01.UserControls.EditApartmentControl" %>
+<%@ Register Src="~/UserControls/ApartmentPictureDeleteControl.ascx" TagPrefix="uc1" TagName="ApartmentPictureDeleteControl" %>
+
 <div class="offcanvas-header" id="popup-header">
-    <%--<h4 runat="server" class="offcanvas-title" id="offcanvasTitle">Edit apartment</h4>--%>
     <asp:Label ID="lblTitle" runat="server" Text="Create new apartment"></asp:Label>
 </div>
 <div id="offcanvas" class="offcanvas-body small d-flex justify-content-center">
     <div class="container">
         <div class="row">
-            <asp:Label ID="lblDebug" runat="server" Text="debug"></asp:Label>
             <div class="col-sm">
                 <div class="mb-3">
                     <asp:Label ID="Label1" runat="server" Text="Apartment name (Croatian)"></asp:Label>
@@ -86,6 +86,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <asp:TextBox ID="txtImageDescription" Text='<%#Eval("Name") %>' runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:LinkButton ID="btnDeletePicture" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>">X</asp:LinkButton>
                                         </div>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -95,11 +96,11 @@
                 </fieldset>
                 <div class="mt-3">
                     <div class="d-flex flex-row">
-                        <div style="margin-right:.5em">
-                            <asp:Button ID="btnAddPicture" runat="server" Text="Add" CausesValidation="false" OnClick="btnAddPicture_Click"/>
+                        <div style="margin-right: .5em">
+                            <asp:Button ID="btnAddPicture" runat="server" Text="Add" CausesValidation="false" OnClick="btnAddPicture_Click" />
                         </div>
                         <div>
-                            <asp:FileUpload ID="PictureUpload" runat="server"  accept=".jpg, .jpeg .png"/>
+                            <asp:FileUpload ID="PictureUpload" runat="server" accept=".jpg, .jpeg .png" />
                         </div>
                     </div>
                 </div>
@@ -208,3 +209,9 @@
         </div>
     </div>
 </div>
+
+<asp:Panel ID="pnlConfirm" runat="server">
+    <div class="container animate__animated animate__slideInDown" id="popup_confirm">
+        <uc1:ApartmentPictureDeleteControl runat="server" ID="ApartmentPictureDeleteControl" />
+    </div>
+</asp:Panel>

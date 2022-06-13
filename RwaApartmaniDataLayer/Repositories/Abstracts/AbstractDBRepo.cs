@@ -131,7 +131,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                         ApartmentId = (int)row[nameof(ApartmentPicture.ApartmentId)],
                         Base64Content = (string)row[nameof(ApartmentPicture.Base64Content)],
                         IsRepresentative = (bool)row[nameof(ApartmentPicture.IsRepresentative)],
-                        Path = (string)row[nameof(ApartmentPicture.Path)],
+                        Path = !DBNull.Value.Equals(row[nameof(ApartmentPicture.Path)]) ? (string)row[nameof(ApartmentPicture.Path)] : null,
                     }
                 );
             }
@@ -154,7 +154,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                 ApartmentId = (int)row[nameof(ApartmentPicture.ApartmentId)],
                 Base64Content = (string)row[nameof(ApartmentPicture.Base64Content)],
                 IsRepresentative = (bool)row[nameof(ApartmentPicture.IsRepresentative)],
-                Path = (string)row[nameof(ApartmentPicture.Path)],
+                Path = !DBNull.Value.Equals(row[nameof(ApartmentPicture.Path)]) ? (string)row[nameof(ApartmentPicture.Path)] : null,
             };
         }
 

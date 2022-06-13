@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-sm">
                         <h5 style="text-align: center">
-                            #
+                            Delete
                         </h5>
                     </div>
                 </div>

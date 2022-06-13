@@ -271,6 +271,12 @@ CREATE PROCEDURE InsertApartmentReservation
 AS
 	INSERT INTO ApartmentReservation (Guid, CreatedAt, ApartmentId, Details, UserId, UserName, UserEmail, UserPhone, UserAddress)
 	VALUES (@Guid, @CreatedAt, @ApartmentId, @Details, @UserId, @UserName, @UserEmail, @UserPhone, @UserAddress)
+GO
+
+ALTER PROCEDURE DeleteApartmentPicture
+@Guid UNIQUEIDENTIFIER
+AS
+DELETE FROM ApartmentPicture WHERE Guid = @Guid
 
 USE RwaApartmani
 SELECT * FROM ApartmentStatus

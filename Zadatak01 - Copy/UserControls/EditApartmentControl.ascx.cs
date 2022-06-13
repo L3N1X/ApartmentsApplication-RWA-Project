@@ -134,6 +134,7 @@ namespace Zadatak01.UserControls
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             this.ddlStatus.Enabled = false;
+
             Apartment apartment = new Apartment
             {
                 Guid = Guid.NewGuid(),
@@ -149,14 +150,25 @@ namespace Zadatak01.UserControls
                 StatusId = int.Parse(this.ddlStatus.SelectedValue),
                 Price = decimal.Parse(this.txtPrice.Text.Trim()),
                 TotalRooms = int.Parse(this.txtTotalRooms.Text.Trim()),
+                Pictures = ((List<ApartmentPicture>)ViewState["dbPictures"])
             };
+
             apartment.Tags = new List<Tag>();
             foreach (ListItem item in this.cblTags.Items)
             {
                 if (item.Selected)
                     apartment.Tags.Add(new Tag { Id = int.Parse(item.Value) });
             }
-            apartment.Pictures = ((List<ApartmentPicture>)ViewState["dbPictures"]);
+
+            foreach (GridViewRow row in this.gwPictures.Rows)
+            {
+                string base64content = (row.FindControl("img") as Image).ImageUrl;
+                string imageName = (row.FindControl("txtImageDescription") as TextBox).Text;
+                var corespondingPicture = apartment.Pictures.FirstOrDefault(picture => picture.Base64Content == base64content);
+                if (corespondingPicture != null)
+                    corespondingPicture.Name = imageName;
+            }
+
             ((IRepo)Application["database"]).InsertApartment(apartment);
 
             Session["apartmentControlVisible"] = false;
@@ -240,8 +252,12 @@ namespace Zadatak01.UserControls
             string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
             string base64databaseString = $"data:image/{extention};base64," + base64String;
 
-            ((List<ApartmentPicture>)ViewState["dbPictures"]).Add(new ApartmentPicture { 
-                Guid = Guid.NewGuid(), CreatedAt = DateTime.Now, Base64Content = base64databaseString, Name = string.Empty
+            ((List<ApartmentPicture>)ViewState["dbPictures"]).Add(new ApartmentPicture
+            {
+                Guid = Guid.NewGuid(),
+                CreatedAt = DateTime.Now,
+                Base64Content = base64databaseString,
+                Name = string.Empty
             });
 
             this.gwPictures.DataSource = ((List<ApartmentPicture>)ViewState["dbPictures"]);
