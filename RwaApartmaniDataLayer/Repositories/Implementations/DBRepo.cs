@@ -437,7 +437,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             return this.LoadUsersRaw();
         }
 
-        public override void UpdateApartment(Apartment apartment)
+        public override void UpdateApartment(Apartment apartment, IList<ApartmentPicture> picturesToRemove)
         {
             int id = apartment.Id;
             var tagsFromDatabase = this.LoadTagsByApartmentId(apartment.Id);
@@ -446,10 +446,22 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             IList<Tag> tagsToDelete = tagsFromDatabase.Except(currentTags).ToList();
             IList<Tag> tagsToAdd = currentTags.Except(tagsFromDatabase).ToList();
 
-            foreach (var tag in tagsToDelete)
+            foreach (Tag tag in tagsToDelete)
                 this.DeleteTaggedApartment(new TaggedApartment { ApartmentId = apartment.Id, TagId = tag.Id});
-            foreach (var tag in tagsToAdd)
+            foreach (Tag tag in tagsToAdd)
                 this.InsertTaggedApartment(new TaggedApartment { Guid = Guid.NewGuid(), ApartmentId = apartment.Id, TagId = tag.Id });
+            foreach (ApartmentPicture picture in apartment.Pictures)
+            {
+                if (picture.Id == 0)
+                    this.InsertApartmentPicture(picture);
+                else
+                    this.UpdateApartmentPicture(picture);
+            }
+            foreach (ApartmentPicture picture in picturesToRemove)
+            {
+                if (picture.Id != 0)
+                    this.DeleteApartmentPicture(picture.Id);
+            }
 
             SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(UpdateApartment), 
                 apartment.Id,
@@ -466,5 +478,9 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
                 apartment.BeachDistance);
         }
 
+        private void UpdateApartmentPicture(ApartmentPicture picture)
+        {
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(UpdateApartmentPicture), picture.Name, picture.IsRepresentative);
+        }
     }
 }

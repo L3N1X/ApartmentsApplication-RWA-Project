@@ -21,5 +21,16 @@ namespace RwaApartmaniDataLayer.Models
         public string Base64Content { get => base64Content == string.Empty ? null : base64Content; set => base64Content = value; }
         public string Name { get; set; }
         public bool IsRepresentative { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ApartmentPicture picture &&
+                   Guid.Equals(picture.Guid);
+        }
+
+        public override int GetHashCode()
+        {
+            return -737073652 + Guid.GetHashCode();
+        }
     }
 }

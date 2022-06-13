@@ -187,6 +187,15 @@
         $(document).ready(function () {
             $('#myTable').DataTable();
         });
+        function SelectRadioButton(radio) {
+            var rdBtn = document.getElementById(radio.id);
+            var rdBtnList = document.getElementsByTagName("input");
+            for (i = 0; i < rdBtnList.length; i++) {
+                if (rdBtnList[i].type == "radio" && rdBtnList[i].id != rdBtn.id) {
+                    rdBtnList[i].checked = false;
+                }
+            }
+        }
     </script>
 </body>
 </html>

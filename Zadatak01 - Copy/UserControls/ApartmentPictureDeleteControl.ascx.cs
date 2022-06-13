@@ -23,15 +23,16 @@ namespace Zadatak01.UserControls
 
         protected void btnYes_Click(object sender, EventArgs e)
         {
-            ApartmentPicture picture = (ApartmentPicture)ViewState["picture"];
-            ((IRepo)Application["databae"]).DeleteApartmentPicture(picture.Id);
+            ApartmentPicture pictureToDelete = (ApartmentPicture)ViewState["pictureToDelete"];
+            ((List<ApartmentPicture>)Session["dbPicturesToRemove"]).Add(pictureToDelete);
+            ((List<ApartmentPicture>)Session["dbPictures"]).Remove(pictureToDelete);
         }
 
-        internal void FillForm(int pictureId)
+        internal void FillForm(Guid pictureGuid)
         {
-            var picture = ((IRepo)Application["database"]).LoadApartmentPictureById(pictureId);
-            ViewState["picure"] = picture;
-            this.lblTitle.Text = $"Are you sure you want to delete {(string.IsNullOrEmpty(picture.Name) ? "Unnamed picture" : picture.Name + " picture")}?";
-        }
+            ApartmentPicture pictureToDelete = ((List<ApartmentPicture>)Session["dbPictures"]).FirstOrDefault(picture => picture.Guid.Equals(pictureGuid));
+            ViewState["pictureToDelete"] = pictureToDelete;
+            this.lblTitle.Text = $"Are you sure you want to delete {(string.IsNullOrEmpty(pictureToDelete.Name) ? "unnamed picture" : pictureToDelete.Name + " picture" )}?";
+        }  
     }
 }
