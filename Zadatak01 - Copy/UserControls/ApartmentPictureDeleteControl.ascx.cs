@@ -11,6 +11,8 @@ namespace Zadatak01.UserControls
 {
     public partial class ApartmentPictureDeleteControl : System.Web.UI.UserControl
     {
+        public delegate void DeletePictureConfirmedDelegate(object sender, EventArgs args);
+        public event DeletePictureConfirmedDelegate DeletePictureConfirmed;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -26,6 +28,7 @@ namespace Zadatak01.UserControls
             ApartmentPicture pictureToDelete = (ApartmentPicture)ViewState["pictureToDelete"];
             ((List<ApartmentPicture>)Session["dbPicturesToRemove"]).Add(pictureToDelete);
             ((List<ApartmentPicture>)Session["dbPictures"]).Remove(pictureToDelete);
+            DeletePictureConfirmed?.Invoke(sender, e);
         }
 
         internal void FillForm(Guid pictureGuid)

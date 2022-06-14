@@ -17,6 +17,13 @@ namespace Zadatak01.UserControls
         protected void Page_Load(object sender, EventArgs e)
         {
             this.pnlConfirm.Visible = false;
+            if (ViewState["apartment"] != null)
+            {
+                int id = ((Apartment)ViewState["apartment"]).Id;
+                //this.FillForm(id);
+                this.gwPictures.DataSource = ((List<ApartmentPicture>)Session["dbPictures"]);
+                this.gwPictures.DataBind();
+            }
             if (!IsPostBack)
             {
                 FillListControls();
@@ -26,9 +33,13 @@ namespace Zadatak01.UserControls
                 Session["dbPicturesToAdd"] = new List<ApartmentPicture>();
                 Session["dbPicturesToRemove"] = new List<ApartmentPicture>();
                 /*Only used when editing existing apartment*/
+                ApartmentPictureDeleteControl.DeletePictureConfirmed += ApartmentPictureDeleteControl_DeletePictureConfirmed;
             }
-            this.gwPictures.DataSource = ((List<ApartmentPicture>)Session["dbPictures"]);
-            this.gwPictures.DataBind();
+        }
+
+        private void ApartmentPictureDeleteControl_DeletePictureConfirmed(object sender, EventArgs args)
+        {
+            Page_Load(sender, args);
         }
 
         private void FillListControls()
@@ -243,6 +254,13 @@ namespace Zadatak01.UserControls
                 picture.IsRepresentative = false;
             foreach (GridViewRow row in this.gwPictures.Rows)
             {
+                Guid guid = Guid.Parse((row.FindControl("btnDeletePicture") as LinkButton).CommandArgument);
+                TextBox txt = (row.FindControl("txtImageDescription")) as TextBox;
+                string pictureName = ((row.FindControl("txtImageDescription")) as TextBox).Text;
+                ApartmentPicture currentPicture = selectedApartment.Pictures.FirstOrDefault(picture => picture.Guid.Equals(guid));
+                if (currentPicture != null)
+                    currentPicture.Name = pictureName;
+
                 RadioButton radio = (row.FindControl("rbRepresentative") as RadioButton);
                 if (radio.Checked)
                 {

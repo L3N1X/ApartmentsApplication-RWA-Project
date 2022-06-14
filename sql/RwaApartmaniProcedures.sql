@@ -144,12 +144,6 @@ AS
 	SET Apartment.DeletedAt = GETDATE()
 	WHERE Apartment.Id = @Id
 GO
-CREATE PROCEDURE DeleteApartmentPicture
-@Id INT
-AS 
-	DELETE ApartmentPicture
-	WHERE ApartmentPicture.Id = @Id
-Go
 CREATE PROCEDURE DeleteTag
 @Id INT
 AS 
@@ -273,12 +267,27 @@ AS
 	VALUES (@Guid, @CreatedAt, @ApartmentId, @Details, @UserId, @UserName, @UserEmail, @UserPhone, @UserAddress)
 GO
 
-ALTER PROCEDURE DeleteApartmentPicture
+CREATE PROCEDURE DeleteApartmentPicture
 @Guid UNIQUEIDENTIFIER
 AS
-DELETE FROM ApartmentPicture WHERE Guid = @Guid
+	UPDATE ApartmentPicture
+	SET DeletedAt = GETDATE()
+	WHERE Guid = @Guid
+
+GO
+
+CREATE PROCEDURE UpdateApartmentPicture
+@Guid UNIQUEIDENTIFIER,
+@Name NVARCHAR(250),
+@IsRepresentative BIT
+AS
+	UPDATE ApartmentPicture
+	SET Name =  @Name, IsRepresentative = @IsRepresentative
+	WHERE Guid = @Guid
 
 USE RwaApartmani
+
+SELECT * FROM TaggedApartment
 SELECT * FROM ApartmentStatus
 SELECT * FROM TagType
 SELECT * FROM ApartmentReview

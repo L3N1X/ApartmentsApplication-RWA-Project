@@ -77,15 +77,18 @@
                 <fieldset>
                     <legend>Pictures</legend>
                     <div class="mb-3" id="imagesContainer">
-                        <asp:GridView ID="gwPictures" AutoGenerateColumns="false" ShowHeader="false" ShowFooter="false" runat="server" CssClass="table table-borderless" BorderStyle="None">
+                        <asp:GridView ID="gwPictures" AutoGenerateColumns="false" ShowHeader="false" ShowFooter="false" runat="server" CssClass="table table-borderless" BorderStyle="None" >
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
                                         <div class="mb-3">
                                             <asp:Image ID="img" ImageUrl='<%#Eval("Base64Content")%>' runat="server" Height="183" Width="240" CssClass="rounded mx-auto d-block" />
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3" style="display: flex; flex-direction: row; align-items: center; justify-content:space-between">
                                             <asp:TextBox ID="txtImageDescription" Text='<%#Eval("Name") %>' runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:LinkButton ID="btnConfirmPictureName" runat="server" CssClass="btn btn-outline-light" Style="margin-left:.5em" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" CommandName="saveName">
+                                                <asp:Image ID="imgSaveIcon" ImageUrl="~/Images/save.png" Style="width:1.5rem; height:1.5rem;" runat="server" />
+                                            </asp:LinkButton>
                                         </div>
                                         <div class="mb-3" style="display: flex; flex-direction: row; align-items: center; justify-content:space-between">
                                             <asp:LinkButton ID="btnDeletePicture" CssClass="btn btn-outline-danger" Style="width:45%" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" OnClick="btnDeletePicture_Click">X</asp:LinkButton>

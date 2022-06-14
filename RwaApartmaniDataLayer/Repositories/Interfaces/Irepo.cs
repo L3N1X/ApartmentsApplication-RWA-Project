@@ -25,7 +25,7 @@ namespace RwaApartmaniDataLayer.Repositories.Interfaces
         IList<ApartmentPicture> LoadApartmentPictures();
         ApartmentPicture LoadApartmentPictureById(int id);
         void InsertApartmentPicture(ApartmentPicture apartmentPicture);
-        void DeleteApartmentPicture(int id);
+        void DeleteApartmentPicture(Guid guid);
         IList<ApartmentPicture> LoadApartmentPicturesByApartmentId(int id);
         //ApartmentReservation
         IList<ApartmentReservation> LoadApartmentReservations();

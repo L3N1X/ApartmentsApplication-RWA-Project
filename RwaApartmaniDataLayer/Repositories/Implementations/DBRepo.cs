@@ -48,9 +48,9 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteApartment), apartment.Id);
         }
 
-        public override void DeleteApartmentPicture(int id)
+        public override void DeleteApartmentPicture(Guid guid)
         {
-            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteApartmentPicture), id);
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(DeleteApartmentPicture), guid);
         }
 
         public override void DeleteTag(int id)
@@ -460,7 +460,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             foreach (ApartmentPicture picture in picturesToRemove)
             {
                 if (picture.Id != 0)
-                    this.DeleteApartmentPicture(picture.Id);
+                    this.DeleteApartmentPicture(picture.Guid);
             }
 
             SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(UpdateApartment), 
@@ -480,7 +480,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         private void UpdateApartmentPicture(ApartmentPicture picture)
         {
-            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(UpdateApartmentPicture), picture.Name, picture.IsRepresentative);
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(UpdateApartmentPicture), picture.Guid, picture.Name, picture.IsRepresentative);
         }
     }
 }

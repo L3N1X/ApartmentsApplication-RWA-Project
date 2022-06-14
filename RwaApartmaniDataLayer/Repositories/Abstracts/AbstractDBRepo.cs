@@ -492,7 +492,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
 
         public abstract void DeleteApartment(Apartment apartment);
 
-        public abstract void DeleteApartmentPicture(int id);
+        public abstract void DeleteApartmentPicture(Guid guid);
 
         public abstract void DeleteTag(int id);
 

@@ -10,8 +10,10 @@
             <div class="mb-3">
                 <asp:Panel ID="pnlButtons" runat="server">
                     <div class="d-flex justify-content-center">
-                        <asp:Button ID="btnNo" OnClick="btnNo_Click" class="btn btn-dark" Style="margin-top:2rem; margin-right:.5rem; width:20%" runat="server" Text="No" />
-                        <asp:Button ID="btnYes" OnClick="btnYes_Click" class="btn btn-outline-dark" Style="margin-top:2rem; margin-left:.5rem; width:20%" runat="server" Text="Yes" />
+                        <%--<asp:Button ID="btnNo" OnClick="btnNo_Click" class="btn btn-dark" Style="margin-top:2rem; margin-right:.5rem; width:20%" runat="server" Text="No" />--%>
+                        <asp:LinkButton ID="btnNo" OnClick="btnNo_Click" class="btn btn-dark" Style="margin-top:2rem; margin-right:.5rem; width:20%" runat="server">No</asp:LinkButton>
+                        <%--<asp:Button ID="btnYes" OnClick="btnYes_Click" class="btn btn-outline-dark" Style="margin-top:2rem; margin-left:.5rem; width:20%" runat="server" Text="Yes" />--%>
+                        <asp:LinkButton ID="btnYes" OnClick="btnYes_Click" class="btn btn-outline-dark" Style="margin-top:2rem; margin-left:.5rem; width:20%" runat="server">Yes</asp:LinkButton>
                     </div> 
                 </asp:Panel>
             </div>

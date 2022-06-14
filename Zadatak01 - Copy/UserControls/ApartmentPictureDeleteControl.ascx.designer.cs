@@ -39,7 +39,7 @@ namespace Zadatak01.UserControls
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNo;
+        protected global::System.Web.UI.WebControls.LinkButton btnNo;
 
         /// <summary>
         /// btnYes control.
@@ -48,6 +48,6 @@ namespace Zadatak01.UserControls
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnYes;
+        protected global::System.Web.UI.WebControls.LinkButton btnYes;
     }
 }
