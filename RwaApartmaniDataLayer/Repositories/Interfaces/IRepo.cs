@@ -14,7 +14,7 @@ namespace RwaApartmaniDataLayer.Repositories.Interfaces
         Apartment LoadApartmentById(int id);
         void InsertApartment(Apartment apartment);
         void DeleteApartment(Apartment apartment);
-        void UpdateApartment(Apartment apartment);
+        void UpdateApartment(Apartment apartment, IList<ApartmentPicture> picturesToRemove);
         IList<Apartment> LoadApartments(params Predicate<Apartment>[] filters);
         IList<Apartment> LoadApartmentsByOwnerId(int id);
         //ApartmentOwner
@@ -25,7 +25,7 @@ namespace RwaApartmaniDataLayer.Repositories.Interfaces
         IList<ApartmentPicture> LoadApartmentPictures();
         ApartmentPicture LoadApartmentPictureById(int id);
         void InsertApartmentPicture(ApartmentPicture apartmentPicture);
-        void DeleteApartmentPicture(int id);
+        void DeleteApartmentPicture(Guid guid);
         IList<ApartmentPicture> LoadApartmentPicturesByApartmentId(int id);
         //ApartmentReservation
         IList<ApartmentReservation> LoadApartmentReservations();

@@ -77,22 +77,24 @@
                 <fieldset>
                     <legend>Pictures</legend>
                     <div class="mb-3" id="imagesContainer">
-                        <asp:GridView ID="gwPictures" AutoGenerateColumns="false" ShowHeader="false" ShowFooter="false" runat="server" CssClass="table table-borderless" BorderStyle="None" >
+                        <asp:GridView ID="gwPictures" AutoGenerateColumns="false" ShowHeader="false" ShowFooter="false" runat="server" CssClass="table table-borderless" BorderStyle="None" OnRowCommand="gwPictures_RowCommand" >
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
+                                        <asp:Label ID="guidLabel" runat="server" Text="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" Visible="false"></asp:Label>
                                         <div class="mb-3">
                                             <asp:Image ID="img" ImageUrl='<%#Eval("Base64Content")%>' runat="server" Height="183" Width="240" CssClass="rounded mx-auto d-block" />
                                         </div>
                                         <div class="mb-3" style="display: flex; flex-direction: row; align-items: center; justify-content:space-between">
-                                            <asp:TextBox ID="txtImageDescription" Text='<%#Eval("Name") %>' runat="server" CssClass="form-control"></asp:TextBox>
-                                            <asp:LinkButton ID="btnConfirmPictureName" runat="server" CssClass="btn btn-outline-light" Style="margin-left:.5em" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" CommandName="saveName">
+                                            <asp:TextBox ID="txtImageDescription" runat="server" CssClass="form-control" style="text-align: center" ></asp:TextBox>  <%--Text='<%#Eval("Name") %>'--%>
+                                            <%--<asp:LinkButton ID="btnConfirmPictureName" runat="server" CssClass="btn btn-outline-light" Style="margin-left:.5em" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" CommandName="saveName">
                                                 <asp:Image ID="imgSaveIcon" ImageUrl="~/Images/save.png" Style="width:1.5rem; height:1.5rem;" runat="server" />
-                                            </asp:LinkButton>
+                                            </asp:LinkButton>--%>
                                         </div>
                                         <div class="mb-3" style="display: flex; flex-direction: row; align-items: center; justify-content:space-between">
                                             <asp:LinkButton ID="btnDeletePicture" CssClass="btn btn-outline-danger" Style="width:45%" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" OnClick="btnDeletePicture_Click">X</asp:LinkButton>
                                             <div style="display: flex; flex-direction: row; align-items: center; gap:.5em">
+                                               <%-- ON CHECK CHANGED EVENT--%>
                                                 <asp:RadioButton ID="rbRepresentative" CausesValidation="false" GroupName="rbGroupRepresentative" OnClick="javascript:SelectRadioButton(this)" runat="server" />
                                                 <asp:Label ID="Label19" runat="server" Text="Representative"></asp:Label>
                                             </div>
