@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using RwaApartmaniDataLayer.Utilities;
-
 namespace RwaApartmaniDataLayer.Repositories.Abstracts
 {
     public abstract class AbstractDBRepo : IRepo

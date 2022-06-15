@@ -24,12 +24,48 @@ namespace Zadatak01
         protected global::System.Web.UI.WebControls.Repeater rptTags;
 
         /// <summary>
-        /// gwApartments control.
+        /// btnCreateTag control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gwApartments;
+        protected global::System.Web.UI.WebControls.Button btnCreateTag;
+
+        /// <summary>
+        /// pnlCreateTag control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCreateTag;
+
+        /// <summary>
+        /// CreateTagControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Zadatak01.UserControls.CreateTagControl CreateTagControl;
+
+        /// <summary>
+        /// pnlConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlConfirm;
+
+        /// <summary>
+        /// TagDeleteControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Zadatak01.UserControls.TagDeleteControl TagDeleteControl;
     }
 }

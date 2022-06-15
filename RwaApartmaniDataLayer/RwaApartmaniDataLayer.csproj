@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataManager.cs" />
     <Compile Include="Models\Apartment.cs" />
     <Compile Include="Models\ApartmentOwner.cs" />
     <Compile Include="Models\ApartmentPicture.cs" />
@@ -68,7 +67,6 @@
     <Compile Include="Repositories\Abstracts\AbstractDBRepo.cs" />
     <Compile Include="Repositories\Implementations\DBRepo.cs" />
     <Compile Include="Repositories\Interfaces\IRepo.cs" />
-    <Compile Include="Utilities\Parsers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\Factories\" />

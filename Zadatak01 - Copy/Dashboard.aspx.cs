@@ -18,33 +18,20 @@ namespace Zadatak01
         private IList<Apartment> _allApartments;
         private IList<City> _allCities;
         private IList<ApartmentStatus> _allStatuses;
-        private IList<Tag> _allTags;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["user"] is null)
+                Response.Redirect("/Default");
             if (Session["apartmentControlVisible"] == null || (bool)Session["apartmentControlVisible"] == false)
-            {
                 this.pnlApartment.Visible = false;
-            }
             else
-            {
                 this.pnlApartment.Visible = true;
-            }
             this.pnlConfirm.Visible = false;
-            //UKLONI
-            Session["user"] = new User();
-            //UKLONI
-
-            //if (Session["user"] == null)
-            //{
-            //    Response.Redirect("Default.aspx");
-            //}
-
             if (!IsPostBack)
             {
                 _allCities = ((IRepo)Application["database"]).LoadCities();
                 _allStatuses = ((IRepo)Application["database"]).LoadApartmentStatus();
-                _allTags = ((IRepo)Application["database"]).LoadTags();
                 FillDropDownLists();
             }
 
@@ -54,8 +41,6 @@ namespace Zadatak01
 
         private void FilterAndSortApartments()
         {
-
-
             int selectedStatusId = int.Parse(this.ddlStatusFilter.SelectedValue);
             int selectedCityId = int.Parse(this.ddlCityFilter.SelectedValue);
 

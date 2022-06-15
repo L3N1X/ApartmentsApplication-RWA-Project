@@ -443,13 +443,17 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             var tagsFromDatabase = this.LoadTagsByApartmentId(apartment.Id);
             var currentTags = apartment.Tags;
 
-            IList<Tag> tagsToDelete = tagsFromDatabase.Except(currentTags).ToList();
-            IList<Tag> tagsToAdd = currentTags.Except(tagsFromDatabase).ToList();
+            if (tagsFromDatabase.Count.Equals(0) || !currentTags.Equals(tagsFromDatabase))
+            {
+                IList<Tag> tagsToDelete = tagsFromDatabase.Except(currentTags).ToList();
+                IList<Tag> tagsToAdd = currentTags.Except(tagsFromDatabase).ToList();
 
-            foreach (Tag tag in tagsToDelete)
-                this.DeleteTaggedApartment(new TaggedApartment { ApartmentId = apartment.Id, TagId = tag.Id });
-            foreach (Tag tag in tagsToAdd)
-                this.InsertTaggedApartment(new TaggedApartment { Guid = Guid.NewGuid(), ApartmentId = apartment.Id, TagId = tag.Id });
+                foreach (Tag tag in tagsToDelete)
+                    this.DeleteTaggedApartment(new TaggedApartment { ApartmentId = apartment.Id, TagId = tag.Id });
+                foreach (Tag tag in tagsToAdd)
+                    this.InsertTaggedApartment(new TaggedApartment { Guid = Guid.NewGuid(), ApartmentId = apartment.Id, TagId = tag.Id });
+            }
+
             foreach (ApartmentPicture picture in apartment.Pictures)
             {
                 picture.ApartmentId = apartment.Id;

@@ -1,5 +1,4 @@
-﻿using rwaLib.Dal;
-using rwaLib.Models;
+﻿using RwaApartmaniDataLayer.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +13,14 @@ namespace Zadatak01
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["user"] = new User(); //Temporary
             if (!IsPostBack)
             {
                 PanelForma.Visible = true;
                 PanelIspis.Visible = false;
             }
-
             if (Session["user"] != null)
             {
-                Response.Redirect("Dashboard.aspx");
+                Response.Redirect("/Dashboard");
             }
         }
 
@@ -31,23 +28,24 @@ namespace Zadatak01
         {
             if (Page.IsValid)
             {
-                var username = txtUsername.Text;
-                var password = Cryptography.HashPassword(txtPassword.Text);
+                var email = txtUsername.Text;
 
-                User user = ((IRepo)Application["database"]).AuthUser(username, password);
+                var allUsers = ((IRepo)Application["database"]).LoadUsers();
+                var user = allUsers.FirstOrDefault(u => u.Email.Equals(email));
 
                 if (user == null)
                 {
                     PanelIspis.Visible = true;
                     PanelForma.Visible = true;
 
-                    txtUsername.Text = "";
-                    txtPassword.Text = "";
+                    txtUsername.Text = string.Empty;
+                    txtPassword.Text = string.Empty;
                 }
                 else
                 {
                     Session["user"] = user;
-                    Response.Redirect("Dashboard.aspx");
+                    Session["username"] = user.UserName;
+                    Response.Redirect("/Dashboard");
                 }
             }
         }

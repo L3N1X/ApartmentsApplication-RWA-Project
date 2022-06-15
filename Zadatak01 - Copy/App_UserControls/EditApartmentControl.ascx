@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditApartmentControl.ascx.cs" Inherits="Zadatak01.UserControls.EditApartmentControl" %>
-<%@ Register Src="~/UserControls/ApartmentPictureDeleteControl.ascx" TagPrefix="uc1" TagName="ApartmentPictureDeleteControl" %>
+<%@ Register Src="~/App_UserControls/ApartmentPictureDeleteControl.ascx" TagPrefix="uc1" TagName="ApartmentPictureDeleteControl" %>
 
 <div class="offcanvas-header" id="popup-header">
     <asp:Label ID="lblTitle" runat="server" Text="Create new apartment"></asp:Label>
@@ -77,7 +77,7 @@
                 <fieldset>
                     <legend>Pictures</legend>
                     <div class="mb-3" id="imagesContainer">
-                        <asp:GridView ID="gwPictures" AutoGenerateColumns="false" ShowHeader="false" ShowFooter="false" runat="server" CssClass="table table-borderless" BorderStyle="None" OnRowCommand="gwPictures_RowCommand" >
+                        <asp:GridView ID="gwPictures" AutoGenerateColumns="false" ShowHeader="false" ShowFooter="false" runat="server" CssClass="table table-borderless" BorderStyle="None">
                             <Columns>
                                 <asp:TemplateField>
                                     <ItemTemplate>
@@ -94,7 +94,6 @@
                                         <div class="mb-3" style="display: flex; flex-direction: row; align-items: center; justify-content:space-between">
                                             <asp:LinkButton ID="btnDeletePicture" CssClass="btn btn-outline-danger" Style="width:45%" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" OnClick="btnDeletePicture_Click" CausesValidation="false">X</asp:LinkButton>
                                             <div style="display: flex; flex-direction: row; align-items: center; gap:.5em">
-                                               <%-- ON CHECK CHANGED EVENT--%>
                                                 <asp:RadioButton ID="rbRepresentative" CausesValidation="false" GroupName="rbGroupRepresentative" OnClick="javascript:SelectRadioButton(this)" runat="server" />
                                                 <asp:Label ID="Label19" runat="server" Text="Representative"></asp:Label>
                                             </div>

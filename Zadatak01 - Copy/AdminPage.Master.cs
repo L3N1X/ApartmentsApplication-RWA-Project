@@ -11,7 +11,8 @@ namespace Zadatak01
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //this.btnLogout.Text = (string)(Session["username"] != null ? "Logout " + (string)Session["username"] : "x");
+            this.lblEmail.Text = (string)(Session["username"] != null ? (string)Session["username"] : "x");
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)

@@ -1,7 +1,7 @@
-﻿<%@ Page Title="Dashboard" Language="C#" MasterPageFile="~/AdminPage.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="Zadatak01.Dashboard" %>
+﻿<%@ Page Title="Dashboard" Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/AdminPage.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="Zadatak01.Dashboard" %>
 
-<%@ Register Src="~/UserControls/EditApartmentControl.ascx" TagPrefix="uc" TagName="EditApartmentControl" %>
-<%@ Register Src="~/UserControls/ApartmentDeleteControl.ascx" TagPrefix="uc" TagName="ApartmentDeleteControl" %>
+<%@ Register Src="~/App_UserControls/EditApartmentControl.ascx" TagPrefix="uc" TagName="EditApartmentControl" %>
+<%@ Register Src="~/App_UserControls/ApartmentDeleteControl.ascx" TagPrefix="uc" TagName="ApartmentDeleteControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Head" runat="server">
 </asp:Content>
@@ -63,7 +63,7 @@
                     <ItemTemplate>
                         <tr>
                             <%--<th scope="row"><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Id)) %></th>--%>
-                            <th scope="row"><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.Name)) %></th>
+                            <th scope="row"><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.NameEng)) %></th>
                             <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.CityName)) %></td>
                             <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.MaxAdults)) %></td>
                             <td><%#Eval(nameof(RwaApartmaniDataLayer.Models.Apartment.MaxChildren)) %></td>
