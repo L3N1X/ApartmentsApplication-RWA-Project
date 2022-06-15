@@ -83,7 +83,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
                 apartment.Price,
                 apartment.MaxAdults,
                 apartment.MaxChildren,
-                apartment.TotalRooms,
+                apartment.TotalRooms, 
                 apartment.BeachDistance);
             int apartmentId = LoadApartmentIdByGuid(apartment.Guid); //Gets id from database to resolve foreign key errors
             foreach (Tag tag in apartment.Tags)
@@ -232,7 +232,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
         public override ApartmentReservation LoadApartmentReservationById(int id)
         {
             var reservation = this.LoadApartmentReservationByIdRaw(id);
-            if(reservation.UserId != null)
+            if (reservation.UserId != null)
             {
                 int userId = (int)reservation.UserId;
                 var user = this.LoadUserByIdRaw(userId);
@@ -447,11 +447,12 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             IList<Tag> tagsToAdd = currentTags.Except(tagsFromDatabase).ToList();
 
             foreach (Tag tag in tagsToDelete)
-                this.DeleteTaggedApartment(new TaggedApartment { ApartmentId = apartment.Id, TagId = tag.Id});
+                this.DeleteTaggedApartment(new TaggedApartment { ApartmentId = apartment.Id, TagId = tag.Id });
             foreach (Tag tag in tagsToAdd)
                 this.InsertTaggedApartment(new TaggedApartment { Guid = Guid.NewGuid(), ApartmentId = apartment.Id, TagId = tag.Id });
             foreach (ApartmentPicture picture in apartment.Pictures)
             {
+                picture.ApartmentId = apartment.Id;
                 if (picture.Id == 0)
                     this.InsertApartmentPicture(picture);
                 else
@@ -459,11 +460,10 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             }
             foreach (ApartmentPicture picture in picturesToRemove)
             {
-                if (picture.Id != 0)
-                    this.DeleteApartmentPicture(picture.Guid);
+                this.DeleteApartmentPicture(picture.Guid);
             }
 
-            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(UpdateApartment), 
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(UpdateApartment),
                 apartment.Id,
                 apartment.OwnerId,
                 apartment.StatusId,

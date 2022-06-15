@@ -387,6 +387,7 @@ namespace Zadatak01.UserControls
             //this.pnlConfirm.Visible = true;
         }
 
+        /*Remove this lol*/
         protected void gwPictures_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             /*Save image name selected*/
