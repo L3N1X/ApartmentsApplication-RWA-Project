@@ -92,7 +92,7 @@
                                             </asp:LinkButton>--%>
                                         </div>
                                         <div class="mb-3" style="display: flex; flex-direction: row; align-items: center; justify-content:space-between">
-                                            <asp:LinkButton ID="btnDeletePicture" CssClass="btn btn-outline-danger" Style="width:45%" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" OnClick="btnDeletePicture_Click">X</asp:LinkButton>
+                                            <asp:LinkButton ID="btnDeletePicture" CssClass="btn btn-outline-danger" Style="width:45%" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" OnClick="btnDeletePicture_Click" CausesValidation="false">X</asp:LinkButton>
                                             <div style="display: flex; flex-direction: row; align-items: center; gap:.5em">
                                                <%-- ON CHECK CHANGED EVENT--%>
                                                 <asp:RadioButton ID="rbRepresentative" CausesValidation="false" GroupName="rbGroupRepresentative" OnClick="javascript:SelectRadioButton(this)" runat="server" />

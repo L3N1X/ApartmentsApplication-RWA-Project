@@ -17,13 +17,13 @@ namespace Zadatak01.UserControls
         protected void Page_Load(object sender, EventArgs e)
         {
             this.pnlConfirm.Visible = false;
-            if (ViewState["apartment"] != null)
-            {
-                int id = ((Apartment)ViewState["apartment"]).Id;
-                //this.FillForm(id);
-                //this.gwPictures.DataSource = ((List<ApartmentPicture>)Session["dbPictures"]);
-                //this.gwPictures.DataBind();
-            }
+            //if (ViewState["apartment"] != null)
+            //{
+            //    int id = ((Apartment)ViewState["apartment"]).Id;
+            //    //this.FillForm(id);
+            //    //this.gwPictures.DataSource = ((List<ApartmentPicture>)Session["dbPictures"]);
+            //    //this.gwPictures.DataBind();
+            //}
             if (!IsPostBack)
             {
                 FillListControls();
@@ -34,6 +34,34 @@ namespace Zadatak01.UserControls
                 Session["dbPicturesToRemove"] = new List<ApartmentPicture>();
                 /*Only used when editing existing apartment*/
                 ApartmentPictureDeleteControl.DeletePictureConfirmed += ApartmentPictureDeleteControl_DeletePictureConfirmed;
+            }
+        }
+
+        private void BindPicturesGridView()
+        {
+            this.gwPictures.DataSource = ((List<ApartmentPicture>)Session["dbPictures"]);
+            this.gwPictures.DataBind();
+            /*Set representative picture radio button in GridView*/
+            ApartmentPicture representativePicture = ((List<ApartmentPicture>)Session["dbPictures"]).FirstOrDefault(picture => picture.IsRepresentative);
+            if (representativePicture != null)
+            {
+                foreach (GridViewRow row in this.gwPictures.Rows)
+                {
+                    string base64content = (row.FindControl("img") as Image).ImageUrl;
+                    if (representativePicture.Base64Content == base64content)
+                    {
+                        RadioButton radio = (row.FindControl("rbRepresentative") as RadioButton);
+                        radio.Checked = true;
+                    }
+                }
+            }
+            /*Set textbox values (picture names) in GridView*/
+            foreach (GridViewRow row in this.gwPictures.Rows)
+            {
+                Guid currentGuid = Guid.Parse((row.FindControl("guidLabel") as Label).Text);
+                ApartmentPicture corespondingPicture = ((List<ApartmentPicture>)Session["dbPictures"]).FirstOrDefault(picture => picture.Guid.Equals(currentGuid));
+                TextBox txtPictureName = (row.FindControl("txtImageDescription") as TextBox);
+                txtPictureName.Text = corespondingPicture.Name;
             }
         }
 
@@ -82,15 +110,15 @@ namespace Zadatak01.UserControls
         public void FillForm(int apartmentId)
         {
             var apartment = ((IRepo)Application["database"]).LoadApartmentById(apartmentId);
-            this.gwPictures.DataSource = apartment.Pictures;
-            this.gwPictures.DataBind();
-            this.ddlStatus.Enabled = true;
 
             Session["apartmentControlVisible"] = true;
             ViewState["apartment"] = apartment;
             ViewState["currentStatus"] = apartment.StatusId;
             Session["dbPictures"] = apartment.Pictures;
 
+            this.BindPicturesGridView();
+
+            this.ddlStatus.Enabled = true;
             foreach (ListItem item in cblTags.Items)
                 item.Selected = false;
             this.txtApartmentName.Text = apartment.Name;
@@ -106,29 +134,6 @@ namespace Zadatak01.UserControls
             {
                 ListItem foundTag = cblTags.Items.FindByValue(tag.Id.ToString());
                 foundTag.Selected = true;
-            }
-
-            /*Set representative picture radio button in GridView*/
-            ApartmentPicture representativePicture = apartment.Pictures.FirstOrDefault(picture => picture.IsRepresentative);
-            if(representativePicture != null)
-            {
-                foreach (GridViewRow row in this.gwPictures.Rows)
-                {
-                    string base64content = (row.FindControl("img") as Image).ImageUrl;
-                    if(representativePicture.Base64Content == base64content)
-                    {
-                        RadioButton radio = (row.FindControl("rbRepresentative") as RadioButton);
-                        radio.Checked = true;
-                    }
-                }
-            }
-            /*Set textbox values (picture names) in GridView*/
-            foreach (GridViewRow row in this.gwPictures.Rows)
-            {
-                Guid currentGuid = Guid.Parse((row.FindControl("guidLabel") as Label).Text);
-                ApartmentPicture corespondingPicture = ((List<ApartmentPicture>)Session["dbPictures"]).FirstOrDefault(picture => picture.Guid.Equals(currentGuid));
-                TextBox txtPictureName = (row.FindControl("txtImageDescription") as TextBox);
-                txtPictureName.Text = corespondingPicture.Name; 
             }
 
             this.ddlCity.SelectedValue = apartment.CityId.ToString();
@@ -281,10 +286,11 @@ namespace Zadatak01.UserControls
                 RadioButton radio = (row.FindControl("rbRepresentative") as RadioButton);
                 if (radio.Checked)
                 {
-                    string base64content = (row.FindControl("img") as Image).ImageUrl;
-                    ApartmentPicture correspondingPicture = selectedApartment.Pictures.FirstOrDefault(picture => picture.Base64Content.Equals(base64content));
-                    if (correspondingPicture != null)
-                        correspondingPicture.IsRepresentative = true;
+                    currentPicture.IsRepresentative = true;
+                    //string base64content = (row.FindControl("img") as Image).ImageUrl;
+                    //ApartmentPicture correspondingPicture = selectedApartment.Pictures.FirstOrDefault(picture => picture.Base64Content.Equals(base64content));
+                    //if (correspondingPicture != null)
+                    //    correspondingPicture.IsRepresentative = true;
                 }
             }
 
@@ -353,10 +359,19 @@ namespace Zadatak01.UserControls
                 Name = string.Empty
             });
 
-            /*Standard bind*/
-            this.gwPictures.DataSource = ((List<ApartmentPicture>)Session["dbPictures"]);
-            this.gwPictures.DataBind();
-            /*Standard bind*/
+            ///*Standard bind*/
+            //this.gwPictures.DataSource = ((List<ApartmentPicture>)Session["dbPictures"]);
+            //this.gwPictures.DataBind();
+            //foreach (GridViewRow row in this.gwPictures.Rows)
+            //{
+            //    Guid currentGuid = Guid.Parse((row.FindControl("guidLabel") as Label).Text);
+            //    ApartmentPicture corespondingPicture = ((List<ApartmentPicture>)Session["dbPictures"]).FirstOrDefault(picture => picture.Guid.Equals(currentGuid));
+            //    TextBox txtPictureName = (row.FindControl("txtImageDescription") as TextBox);
+            //    txtPictureName.Text = corespondingPicture.Name;
+            //}
+            ///*Standard bind*/
+            ///
+            this.BindPicturesGridView();
 
             Session["apartmentControlVisible"] = true;
         }
@@ -364,9 +379,12 @@ namespace Zadatak01.UserControls
         protected void btnDeletePicture_Click(object sender, EventArgs e)
         {
             Session["apartmentControlVisible"] = true;
-            Guid pictureGuid = Guid.Parse(((LinkButton)sender).CommandArgument);
-            this.ApartmentPictureDeleteControl.FillForm(pictureGuid);
-            this.pnlConfirm.Visible = true;
+            Guid pictureToDeleteGuid = Guid.Parse(((LinkButton)sender).CommandArgument);
+            ((List<ApartmentPicture>)Session["dbPicturesToRemove"]).Add(new ApartmentPicture { Guid = pictureToDeleteGuid });
+            ((List<ApartmentPicture>)Session["dbPictures"]).RemoveAll(picture => picture.Guid.Equals(pictureToDeleteGuid));
+            this.BindPicturesGridView();
+            //this.ApartmentPictureDeleteControl.FillForm(pictureGuid);
+            //this.pnlConfirm.Visible = true;
         }
 
         protected void gwPictures_RowCommand(object sender, GridViewCommandEventArgs e)
