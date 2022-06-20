@@ -86,10 +86,7 @@
                                             <asp:Image ID="img" ImageUrl='<%#Eval("Base64Content")%>' runat="server" Height="183" Width="240" CssClass="rounded mx-auto d-block" />
                                         </div>
                                         <div class="mb-3" style="display: flex; flex-direction: row; align-items: center; justify-content:space-between">
-                                            <asp:TextBox ID="txtImageDescription" runat="server" CssClass="form-control" style="text-align: center" ></asp:TextBox>  <%--Text='<%#Eval("Name") %>'--%>
-                                            <%--<asp:LinkButton ID="btnConfirmPictureName" runat="server" CssClass="btn btn-outline-light" Style="margin-left:.5em" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" CommandName="saveName">
-                                                <asp:Image ID="imgSaveIcon" ImageUrl="~/Images/save.png" Style="width:1.5rem; height:1.5rem;" runat="server" />
-                                            </asp:LinkButton>--%>
+                                            <asp:TextBox ID="txtImageDescription" runat="server" CssClass="form-control" style="text-align: center" ></asp:TextBox>
                                         </div>
                                         <div class="mb-3" style="display: flex; flex-direction: row; align-items: center; justify-content:space-between">
                                             <asp:LinkButton ID="btnDeletePicture" CssClass="btn btn-outline-danger" Style="width:45%" runat="server" CommandArgument="<%#Eval(nameof(RwaApartmaniDataLayer.Models.ApartmentPicture.Guid)) %>" OnClick="btnDeletePicture_Click" CausesValidation="false">X</asp:LinkButton>
