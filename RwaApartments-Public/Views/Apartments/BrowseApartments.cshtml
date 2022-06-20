@@ -1,0 +1,57 @@
+﻿@model RwaApartments_Public.Models.ViewModels.ApartmentsBrowserViewModel
+
+@{
+    ViewBag.Title = "Browse apartments";
+}
+
+<table class="table table-striped table-condensed">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Ime)*@
+            @Html.Label(expression: "NameEng", labelText: "Name")
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Prezime)*@
+            @Html.Label(expression: "NameEng", labelText: "Pictures")
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Email)*@
+            @Html.Label(expression: "NameEng", labelText: "City")
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Telefon)*@
+        </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var apartment in Model.Apartments)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => apartment.NameEng)*@
+                @*@Html.DisplayFor(modelItem => apartment);*@
+                @*@Html.LabelFor(model => apartment.NameEng);*@
+                @Html.Label(expression: "NameEng", labelText: apartment.NameEng)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => apartment.Status)*@
+                @Html.Label(expression: "NameEng", labelText: apartment.PicturesCount.ToString())
+            </td>
+            <td>
+                @*<a href="mailto:@kupac.Email">@kupac.Email</a>*@
+                @Html.Label(expression: "NameEng", labelText: apartment.City.Name)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => apartment.PicturesCount)*@
+            </td>
+            <td>
+                @*@Html.Action("GetNazivGrad", new { id = kupac.GradID })*@
+            </td>
+            <td>
+                @*@Html.ActionLink("Uredi", "Uredi", new { id = kupac.IDKupac }, new { @class = "btn btn-primary btn-sm" })*@
+            </td>
+        </tr>
+    }
+</table>
+

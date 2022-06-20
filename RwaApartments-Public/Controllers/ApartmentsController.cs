@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RwaApartmaniDataLayer.Repositories.Factories;
+using RwaApartments_Public.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,10 +12,13 @@ namespace RwaApartments_Public.Controllers
     {
         // GET: Apartments
         [HttpGet]
-        public ActionResult ShowAllApartments()
+        public ActionResult BrowseApartments()
         {
-            //return View();
-            return Content("hihi");
+            var model = new ApartmentsBrowserViewModel
+            {
+                Apartments = RepoFactory.GetRepoInstance().LoadApartments(a => true)
+            };
+            return View(model);
         }
     }
 }

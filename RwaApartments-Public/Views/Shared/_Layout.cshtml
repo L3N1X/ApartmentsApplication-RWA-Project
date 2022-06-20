@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content")
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+        <div class="container-fluid">
+            <img src="~/Content/images/apartment.png" alt="logo" style="height: 2rem; width: 2rem;"/>
+            @Html.ActionLink("RWA Apartments", "Apartments", "BrowseApartments", null, new { @class = "navbar-brand" });
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="">
+                <span class="navbar-toggler-icon">
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        @Html.ActionLink("Apartments", "BrowseApartments", "Apartments", null, new { @class = "nav-link" })
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-3">
+        @RenderBody()
+    </div>
+
+    <hr />
+    <footer class="mt-auto">
+        <div class='text-center'>
+            <p>&copy; Algebra Univeristy College - Leon Krušlin 2022</p>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/Scripts")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

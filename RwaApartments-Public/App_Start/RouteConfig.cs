@@ -18,7 +18,7 @@ namespace RwaApartments_Public
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Apartments", action = "ShowAllApartments", id = UrlParameter.Optional }
+                defaults: new { controller = "Apartments", action = "BrowseApartments", id = UrlParameter.Optional }
             );
         }
     }

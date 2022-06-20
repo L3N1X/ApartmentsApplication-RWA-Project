@@ -446,7 +446,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                 users.Add(
                     new User
                     {
-                        Id = (int)(row[nameof(User.Id)]),
+                        Id = ((int)(row[nameof(User.Id)])).ToString(),
                         Guid = (Guid)row[nameof(User.Guid)],
                         Address = (string)row[nameof(User.Address)],
                         CreatedAt = (DateTime)row[nameof(User.CreatedAt)],
@@ -470,7 +470,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
             DataRow row = tblUsers.Rows[0];
             return new User
             {
-                Id = (int)(row[nameof(User.Id)]),
+                Id = ((int)(row[nameof(User.Id)])).ToString(),
                 Guid = (Guid)row[nameof(User.Guid)],
                 Address = (string)row[nameof(User.Address)],
                 CreatedAt = (DateTime)row[nameof(User.CreatedAt)],

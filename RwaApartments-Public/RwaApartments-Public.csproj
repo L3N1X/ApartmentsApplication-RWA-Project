@@ -141,6 +141,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\images\apartment.png" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\images\ui-icons_555555_256x240.png" />
     <Content Include="Content\images\ui-icons_777620_256x240.png" />
@@ -170,6 +171,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Apartments\BrowseApartments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -184,6 +188,7 @@
     <Compile Include="Models\Auth\SignInManager.cs" />
     <Compile Include="Models\Auth\UserManager.cs" />
     <Compile Include="Models\Auth\UserStoreService.cs" />
+    <Compile Include="Models\ViewModels\ApartmentsBrowserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -224,10 +229,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\CustomHtmlHelpers\" />
     <Folder Include="Models\CustomValidators\" />
-    <Folder Include="Models\ViewModels\" />
-    <Folder Include="Views\Apartments\" />
     <Folder Include="Views\Home\" />
-    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RwaApartmaniDataLayer\RwaApartments-DataLayer.csproj">
