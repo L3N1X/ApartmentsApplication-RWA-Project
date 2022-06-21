@@ -1,21 +1,35 @@
 ﻿@model RwaApartmaniDataLayer.Models.Apartment
 
-<div class="container rounded-3 darkblue">
-    <div class="row mb-3">
-        <div class="col-4">
-            <div class="container p-3">
-                <img src="@Model.RepresentativePicture.Base64Content" class="custom_image rounded-3" />
+
+<a href="Apartments/ViewApartment/?id=@Model.Id">
+    <div class="container rounded-3 darkblue">
+        <div class="row mb-3">
+            <div class="col-4">
+                <div class="container p-3">
+                    <img src="@Model.RepresentativePicture.Base64Content" class="custom_image rounded-3" />
+                </div>
             </div>
-        </div>
-        <div class="col-8">
-            <div class="row h-50 clearfix">
-                <h2 class="pt-3 white_text" style="height:fit-content">@Model.NameEng</h2>
-                <span style="height:fit-content" class="text-white"><img src="~/Content/images/location.png" style="margin-right:.5em" />@Model.CityName</span>
-                <span></span>
-            </div>
-            <div class="row h-50">
-                @Html.Partial("_PriceView", model: Model.PriceString)
+            <div class="col-8">
+                <div class="row h-50 clearfix">
+                    <h2 class="pt-3 white_text" style="height:fit-content">@Model.NameEng</h2>
+                    <span style="height:fit-content" class="text-white"><img src="~/Content/images/location.png" style="margin-right:.5em" />@Model.CityName</span>
+                    <span style="height:fit-content" class="text-white"><img src="~/Content/images/sea.png" style="position: relative; top: -2px;" class="icon" />@Model.BeachDistance.ToString()m </span>
+                </div>
+                <div class="row h-50">
+                    <div style="display: flex; flex-direction: row; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; gap: 1em ">
+                        @foreach (var tag in Model.Tags)
+                        {
+                            @*<div style="white-space: nowrap; text-overflow: ellipsis;">
+                                <span class="text-white"> @tag.NameEng </span>
+                            </div>*@
+                            @Html.Partial("_TagView", model: tag.NameEng)
+                        }
+                    </div>
+                    <div style="width:100%; display:flex; justify-content:right; height:fit-content" class="tags_list">
+                        @Html.Partial("_PriceView", model: Model.PriceString)
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</a>

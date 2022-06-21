@@ -10,7 +10,6 @@ namespace RwaApartments_Public.Controllers
 {
     public class ApartmentsController : Controller
     {
-        // GET: Apartments
         [HttpGet]
         public ActionResult BrowseApartments()
         {
@@ -19,6 +18,19 @@ namespace RwaApartments_Public.Controllers
                 Apartments = RepoFactory.GetRepoInstance().LoadApartments(a => true)
             };
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult ViewApartment(int id)
+        {
+            var model = RepoFactory.GetRepoInstance().LoadApartmentById(id);
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Hehe(int id)
+        {
+            return Content(id.ToString());
         }
     }
 }
