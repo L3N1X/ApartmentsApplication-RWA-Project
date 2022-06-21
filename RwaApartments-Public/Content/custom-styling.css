@@ -1,8 +1,42 @@
 ﻿body {
-
 }
 
-.custom_image{
-    width:100%;
-    height:100%
+.custom_image {
+    width: 100%;
+    height: 100%
+}
+
+.darkblue {
+    background-color: rgb(4, 28, 50);
+}
+
+.mediumblue {
+    background-color: rgb(4, 41, 58);
+}
+
+.lighterblue {
+    background-color: rgb(6, 70, 99);
+}
+
+.cream {
+    background-color: rgb(236, 179, 101);
+}
+
+.white_text {
+    color: #ffffff;
+}
+
+.white_link {
+    color: #ffffff;
+    transition: all ease-in;
+}
+
+.white_link:hover {
+    color: rgb(236, 179, 101);
+}
+
+.price_container{
+    color: #000000;
+    background-color: yellow;
+    font-weight: bold;
 }

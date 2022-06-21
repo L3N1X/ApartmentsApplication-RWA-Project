@@ -8,10 +8,12 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg darkblue">
         <div class="container-fluid">
-            <img src="~/Content/images/apartment.png" alt="logo" style="height: 2rem; width: 2rem;"/>
-            @Html.ActionLink("RWA Apartments", "Apartments", "BrowseApartments", null, new { @class = "navbar-brand" });
+            <div class="navbar-brand">
+                <img src="~/Content/images/apartment.png" alt="logo" style="height: 2rem; width: 2rem; margin-right:.5rem" />
+                @Html.ActionLink("RWA Apartments", "Apartments", "BrowseApartments", null, new { @class = "navbar-brand white_link" });
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="">
                 <span class="navbar-toggler-icon">
                 </span>
@@ -19,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        @Html.ActionLink("Apartments", "BrowseApartments", "Apartments", null, new { @class = "nav-link" })
+                        @Html.ActionLink("Apartments", "BrowseApartments", "Apartments", null, new { @class = "nav-link white_link" })
                     </li>
                 </ul>
             </div>
