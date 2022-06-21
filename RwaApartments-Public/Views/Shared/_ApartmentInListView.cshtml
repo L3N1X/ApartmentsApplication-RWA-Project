@@ -1,0 +1,19 @@
+﻿@model RwaApartmaniDataLayer.Models.Apartment
+
+<div class="container rounded-3" style="background-color:lightgray">
+    <div class="row mb-3">
+        <div class="col-4">
+            <div class="container p-3">
+                <img src="@Model.RepresentativePicture.Base64Content" class="custom_image rounded-3" />
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="row h-50">
+                <h2>@Model.NameEng</h2>
+            </div>
+            <div class="row h-50">
+                <h4>@Model.PriceString</h4>
+            </div>
+        </div>
+    </div>
+</div>

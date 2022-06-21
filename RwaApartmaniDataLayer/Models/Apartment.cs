@@ -26,8 +26,18 @@ namespace RwaApartmaniDataLayer.Models
         public int TotalRooms { get; set; }
         public int BeachDistance { get; set; }
         public IList<ApartmentPicture> Pictures { get; set; }
-        public int PicturesCount { get => Pictures.Count; } //dangerous right now
-        public string CityName { get => this.City.Name; } //dangerous right now
+        public ApartmentPicture RepresentativePicture
+        {
+            get
+            {
+                var representativePicture = Pictures.FirstOrDefault(picture => picture.IsRepresentative);
+                if (representativePicture is null)
+                    representativePicture = Pictures[0];
+                return representativePicture;
+            }
+        }
+        public int PicturesCount { get => Pictures.Count; } 
+        public string CityName { get => this.City.Name; } 
         public IList<Tag> Tags { get; set; }
         public ApartmentStatus Status { get; set; }
         public City City { get; set; } = new City();

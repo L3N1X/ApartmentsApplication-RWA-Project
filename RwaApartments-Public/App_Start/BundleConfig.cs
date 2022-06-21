@@ -26,7 +26,8 @@ namespace RwaApartments_Public.App_Start
             bundles.Add(new Bundle("~/Content").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/validation.css",
-                      "~/Content/jquery-ui.css"));
+                      "~/Content/jquery-ui.css",
+                      "~/Content/custom-styling.css"));
         }
     }
 }
