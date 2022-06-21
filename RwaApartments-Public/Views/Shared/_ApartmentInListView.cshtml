@@ -19,9 +19,6 @@
                     <div style="display: flex; flex-direction: row; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; gap: 1em ">
                         @foreach (var tag in Model.Tags)
                         {
-                            @*<div style="white-space: nowrap; text-overflow: ellipsis;">
-                                <span class="text-white"> @tag.NameEng </span>
-                            </div>*@
                             @Html.Partial("_TagView", model: tag.NameEng)
                         }
                     </div>
@@ -34,8 +31,13 @@
                                 <span style="height:fit-content" class="text-white"><img src="~/Content/images/sea.png" style="position: relative; top: -2px;" class="icon" />@Model.BeachDistance.ToString()m </span>
                             </div>
                         </div>
-                        <div>
-                            @Html.Partial("_PriceView", model: Model.PriceString)
+                        <div style="display:flex; flex-direction:row; gap:1em">
+                            <div>
+                                @Html.Partial("_AvaliabilityView", model: Model.Status)
+                            </div>
+                            <div>
+                                @Html.Partial("_PriceView", model: Model.PriceString)
+                            </div>
                         </div>
                     </div>
                 </div>

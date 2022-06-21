@@ -43,6 +43,8 @@ namespace RwaApartmaniDataLayer.Models
                 return MaxAdults + MaxChildren;
             }
         }
+
+        public bool IsAvaliable { get => StatusId == 3; }
         public int PicturesCount { get => Pictures.Count; } 
         public string CityName { get => this.City.Name; } 
         public IList<Tag> Tags { get; set; }

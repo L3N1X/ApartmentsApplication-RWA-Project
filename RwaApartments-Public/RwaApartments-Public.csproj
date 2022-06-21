@@ -229,6 +229,7 @@
     <Content Include="Views\Shared\_PriceView.cshtml" />
     <Content Include="Views\Apartments\ViewApartment.cshtml" />
     <Content Include="Views\Shared\_TagView.cshtml" />
+    <Content Include="Views\Shared\_AvaliabilityView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

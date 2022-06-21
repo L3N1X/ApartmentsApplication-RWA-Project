@@ -45,7 +45,17 @@ a{
     color: rgb(236, 179, 101);
 }
 
-.price_container{
+.avaliabilty_container_avaliable {
+    color: #ffffff;
+    background-color: green;
+}
+
+.avaliability_container_unavaliable {
+    color: #ffffff;
+    background-color: darkred;
+}
+
+.price_container {
     color: #000000;
     background-color: yellow;
     font-weight: bold;
@@ -55,18 +65,16 @@ a{
     background-color: rgb(4, 41, 58);
     color: rgb(236, 179, 101);
 }
-
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
 /** {
     scrollbar-width: auto;
     scrollbar-color: #04293a #ffffff;
 }*/
-
-    /* Chrome, Edge, and Safari */
-    div.tags_list::-webkit-scrollbar {
-        width: 16px;
-    }
+/* Chrome, Edge, and Safari */
+div.tags_list::-webkit-scrollbar {
+    width: 16px;
+}
 
 div.tags_list::-webkit-scrollbar-track {
     background-color: rgb(4, 28, 50);

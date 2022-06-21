@@ -1,0 +1,19 @@
+﻿
+@model RwaApartmaniDataLayer.Models.ApartmentStatus
+@{ 
+    string cssClass = "avaliabilty_container_avaliable";
+    string statusText = "Avaliable";
+    if (Model.Id != 3)
+    {
+        cssClass = "avaliability_container_unavaliable";
+        statusText = "Unavaliable";
+    }
+    ViewBag.css = cssClass;
+    ViewBag.statusText = statusText;
+}
+
+<div class="rounded-3 @ViewBag.css" style="width:fit-content; height:fit-content; display:flex; align-items:center; justify-content:center">
+    <div class="p-2">
+        <span>@ViewBag.statusText</span>
+    </div>
+</div>
