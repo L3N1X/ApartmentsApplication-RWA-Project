@@ -9,8 +9,9 @@
         </div>
         <div class="col-8">
             <div class="row h-50 clearfix">
-                <h2 class="pt-3 white_text">@Model.NameEng</h2>
-                <span class="text-white"><img src="~/Content/images/location.png" style="margin-right:.5em"/>@Model.CityName</span>
+                <h2 class="pt-3 white_text" style="height:fit-content">@Model.NameEng</h2>
+                <span style="height:fit-content" class="text-white"><img src="~/Content/images/location.png" style="margin-right:.5em" />@Model.CityName</span>
+                <span></span>
             </div>
             <div class="row h-50">
                 @Html.Partial("_PriceView", model: Model.PriceString)
