@@ -146,6 +146,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\custom-styling.css" />
     <Content Include="Content\images\apartment.png" />
+    <Content Include="Content\images\bed.png" />
     <Content Include="Content\images\location.png" />
     <Content Include="Content\images\sea.png" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />

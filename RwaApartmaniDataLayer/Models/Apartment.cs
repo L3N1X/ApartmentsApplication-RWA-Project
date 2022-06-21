@@ -36,6 +36,13 @@ namespace RwaApartmaniDataLayer.Models
                 return representativePicture;
             }
         }
+        public int TotalSpaces
+        {
+            get
+            {
+                return MaxAdults + MaxChildren;
+            }
+        }
         public int PicturesCount { get => Pictures.Count; } 
         public string CityName { get => this.City.Name; } 
         public IList<Tag> Tags { get; set; }

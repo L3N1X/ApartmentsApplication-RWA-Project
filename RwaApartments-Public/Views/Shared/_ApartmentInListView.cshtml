@@ -13,7 +13,7 @@
                 <div class="row h-50 clearfix">
                     <h2 class="pt-3 white_text" style="height:fit-content">@Model.NameEng</h2>
                     <span style="height:fit-content" class="text-white"><img src="~/Content/images/location.png" style="margin-right:.5em" />@Model.CityName</span>
-                    <span style="height:fit-content" class="text-white"><img src="~/Content/images/sea.png" style="position: relative; top: -2px;" class="icon" />@Model.BeachDistance.ToString()m </span>
+                    <span style="height:fit-content" class="text-white">@Model.Address</span>
                 </div>
                 <div class="row h-50">
                     <div style="display: flex; flex-direction: row; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; gap: 1em ">
@@ -25,8 +25,18 @@
                             @Html.Partial("_TagView", model: tag.NameEng)
                         }
                     </div>
-                    <div style="width:100%; display:flex; justify-content:right; height:fit-content" class="tags_list">
-                        @Html.Partial("_PriceView", model: Model.PriceString)
+                    <div style="width:100%; display:flex; justify-content:space-between; height:fit-content">
+                        <div style="display:flex;gap:2em;flex-direction:row">
+                            <div>
+                                <span style="height:fit-content" class="text-white"><img src="~/Content/images/bed.png" style="position: relative; top: -2px;" class="icon" />@Model.TotalSpaces.ToString()</span>
+                            </div>
+                            <div>
+                                <span style="height:fit-content" class="text-white"><img src="~/Content/images/sea.png" style="position: relative; top: -2px;" class="icon" />@Model.BeachDistance.ToString()m </span>
+                            </div>
+                        </div>
+                        <div>
+                            @Html.Partial("_PriceView", model: Model.PriceString)
+                        </div>
                     </div>
                 </div>
             </div>
