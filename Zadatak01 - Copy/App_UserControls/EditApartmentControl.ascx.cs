@@ -93,7 +93,7 @@ namespace Zadatak01.UserControls
             //Users drop down list
             this.ddlUsers.DataSource = ((IRepo)Application["database"]).LoadUsers();
             this.ddlUsers.DataValueField = "Id";
-            this.ddlUsers.DataValueField = "UserName";
+            this.ddlUsers.DataTextField = "UserName";
             this.ddlUsers.DataBind();
             this.ddlUsers.SelectedIndex = 0;
         }
@@ -269,13 +269,14 @@ namespace Zadatak01.UserControls
             {
                 if (this.ddlUserType.SelectedValue == "registered")
                 {
+                    string bla = this.ddlUsers.SelectedValue;
                     /*Generate reservation with registered user*/
                     ((IRepo)Application["database"]).InsertApartmentReservation(new ApartmentReservation
                     {
                         Guid = Guid.NewGuid(),
                         CreatedAt = DateTime.Now,
                         ApartmentId = selectedApartment.Id,
-                        Details = this.txtDetails.Text,
+                        Details = "????",
                         UserId = int.Parse(this.ddlUsers.SelectedValue),
                     });
                 }

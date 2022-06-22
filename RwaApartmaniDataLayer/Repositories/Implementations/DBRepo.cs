@@ -115,6 +115,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override void InsertApartmentReservation(ApartmentReservation apartmentReservation)
         {
+            string details = apartmentReservation.Details;
             SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(InsertApartmentReservation),
                 apartmentReservation.Guid,
                 apartmentReservation.CreatedAt,
