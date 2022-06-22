@@ -31,37 +31,37 @@
 <div class="container">
     <div class="col-sm mb-4">
         @*@using (Html.BeginForm(controllerName: "Apartments", actionName: "BrowseApartments", htmlAttributes: new { id = "formFilter" }, routeValues: null, method: FormMethod.Get))
-        {*@
-            <div class="row">
-                <div class="col-sm">
-                    @*@Html.Label(expression: "Search", labelText: "Search", htmlAttributes: new { @class = "fw-bold" })*@
-                    @Html.TextBox(name: "Search", value: "", htmlAttributes: new { @class = "form-control", placeholder = "Search apartment..." })
-                </div>
-                <div class="col-sm">
-                    @*@Html.Label(expression: "CityId", labelText: "City:", htmlAttributes: new { @class = "fw-bold" })*@
-                    @Html.DropDownList(optionLabel: "-Any city-", selectList: ddlCitySource, name: "CityId", htmlAttributes: new { @class = "form-control", id = "cityDropDownList" })
-                </div>
-                <div class="col-sm">
-                    @*@Html.Label(expression: "StatusId", labelText: "Current status:", htmlAttributes: new { @class = "fw-bold" })*@
-                    @Html.DropDownList(optionLabel: "-Any status-", selectList: ddlStatusSource, name: "StatusId", htmlAttributes: new { @class = "form-control", id = "statusDropDownList" })
-                </div>
-                <div class="col-sm">
-                    @*@Html.Label(expression: "FilterCode", labelText: "Filter by:", htmlAttributes: new { @class = "fw-bold" })*@
-                    @Html.DropDownList(optionLabel: "--Any--", selectList: ddlFiltersSource, name: "FilterCode", htmlAttributes: new { @class = "form-control", id = "filterDropDownList" })
-                </div>
-                <div class="col-md-auto">
-                    <button type="button" class="btn btn-warning" id="findButton">
-                        <img src="~/Content/images/search.png" style="position: relative; top: -2px; left:3px" class="icon" />
-                    </button>
-                </div>
+            {*@
+        <div class="row">
+            <div class="col-sm">
+                @*@Html.Label(expression: "Search", labelText: "Search", htmlAttributes: new { @class = "fw-bold" })*@
+                @Html.TextBox(name: "Search", value: "", htmlAttributes: new { @class = "form-control", placeholder = "Search apartment..." })
             </div>
+            <div class="col-sm">
+                @*@Html.Label(expression: "CityId", labelText: "City:", htmlAttributes: new { @class = "fw-bold" })*@
+                @Html.DropDownList(optionLabel: "-Any city-", selectList: ddlCitySource, name: "CityId", htmlAttributes: new { @class = "form-control", id = "cityDropDownList" })
+            </div>
+            <div class="col-sm">
+                @*@Html.Label(expression: "StatusId", labelText: "Current status:", htmlAttributes: new { @class = "fw-bold" })*@
+                @Html.DropDownList(optionLabel: "-Any status-", selectList: ddlStatusSource, name: "StatusId", htmlAttributes: new { @class = "form-control", id = "statusDropDownList" })
+            </div>
+            <div class="col-sm">
+                @*@Html.Label(expression: "FilterCode", labelText: "Filter by:", htmlAttributes: new { @class = "fw-bold" })*@
+                @Html.DropDownList(optionLabel: "--Any--", selectList: ddlFiltersSource, name: "FilterCode", htmlAttributes: new { @class = "form-control", id = "filterDropDownList" })
+            </div>
+            <div class="col-md-auto">
+                <button type="button" class="btn btn-warning" id="findButton">
+                    <img src="~/Content/images/search.png" style="position: relative; top: -2px; left:3px" class="icon" />
+                </button>
+            </div>
+        </div>
         @*}*@
     </div>
     <div class="col-sm apartments_container">
         @*@foreach (var apartment in Model.Apartments)
-        {
-            @Html.Partial("_ApartmentInListView", model: apartment)
-        }*@
+            {
+                @Html.Partial("_ApartmentInListView", model: apartment)
+            }*@
         @*<partial name="_ApartmentInListView"></partial>*@
     </div>
 </div>
@@ -71,25 +71,6 @@
     @Scripts.Render("~/Scripts/jquery-ui.js")
     <script>
         //http://localhost:50668/?Search=&CityId=&StatusId=&FilterCode=PLH
-        $(document).ready(function (e) {
-            $.ajax({
-                url: `/Apartments/LoadApartmentListPartialView/?Search=${$("#Search").val()}&CityId=${$("#cityDropDownList").val()}&StatusId=${$("#statusDropDownList").val()}&FilterCode=${$("#filterDropDownList").val()}`,
-                success: function (partialView) {
-                    $(".apartments_container").html("")
-                    $(".apartments_container").append(partialView);
-                }
-            });  
-        });
-
-        $("#findButton").click(function () {
-            $.ajax({
-                url: `/Apartments/LoadApartmentListPartialView/?Search=${$("#Search").val()}&CityId=${$("#cityDropDownList").val()}&StatusId=${$("#statusDropDownList").val()}&FilterCode=${$("#filterDropDownList").val()}`,
-                success: function (partialView) {
-                    $(".apartments_container").html("")
-                    $(".apartments_container").append(partialView);
-                }
-            });  
-        });
 
         $("#filterDropDownList").val("PLH");
         $("#Search").autocomplete({
@@ -103,11 +84,24 @@
                 return false;
             }
         });
-    $('body').keypress(function (event) {
-        var keycode = (event.keyCode ? event.keyCode : event.which);
-        if (keycode == '13') {
-            $("#formFilter").submit();
+
+        $(document).ready(loadApartmentListPartialViewAjax());
+        $("#findButton").click(loadApartmentListPartialViewAjax());
+        $('body').keypress(function (event) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode == '13') {
+                loadApartmentListPartialViewAjax();
+            }
+        });
+
+        function loadApartmentListPartialViewAjax() {
+            $.ajax({
+                url: `/Apartments/LoadApartmentListPartialView/?Search=${$("#Search").val()}&CityId=${$("#cityDropDownList").val()}&StatusId=${$("#statusDropDownList").val()}&FilterCode=${$("#filterDropDownList").val()}`,
+                success: function (partialView) {
+                    $(".apartments_container").html("")
+                    $(".apartments_container").append(partialView);
+                }
+            });
         }
-    });
     </script>
 }
