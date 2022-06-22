@@ -1,8 +1,10 @@
-﻿body {
-}
-
+﻿
 a{
     text-decoration: none;
+}
+
+.custom_page{
+    min-height: 85vh;
 }
 
 .custom_image {

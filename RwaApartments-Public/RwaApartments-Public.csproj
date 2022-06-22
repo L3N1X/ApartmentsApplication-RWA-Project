@@ -197,6 +197,7 @@
     <Compile Include="Models\Auth\SignInManager.cs" />
     <Compile Include="Models\Auth\UserManager.cs" />
     <Compile Include="Models\Auth\UserStoreService.cs" />
+    <Compile Include="Models\ViewModels\ApartmentListViewModel.cs" />
     <Compile Include="Models\ViewModels\ApartmentsBrowserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -232,6 +233,7 @@
     <Content Include="Views\Apartments\ViewApartment.cshtml" />
     <Content Include="Views\Shared\_TagView.cshtml" />
     <Content Include="Views\Shared\_AvaliabilityView.cshtml" />
+    <Content Include="Views\Shared\_ApartmentListView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

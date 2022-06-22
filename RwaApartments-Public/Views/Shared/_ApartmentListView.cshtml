@@ -1,0 +1,5 @@
+﻿@model RwaApartments_Public.Models.ViewModels.ApartmentListViewModel
+@foreach (var apartment in Model.Apartments)
+    {
+        @Html.Partial("_ApartmentInListView", model: apartment)
+    }
