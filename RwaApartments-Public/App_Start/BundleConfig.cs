@@ -11,7 +11,7 @@ namespace RwaApartments_Public.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new Bundle("~/Scripts").Include(
-                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-3.6.0.min.js",
                         "~/Scripts/jquery-ui.js"));
 
             bundles.Add(new Bundle("~/Validation").Include(

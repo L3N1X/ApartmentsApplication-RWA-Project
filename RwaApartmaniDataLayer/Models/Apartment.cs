@@ -59,5 +59,17 @@ namespace RwaApartmaniDataLayer.Models
         public static Comparison<Apartment> TotalSpaceLowToHighComparison = ((left, right) => (left.MaxAdults + left.MaxChildren).CompareTo(right.MaxAdults + right.MaxChildren));
         public static Comparison<Apartment> TotalSpaceHighToLowComparison = ((left, right) => -(left.MaxAdults + left.MaxChildren).CompareTo(right.MaxAdults + right.MaxChildren));
 
+        public static IList<Comparison<Apartment>> GetComparisonList()
+        {
+            return new List<Comparison<Apartment>>()
+            { 
+                PriceLowToHighComparison, 
+                PriceHighToLowComparison, 
+                TotalRoomsLowToHighComparison, 
+                TotalRoomsHighToLowComparison, 
+                TotalSpaceLowToHighComparison, 
+                TotalSpaceHighToLowComparison
+            };
+        }
     }
 }

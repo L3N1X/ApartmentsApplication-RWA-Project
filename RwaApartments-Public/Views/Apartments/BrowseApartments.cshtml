@@ -1,14 +1,72 @@
 ﻿@model RwaApartments_Public.Models.ViewModels.ApartmentsBrowserViewModel
-
+@using RwaApartmaniDataLayer.Repositories.Factories
+@using RwaApartmaniDataLayer.Models
 @{
     ViewBag.Title = "Browse apartments";
+
+    SelectList ddlCitySource = new SelectList
+        (
+        items: (RepoFactory.GetRepoInstance()).LoadCities(),
+        dataTextField: "Name",
+        dataValueField: "Id"
+        );
+
+    SelectList ddlStatusSource = new SelectList
+        (
+        items: (RepoFactory.GetRepoInstance()).LoadApartmentStatus(),
+        dataTextField: "NameEng",
+        dataValueField: "Id"
+        );
+
+    IList<SelectListItem> ddlFilterItems = new List<SelectListItem>();
+    ddlFilterItems.Add(new SelectListItem { Text = "Price: Lowest to highest", Value = "PLH", Selected = true });
+    ddlFilterItems.Add(new SelectListItem { Text = "Price: Highest to lowest", Value = "PHL" });
+    ddlFilterItems.Add(new SelectListItem { Text = "Rooms: Least to most", Value = "RLH" });
+    ddlFilterItems.Add(new SelectListItem { Text = "Rooms: Most to least", Value = "RHL" });
+    ddlFilterItems.Add(new SelectListItem { Text = "Space: Least to most", Value = "SLH" });
+    ddlFilterItems.Add(new SelectListItem { Text = "Space: Most to least", Value = "SHL" });
+    SelectList ddlFiltersSource = new SelectList(ddlFilterItems, "Value", "Text");
 }
 
 <div class="container">
+    <div class="col-sm mb-4">
+        @using (Html.BeginForm(controllerName: "Apartments", actionName: "BrowseApartments", htmlAttributes: new { id = "formFilter" }, routeValues: null, method: FormMethod.Get))
+        {
+            <div class="row">
+                <div class="col-sm">
+                    @*@Html.Label(expression: "Search", labelText: "Search", htmlAttributes: new { @class = "fw-bold" })*@
+                    @Html.TextBox(name: "Search", value: "", htmlAttributes: new { @class = "form-control", placeholder = "Search apartment..." })
+                </div>
+                <div class="col-sm">
+                    @*@Html.Label(expression: "CityId", labelText: "City:", htmlAttributes: new { @class = "fw-bold" })*@
+                    @Html.DropDownList(optionLabel: "-Any city-", selectList: ddlCitySource, name: "CityId", htmlAttributes: new { @class = "form-control", id = "cityDropDownList" })
+                </div>
+                <div class="col-sm">
+                    @*@Html.Label(expression: "StatusId", labelText: "Current status:", htmlAttributes: new { @class = "fw-bold" })*@
+                    @Html.DropDownList(optionLabel: "-Any status-", selectList: ddlStatusSource, name: "StatusId", htmlAttributes: new { @class = "form-control", id = "statusDropDownList" })
+                </div>
+                <div class="col-sm">
+                    @*@Html.Label(expression: "FilterCode", labelText: "Filter by:", htmlAttributes: new { @class = "fw-bold" })*@
+                    @Html.DropDownList(optionLabel: "--Any--", selectList: ddlFiltersSource, name: "FilterCode", htmlAttributes: new { @class = "form-control", id = "filterDropDownList" })
+                </div>
+                <div class="col-md-auto">
+                    <button class="btn btn-outline-primary">Find</button>
+                </div>
+            </div>
+        }
+    </div>
     <div class="col-sm">
-        @foreach(var apartment in Model.Apartments)
-            {
-                @Html.Partial("_ApartmentInListView", model: apartment)
-            }
+        @foreach (var apartment in Model.Apartments)
+        {
+            @Html.Partial("_ApartmentInListView", model: apartment)
+        }
     </div>
 </div>
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/jquery-3.6.0.min.js")
+    <script>
+        $("#filterDropDownList").val("PLH");
+
+    </script>
+}
