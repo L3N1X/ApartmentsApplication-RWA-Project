@@ -68,7 +68,7 @@
 @section Scripts{
     @Scripts.Render("~/Scripts/jquery-3.6.0.min.js")
     @Scripts.Render("~/Scripts/jquery-ui.js")
-<script>
+    <script>
         $("#filterDropDownList").val("PLH");
         $("#Search").autocomplete({
             source: '@Url.Action(actionName: "GetApartmentNames", controllerName: "Ajax")',
@@ -81,5 +81,11 @@
                 return false;
             }
         });
-</script>
+    $('body').keypress(function (event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13') {
+            $("#formFilter").submit();
+        }
+    });
+    </script>
 }

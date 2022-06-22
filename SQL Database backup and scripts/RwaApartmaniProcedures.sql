@@ -276,6 +276,12 @@ AS
 
 GO
 
+CREATE PROCEDURE LoadApartmentNames
+AS
+	SELECT Apartment.NameEng FROM Apartment
+
+GO
+
 CREATE PROCEDURE UpdateApartmentPicture
 @Guid UNIQUEIDENTIFIER,
 @Name NVARCHAR(250),
