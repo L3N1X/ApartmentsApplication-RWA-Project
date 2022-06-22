@@ -575,6 +575,8 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         public abstract IList<Tuple<Tag, int>> LoadTagsCounted();
 
         public abstract void UpdateApartment(Apartment apartment, IList<ApartmentPicture> picturesToRemove);
+
+        public abstract IList<string> LoadApartmentNames();
         //Interface methods
     }
 }

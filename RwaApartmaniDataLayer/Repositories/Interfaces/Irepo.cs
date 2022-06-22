@@ -21,6 +21,7 @@ namespace RwaApartmaniDataLayer.Repositories.Interfaces
         IList<ApartmentOwner> LoadApartmentOwners();
         ApartmentOwner LoadApartmentOwnerById(int id);
         void InsertApartmentOwner(ApartmentOwner apartmentOwner);
+        IList<string> LoadApartmentNames();
         //ApartmentPicture
         IList<ApartmentPicture> LoadApartmentPictures();
         ApartmentPicture LoadApartmentPictureById(int id);

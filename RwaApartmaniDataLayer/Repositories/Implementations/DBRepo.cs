@@ -486,5 +486,18 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
         {
             SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(UpdateApartmentPicture), picture.Guid, picture.Name, picture.IsRepresentative);
         }
+
+        public override IList<string> LoadApartmentNames()
+        {
+            IList<string> apartmentNames = new List<string>();
+
+            var tblNames = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentNames)).Tables[0];
+            foreach (DataRow row in tblNames.Rows)
+            {
+                apartmentNames.Add((string)row[nameof(Apartment.NameEng)]);
+            }
+
+            return apartmentNames;
+        }
     }
 }

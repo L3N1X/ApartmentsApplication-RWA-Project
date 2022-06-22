@@ -50,7 +50,9 @@
                     @Html.DropDownList(optionLabel: "--Any--", selectList: ddlFiltersSource, name: "FilterCode", htmlAttributes: new { @class = "form-control", id = "filterDropDownList" })
                 </div>
                 <div class="col-md-auto">
-                    <button class="btn btn-outline-primary">Find</button>
+                    <button type="submit" class="btn btn-warning">
+                        <img src="~/Content/images/search.png" style="position: relative; top: -2px; left:3px" class="icon" />
+                    </button>
                 </div>
             </div>
         }
@@ -65,8 +67,19 @@
 
 @section Scripts{
     @Scripts.Render("~/Scripts/jquery-3.6.0.min.js")
-    <script>
+    @Scripts.Render("~/Scripts/jquery-ui.js")
+<script>
         $("#filterDropDownList").val("PLH");
-
-    </script>
+        $("#Search").autocomplete({
+            source: '@Url.Action(actionName: "GetApartmentNames", controllerName: "Ajax")',
+            minLength: 2,
+            select: function (e, ui) {
+                e.preventDefault();
+                console.log(ui);
+                var clickedName = ui.item.label;
+                $(this).val(clickedName);
+                return false;
+            }
+        });
+</script>
 }
