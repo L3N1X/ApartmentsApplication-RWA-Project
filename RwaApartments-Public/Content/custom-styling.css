@@ -38,6 +38,10 @@ a{
     color: #ffffff;
 }
 
+.light_gray_text{
+    color: rgb(247, 247, 247);
+}
+
 .white_link {
     color: #ffffff;
     transition: all ease-in;
@@ -67,6 +71,7 @@ a{
     background-color: rgb(4, 41, 58);
     color: rgb(236, 179, 101);
 }
+
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
 * {
