@@ -158,6 +158,7 @@
     <Content Include="Content\images\ui-icons_777777_256x240.png" />
     <Content Include="Content\images\ui-icons_cc0000_256x240.png" />
     <Content Include="Content\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\images\user_account.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
@@ -238,6 +239,7 @@
     <Content Include="Views\Shared\_AvaliabilityView.cshtml" />
     <Content Include="Views\Shared\_ApartmentListView.cshtml" />
     <Content Include="Views\Shared\_StarsView.cshtml" />
+    <Content Include="Views\Shared\_ReviewView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

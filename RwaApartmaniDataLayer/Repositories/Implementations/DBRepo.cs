@@ -197,9 +197,14 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
                         ApartmentId = (int)row[nameof(ApartmentReview.ApartmentId)],
                         Details = !DBNull.Value.Equals(row[nameof(ApartmentReview.Details)]) ? (string)row[nameof(ApartmentReview.Details)] : null,
                         UserId = (int)row[nameof(ApartmentReview.UserId)],
-                        Stars = (int)row[nameof(ApartmentReview.Stars)]
+                        Stars = (int)row[nameof(ApartmentReview.Stars)],
                     }
                 );
+            }
+
+            foreach (var review in apartmentReviews)
+            {
+                review.User = this.LoadUserById(review.UserId);
             }
 
             return apartmentReviews;
@@ -455,7 +460,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override User LoadUserById(int id)
         {
-            throw new NotImplementedException();
+            return this.LoadUserByIdRaw(id);
         }
 
         public override IList<User> LoadUsers()
