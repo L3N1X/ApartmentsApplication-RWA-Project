@@ -13,10 +13,10 @@ namespace RwaApartmaniDataLayer.Models
         public Guid Guid { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
-        public int OwnerId { get; set; } //Add reference field
-        public int TypeId { get; set; } //Add reference field
-        public int StatusId { get; set; } //Add reference field
-        public int CityId { get; set; } //Add reference field
+        public int OwnerId { get; set; }
+        public int TypeId { get; set; } 
+        public int StatusId { get; set; } 
+        public int CityId { get; set; }
         public string Address { get; set; }
         public string Name { get; set; }
         public string NameEng { get; set; }
@@ -26,6 +26,32 @@ namespace RwaApartmaniDataLayer.Models
         public int TotalRooms { get; set; }
         public int BeachDistance { get; set; }
         public IList<ApartmentPicture> Pictures { get; set; }
+        public IList<ApartmentReview> Reviews { get; set; }
+        public int Stars 
+        { 
+            get 
+            {
+                double average = 0.0;
+                if(Reviews != null && Reviews.Count != 0)
+                {
+                    average = (Reviews.Select(r => r.Stars)).Average();
+                    if ((double)(average - (int)average) >= 0.5)
+                        average += 1.0;
+                }
+                return (int)average;
+            } 
+        }
+        public int TotalReviews
+        {
+            get
+            {
+                int totalReviews = 0;
+                if (this.Reviews != null && Reviews.Count != 0)
+                    totalReviews = Reviews.Count;
+                return totalReviews;
+
+            }    
+        }
         public ApartmentPicture RepresentativePicture
         {
             get
@@ -73,19 +99,6 @@ namespace RwaApartmaniDataLayer.Models
                     { "SHL", TotalSpaceHighToLowComparison },
                 };
             }
-        }
-
-        public static IList<Comparison<Apartment>> GetComparisonList()
-        {
-            return new List<Comparison<Apartment>>()
-            { 
-                PriceLowToHighComparison, 
-                PriceHighToLowComparison, 
-                TotalRoomsLowToHighComparison, 
-                TotalRoomsHighToLowComparison, 
-                TotalSpaceLowToHighComparison, 
-                TotalSpaceHighToLowComparison
-            };
         }
     }
 }

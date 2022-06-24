@@ -171,13 +171,38 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             var status = this.LoadApartmentStatusByIdRaw(apartment.StatusId);
             var city = this.LoadCityByIdRaw(apartment.CityId);
             var tags = this.LoadTagsByApartmentId(apartment.Id);
-
+            var reviews = this.LoadApartmentReviewsByApartmentId(apartment.Id);
             apartment.Pictures = new List<ApartmentPicture>(pictures);
             apartment.Status = status;
             apartment.City = city;
             apartment.Tags = new List<Tag>(tags);
+            apartment.Reviews = new List<ApartmentReview>(reviews);
 
             return apartment;
+        }
+
+        private IList<ApartmentReview> LoadApartmentReviewsByApartmentId(int id)
+        {
+            IList<ApartmentReview> apartmentReviews = new List<ApartmentReview>();
+
+            var tblApartmentReviews = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadApartmentReviewsByApartmentId), id).Tables[0];
+            foreach (DataRow row in tblApartmentReviews.Rows)
+            {
+                apartmentReviews.Add(
+                    new ApartmentReview
+                    {
+                        Id = (int)(row[nameof(ApartmentReview.Id)]),
+                        CreatedAt = (DateTime)row[nameof(ApartmentReview.CreatedAt)],
+                        Guid = (Guid)row[nameof(ApartmentReview.Guid)],
+                        ApartmentId = (int)row[nameof(ApartmentReview.ApartmentId)],
+                        Details = !DBNull.Value.Equals(row[nameof(ApartmentReview.Details)]) ? (string)row[nameof(ApartmentReview.Details)] : null,
+                        UserId = (int)row[nameof(ApartmentReview.UserId)],
+                        Stars = (int)row[nameof(ApartmentReview.Stars)]
+                    }
+                );
+            }
+
+            return apartmentReviews;
         }
 
         public override ApartmentOwner LoadApartmentOwnerById(int id)

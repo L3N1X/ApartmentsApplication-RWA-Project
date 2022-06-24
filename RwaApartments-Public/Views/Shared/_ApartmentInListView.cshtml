@@ -1,4 +1,12 @@
-﻿@model RwaApartmaniDataLayer.Models.Apartment
+﻿@using RwaApartments_Public.Models.ViewModels
+@model RwaApartmaniDataLayer.Models.Apartment
+@{
+    StarsViewModel starsModel = new StarsViewModel
+    {
+        Stars = Model.Stars,
+        TotalReviews = Model.TotalReviews,
+    };
+}
 
 
 <a href="Apartments/ViewApartment/?id=@Model.Id">
@@ -10,10 +18,21 @@
                 </div>
             </div>
             <div class="col-8">
-                <div class="row h-50 clearfix">
-                    <h2 class="pt-3 white_text" style="height:fit-content">@Model.NameEng</h2>
-                    <span style="height:fit-content" class="text-white"><img src="~/Content/images/location.png" style="margin-right:.5em" />@Model.CityName</span>
-                    <span style="height:fit-content" class="text-white">@Model.Address</span>
+                <div class="row h-50 clearfix mb-3">
+                    <div class="col-sm">
+                        <h2 class="pt-3 white_text" style="height:fit-content">@Model.NameEng</h2>
+                        <div class="mb-3">
+                            <span style="height:fit-content" class="text-white"><img src="~/Content/images/location.png" style="margin-right:.5em" />@Model.CityName</span>
+                        </div>
+                        <div>
+                            <span style="height:fit-content" class="text-white">@Model.Address</span>
+                        </div>
+                    </div>
+                    <div class="col-md-auto">
+                        <div class="mt-3">
+                            @Html.Partial("_StarsView", model: starsModel)
+                        </div>
+                    </div>
                 </div>
                 <div class="row h-50">
                     <div style="display: flex; flex-direction: row; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; gap: 1em ">

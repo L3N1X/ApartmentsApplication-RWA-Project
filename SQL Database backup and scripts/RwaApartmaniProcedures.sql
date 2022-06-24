@@ -26,6 +26,13 @@ AS
 	SELECT *
 	FROM ApartmentReview
 GO
+CREATE PROCEDURE LoadApartmentReviewsByApartmentId
+@ApartmentId INT
+AS
+	SELECT *
+	FROM ApartmentReview
+	WHERE ApartmentId = @ApartmentId
+GO
 CREATE PROCEDURE LoadApartmentStatus
 AS
 	SELECT *

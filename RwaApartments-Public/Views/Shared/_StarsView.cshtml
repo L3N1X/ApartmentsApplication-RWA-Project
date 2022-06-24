@@ -1,0 +1,19 @@
+﻿@using RwaApartments_Public.Models.ViewModels
+@model StarsViewModel
+@{ 
+    int fullStarCount = Model.Stars;
+    int emptyStarCount = 5 - fullStarCount;
+}
+<div style="width:fit-content; display:flex; ">
+    @for (int i = 1; i <= fullStarCount; i++)
+    {
+        <img class="icon" src="~/Content/images/star.png"/>
+    }
+    @for (int i = 1; i <= emptyStarCount; i++)
+    {
+        <img class="icon" src="~/Content/images/star_empty.png"/>
+    }
+    <div>
+        <span class="text-white" style="position:relative; top:-.2em">(@Model.TotalReviews)</span>
+    </div>
+</div>

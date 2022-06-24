@@ -150,6 +150,8 @@
     <Content Include="Content\images\location.png" />
     <Content Include="Content\images\sea.png" />
     <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\star.png" />
+    <Content Include="Content\images\star_empty.png" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />
     <Content Include="Content\images\ui-icons_555555_256x240.png" />
     <Content Include="Content\images\ui-icons_777620_256x240.png" />
@@ -199,6 +201,7 @@
     <Compile Include="Models\Auth\UserStoreService.cs" />
     <Compile Include="Models\ViewModels\ApartmentListViewModel.cs" />
     <Compile Include="Models\ViewModels\ApartmentsBrowserViewModel.cs" />
+    <Compile Include="Models\ViewModels\StarsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +237,7 @@
     <Content Include="Views\Shared\_TagView.cshtml" />
     <Content Include="Views\Shared\_AvaliabilityView.cshtml" />
     <Content Include="Views\Shared\_ApartmentListView.cshtml" />
+    <Content Include="Views\Shared\_StarsView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

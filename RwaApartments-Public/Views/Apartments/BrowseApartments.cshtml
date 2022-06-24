@@ -40,7 +40,7 @@
                 @Html.DropDownList(optionLabel: null, selectList: ddlStatusSource, name: "StatusId", htmlAttributes: new { @class = "form-control", id = "statusDropDownList" })
             </div>
             <div class="col-sm">
-                @Html.DropDownList(optionLabel: "-No filter-", selectList: ddlFiltersSource, name: "FilterCode", htmlAttributes: new { @class = "form-control", id = "filterDropDownList" })
+                @Html.DropDownList(optionLabel: null, selectList: ddlFiltersSource, name: "FilterCode", htmlAttributes: new { @class = "form-control", id = "filterDropDownList" })
             </div>
             <div class="col-md-auto">
                 <button type="button" class="btn btn-warning" id="findButton">
@@ -58,14 +58,13 @@
     @Scripts.Render("~/Scripts/jquery-3.6.0.min.js")
     @Scripts.Render("~/Scripts/jquery-ui.js")
     <script>
-
+        $("#filterDropDownList").val("PLH");
+        $("#statusDropDownList").val("avaliable");
         $("#cityDropDownList, #statusDropDownList, #filterDropDownList").each(function () {
             $(this).change(function () {
                 loadApartmentListPartialViewAjax();
             });
         });
-        $("#filterDropDownList").val("PLH");
-        $("#statusDropDownList").val("avaliable");
         $("#Search").autocomplete({
             source: '@Url.Action(actionName: "GetApartmentNames", controllerName: "Ajax")',
             minLength: 2,
