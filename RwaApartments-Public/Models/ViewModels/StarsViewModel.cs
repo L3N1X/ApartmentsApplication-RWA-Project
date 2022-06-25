@@ -9,5 +9,6 @@ namespace RwaApartments_Public.Models.ViewModels
     {
         public int Stars { get; set; }
         public int TotalReviews { get; set; }
+        public bool ShowTotalReviews { get; set; }
     }
 }

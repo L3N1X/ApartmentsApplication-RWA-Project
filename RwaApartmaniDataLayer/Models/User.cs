@@ -39,6 +39,12 @@ namespace RwaApartmaniDataLayer.Models
 
         [Required(ErrorMessage = "Username is required")]
         public string UserName { get; set; }
+
+        [Required(ErrorMessage = "First name is required")]
+        public string FirstName { get { return UserName.Split(' ')[0]; } }
+
+        [Required(ErrorMessage = "Last name is required")]
+        public string LastName { get { return UserName.Split(' ')[1]; } }
         public IList<string> Roles { get; set; }
 
         public virtual void AddRole(string role)

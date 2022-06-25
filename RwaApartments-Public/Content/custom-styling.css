@@ -18,6 +18,11 @@ a{
     margin-right: .5em;
 }
 
+.user_icon{
+    width: 3em;
+    height: 3em
+}
+
 .darkblue {
     background-color: rgb(4, 28, 50);
 }
