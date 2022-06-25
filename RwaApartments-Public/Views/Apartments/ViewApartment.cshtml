@@ -49,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 mb-3">
             <div class="col-sm">
                 <h2>@Model.NameEng</h2>
             </div>
@@ -61,8 +61,16 @@
             <div style="display:flex; flex-wrap:wrap; gap:.5em">
                 @foreach (var tag in Model.Tags)
                 {
-                    @Html.Partial("_TagView", tag.NameEng)
+                    @Html.Partial("_TagViewLight", tag.NameEng)
                 }
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="mb-2">
+                <b><span style="height:fit-content"><img src="~/Content/images/location_red.png" style="position: relative; top: -2px;" class="icon" />@Model.City.Name</span></b>
+            </div>
+            <div>
+                <span>@Model.Address</span>
             </div>
         </div>
         <div class="row mt-3">

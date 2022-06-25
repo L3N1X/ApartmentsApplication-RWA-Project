@@ -148,6 +148,7 @@
     <Content Include="Content\images\apartment.png" />
     <Content Include="Content\images\bed.png" />
     <Content Include="Content\images\location.png" />
+    <Content Include="Content\images\location_red.png" />
     <Content Include="Content\images\sea.png" />
     <Content Include="Content\images\search.png" />
     <Content Include="Content\images\star.png" />
@@ -242,6 +243,7 @@
     <Content Include="Views\Shared\_StarsView.cshtml" />
     <Content Include="Views\Shared\_ReviewView.cshtml" />
     <Content Include="Views\Shared\_ContactReservation.cshtml" />
+    <Content Include="Views\Shared\_TagViewLight.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

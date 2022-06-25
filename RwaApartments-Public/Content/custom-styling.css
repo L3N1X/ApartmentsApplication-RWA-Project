@@ -63,20 +63,24 @@ a{
 
 .avaliability_container_unavaliable {
     color: #ffffff;
-    background-color: darkred;
+    background-color: rgb(220,53,69);
 }
 
 .price_container {
-    color: #000000;
-    background-color: yellow;
+    color: white;
+    background-color: #FF5A5F;
     font-weight: bold;
 }
 
 .tag_container {
-    background-color: rgb(4, 41, 58);
-    color: rgb(236, 179, 101);
+    background-color: rgb(196, 196, 196);
+    color: white;
 }
 
+.tag_container_light{
+    background-color: rgb(243, 243, 243);
+    color: black;
+}
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
 * {
