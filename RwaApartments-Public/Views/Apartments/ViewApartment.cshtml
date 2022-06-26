@@ -116,8 +116,11 @@
             </div>
         </div>
         <div class="row mt-3">
-            @*Place review form*@
-            <div class="container tag_container_light rounded-3 mb-3 p-3">
+            <form id="createReviewForm" method="post">
+            <input type="hidden" name="Stars" , value="0" />
+            <input type="hidden" name="UserId" , value="1" />
+            <input type="hidden" name="ApartmentId" , value="@Model.Id" />
+            <div class="tag_container_light rounded-3 mb-3 p-3">
                 <div class="row">
                     <div class="col-md-auto">
                         <img src="~/Content/images/user_account.png" class="user_icon" />
@@ -129,7 +132,7 @@
                                 <div class="mb-3">
                                     @for (int i = 1; i <= 5; i++)
                                     {
-                                        <img id="@i" class="icon" src="~/Content/images/star_empty.png" />
+                                        <img id="@i" class="icon star" src="~/Content/images/star_empty.png" />
                                     }
                                 </div>
                             </div>
@@ -137,17 +140,53 @@
                         <div class="row">
                             <div class="row">
                                 <div class="col-sm">
-                                    @Html.TextArea(name: "Details", value: "", rows: 3, columns: 1, htmlAttributes: new { @class = "form-control", placeholder = "Place your review here" })
+                                    <textarea rows="3" cols="1" name="Details" class="form-control" placeholder="Place your review here..."></textarea>
                                 </div>
                                 <div class="col-md-auto">
-                                    <input type="submit" class="btn btn-outline-warning" value="Add review" style="height:100%" />
+                                    <input type="submit" id="createReview" class="btn btn-outline-warning" value="Add review" style="height:100%" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            @*Place review form*@
+        </form>
+            @*@using (Html.BeginForm())
+            {
+                @Html.Hidden(name: "Stars", value: 0)
+                @Html.Hidden(name: "UserId", value: 1)
+                @Html.Hidden(name: "ApartmentId", value: Model.Id)
+                <div class="tag_container_light rounded-3 mb-3 p-3">
+                    <div class="row">
+                        <div class="col-md-auto">
+                            <img src="~/Content/images/user_account.png" class="user_icon" />
+                        </div>
+                        <div class="col-sm">
+                            <div class="row h-50">
+                                <div class="col-md-auto">
+                                    <h5 style="width:fit-content">You</h5>
+                                    <div class="mb-3">
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            <img id="@i" class="icon star" src="~/Content/images/star_empty.png" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        @Html.TextArea(name: "Details", value: "", rows: 3, columns: 1, htmlAttributes: new { @class = "form-control", placeholder = "Place your review here" })
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <input type="submit" id="createReview" class="btn btn-outline-warning" value="Add review" style="height:100%" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }*@
         </div>
         <div class="row mt-3">
             @foreach (var review in Model.Reviews)
@@ -160,6 +199,25 @@
 
 @section Scripts{
     <script>
+        $('#createReview').click(function (e) {
+            /*var valData = $("#createReviewForm").serialize();*/
+            var formdata = {
+                stars: $("#Stars").val(),
+                userId: $("#UserId").val(),
+                apartmentId: $("#ApartmentId").val(),
+                details: $("#Details").val(),
+            }
+            console.log(formdata);
+            $.ajax({
+                type: "POST",
+                url: `Apartments/SubmitApartmentReview`,
+                dataType: "json",
+                data: formdata
+            }).done(function () {
+                alert("Review submitted")
+            });
+        });
+
         $('.carousel-control-prev').click(function (e) {
             e.preventDefault();
         });
@@ -168,7 +226,14 @@
         });
 
         $("#1, #2, #3, #4, #5").on('click', function () {
-            console.log(this.id)
+            var id = this.id;
+            for (var i = 1; i <= 5; i++) {
+                $(`img#${i}`).attr('src', '/Content/images/star_empty.png');
+            }
+            for (var i = 1; i <= id; i++) {
+                $(`img#${i}`).attr('src', '/Content/images/star.png');
+            }
+            $('#Stars').val(id);
         });
 
     </script>

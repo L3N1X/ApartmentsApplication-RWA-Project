@@ -67,5 +67,12 @@ namespace RwaApartments_Public.Controllers
             var model = RepoFactory.GetRepoInstance().LoadApartmentById(id);
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult SubmitApartmentReview(ApartmentReview review)
+        {
+            RepoFactory.GetRepoInstance().InsertApartmentReview(review);
+            return new EmptyResult();
+        }
     }
 }

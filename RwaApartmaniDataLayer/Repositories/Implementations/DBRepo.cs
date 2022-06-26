@@ -131,7 +131,15 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
         public override void InsertApartmentReview(ApartmentReview apartmentReivew)
         {
-            throw new NotImplementedException();
+            apartmentReivew.Guid = Guid.NewGuid();
+            apartmentReivew.CreatedAt = DateTime.Now;
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(InsertApartmentReview),
+                apartmentReivew.Guid, 
+                apartmentReivew.CreatedAt,
+                apartmentReivew.ApartmentId,
+                apartmentReivew.UserId,
+                apartmentReivew.Details,
+                apartmentReivew.Stars);
         }
 
         public override void InsertApartmentStatus(ApartmentStatus apartmentStatus)

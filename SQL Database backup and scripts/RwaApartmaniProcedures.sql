@@ -225,6 +225,18 @@ CREATE PROCEDURE InsertApartmentPicture
 AS
 	INSERT INTO ApartmentPicture (Guid, CreatedAt, ApartmentId, Path, Base64Content, Name, IsRepresentative)
 	VALUES (@Guid, @CreatedAt, @ApartmentId, @Path, @Base64Content, @Name, @IsRepresentative)
+GO
+
+CREATE PROCEDURE InsertApartmentReview
+@Guid UNIQUEIDENTIFIER,
+@CreatedAt DATETIME,
+@ApartmentId INT,
+@UserId INT,
+@Details NVARCHAR(1000),
+@Stars INT
+AS
+	INSERT INTO ApartmentReview ( Guid, CreatedAt, ApartmentId, UserId, Details, Stars)
+	VALUES (@Guid, @CreatedAt, @ApartmentId, @UserId, @Details, @Stars)
 
 GO
 CREATE PROCEDURE LoadApartmentIdByGuid

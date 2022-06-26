@@ -3,6 +3,12 @@ a{
     text-decoration: none;
 }
 
+form {
+    margin: 0px !important;
+    padding: 0px !important;
+    display: inline !important;
+}
+
 .custom_page{
     min-height: 85vh;
 }
@@ -16,6 +22,14 @@ a{
     width: 1.3em;
     height: 1.3em;
     margin-right: .5em;
+}
+
+.star{
+    transition: all .2s ease-in;
+}
+
+.star:hover{
+    transform: scale(1.5);
 }
 
 .user_icon{
