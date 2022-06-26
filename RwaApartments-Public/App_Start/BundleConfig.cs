@@ -13,10 +13,8 @@ namespace RwaApartments_Public.App_Start
             bundles.Add(new Bundle("~/Scripts").Include(
                         "~/Scripts/jquery-3.6.0.min.js",
                         "~/Scripts/bootstrap.js",
-                        "~/Scripts/jquery-ui.js"));
-
-            bundles.Add(new Bundle("~/Validation").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery-ui.js",
+                        "~/Scripts/jquery.validate.min.js"));
 
             bundles.Add(new Bundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));

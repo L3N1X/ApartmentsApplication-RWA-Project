@@ -72,7 +72,7 @@ namespace RwaApartments_Public.Controllers
         public ActionResult SubmitApartmentReview(ApartmentReview review)
         {
             RepoFactory.GetRepoInstance().InsertApartmentReview(review);
-            return new EmptyResult();
+            return RedirectToAction($"/Apartments/ViewApartment{review.ApartmentId}");
         }
     }
 }
