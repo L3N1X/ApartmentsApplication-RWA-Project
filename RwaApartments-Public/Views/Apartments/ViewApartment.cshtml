@@ -54,7 +54,14 @@
                 <h2>@Model.NameEng</h2>
             </div>
             <div class="col-md-auto">
-                @Html.Partial("_StarsView", model: starViewModel)
+                <div style="display:flex; align-items:center; gap:.7em">
+                    @Html.Partial("_StarsView", model: starViewModel)
+                    @if (!Model.IsAvaliable)
+                    {
+                        @Html.Partial("_AvaliabilityView", Model.Status)
+                    }
+                    @Html.Partial("_PriceView", Model.PriceString)
+                </div>
             </div>
         </div>
         <div class="row">
@@ -75,8 +82,72 @@
         </div>
         <div class="row mt-3">
             <div class="col-sm">
-                @Html.Partial("_ContactReservation", model: contactViewModel)
+                <b>
+                    <span><img src="~/Content/images/bed.png" style="position: relative; top: -2px;" class="icon" />@Model.TotalSpaces Beds</span>
+                </b>
             </div>
+            <div class="col-sm">
+                <b>
+                    <span><img src="~/Content/images/adult.png" style="position: relative; top: -2px;" class="icon" />@Model.MaxAdults Max adults</span>
+                </b>
+            </div>
+            <div class="col-sm">
+                <b>
+                    <span><img src="~/Content/images/child.png" style="position: relative; top: -2px;" class="icon" />@Model.MaxChildren Max children</span>
+                </b>
+            </div>
+            <div class="col-sm">
+                <b>
+                    <span><img src="~/Content/images/room.png" style="position: relative; top: -2px;" class="icon" />@Model.TotalRooms Total rooms</span>
+                </b>
+            </div>
+            <div class="col-sm">
+                <b>
+                    <span><img src="~/Content/images/sea.png" style="position: relative; top: -2px;" class="icon" />@Model.BeachDistance<span>m from nearest beach</span></span>
+                </b>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm">
+                @if (Model.IsAvaliable)
+                {
+                    @Html.Partial("_ContactReservation", model: contactViewModel)
+                }
+            </div>
+        </div>
+        <div class="row mt-3">
+            @*Place review form*@
+            <div class="container tag_container_light rounded-3 mb-3 p-3">
+                <div class="row">
+                    <div class="col-md-auto">
+                        <img src="~/Content/images/user_account.png" class="user_icon" />
+                    </div>
+                    <div class="col-sm">
+                        <div class="row h-50">
+                            <div class="col-md-auto">
+                                <h5 style="width:fit-content">You</h5>
+                                <div class="mb-3">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <img id="@i" class="icon" src="~/Content/images/star_empty.png" />
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-sm">
+                                    @Html.TextArea(name: "Details", value: "", rows: 3, columns: 1, htmlAttributes: new { @class = "form-control", placeholder = "Place your review here" })
+                                </div>
+                                <div class="col-md-auto">
+                                    <input type="submit" class="btn btn-outline-warning" value="Add review" style="height:100%" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Place review form*@
         </div>
         <div class="row mt-3">
             @foreach (var review in Model.Reviews)
@@ -95,5 +166,10 @@
         $('.carousel-control-next').click(function (e) {
             e.preventDefault();
         });
+
+        $("#1, #2, #3, #4, #5").on('click', function () {
+            console.log(this.id)
+        });
+
     </script>
 }

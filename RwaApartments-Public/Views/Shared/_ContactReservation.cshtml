@@ -11,23 +11,19 @@
         </div>
         <div class="row mb-3">
             <div class="col-sm">
-                @*@Html.TextBox(name: "FirstName", value: Model.User.FirstName, htmlAttributes: new { @class = "form-control", placeholder = "First name" })*@
                 @Html.EditorFor(model => model.User.FirstName,new { htmlAttributes = new { @class = "form-control", placeholder = "First name" } })
             </div>
             <div class="col-sm">
-                @*@Html.TextBox(name: "LastName", value: Model.User.LastName, htmlAttributes: new { @class = "form-control", placeholder = "Last name" })*@
                 @Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last name" } })
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm">
-                @*@Html.TextBox(name: "Email", value: Model.User.Email, htmlAttributes: new { @class = "form-control", placeholder = "your@email.com", type = "email" })*@
                 @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "your@email.com", type = "email" } })
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm">
-                @*@Html.TextBox(name: "Phone", value: Model.User.PhoneNumber, htmlAttributes: new { @class = "form-control", placeholder = "Phone number" })*@
                 @Html.EditorFor(model => model.User.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone number" } })
             </div>
         </div>
@@ -43,7 +39,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-sm">
-                <input type="submit" value="reserve" class="btn btn-danger" />
+                <input type="submit" value="Reserve" class="btn btn-danger" style="width:100%" />
             </div>
         </div>
     }

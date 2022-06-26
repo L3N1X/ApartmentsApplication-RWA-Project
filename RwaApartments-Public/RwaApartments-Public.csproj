@@ -145,10 +145,13 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\custom-styling.css" />
+    <Content Include="Content\images\adult.png" />
     <Content Include="Content\images\apartment.png" />
     <Content Include="Content\images\bed.png" />
+    <Content Include="Content\images\child.png" />
     <Content Include="Content\images\location.png" />
     <Content Include="Content\images\location_red.png" />
+    <Content Include="Content\images\room.png" />
     <Content Include="Content\images\sea.png" />
     <Content Include="Content\images\search.png" />
     <Content Include="Content\images\star.png" />
@@ -244,6 +247,7 @@
     <Content Include="Views\Shared\_ReviewView.cshtml" />
     <Content Include="Views\Shared\_ContactReservation.cshtml" />
     <Content Include="Views\Shared\_TagViewLight.cshtml" />
+    <Content Include="Views\Shared\_PlaceReviewView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -6,8 +6,7 @@
         Stars = Model.Stars,
     };
 }
-<div class="container">
-    <hr />
+<div class="container tag_container_light rounded-3 mb-3 p-3">
     <div class="row">
         <div class="col-md-auto">
             <img src="~/Content/images/user_account.png" class="user_icon" />
@@ -16,15 +15,20 @@
             <div class="row h-50">
                 <div class="col-md-auto">
                     <h5 style="width:fit-content">@Model.User.UserName</h5>
-                </div>
-                <div class="col-md-auto">
                     <div class="mb-3">
                         @Html.Partial("_StarsView", model: starsViewModel)
                     </div>
                 </div>
             </div>
             <div class="row h-50">
-                <p>@Model.Details</p>
+                <div class="row h-50">
+                    <div class="container">
+                        <p>@Model.Details</p>
+                    </div>
+                </div>
+                <div class="row h-50" style="display:flex; justify-content:end">
+                    @Model.CreatedAt.ToShortDateString()
+                </div>
             </div>
         </div>
     </div>
