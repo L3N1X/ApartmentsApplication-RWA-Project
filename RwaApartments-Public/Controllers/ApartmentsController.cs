@@ -55,6 +55,13 @@ namespace RwaApartments_Public.Controllers
         }
 
         [HttpGet]
+        public ActionResult LoadApartmentListView(int apartmentId)
+        {
+            var reviews = RepoFactory.GetRepoInstance().LoadApartmentReviewsByApartmentId(apartmentId);
+            return PartialView("_ReviewListView", new ApartmentReviewListModel { Reviews = reviews.Reverse()});
+        }
+
+        [HttpGet]
         public ActionResult DisplayApartmentInListView(int id)
         {
             var model = RepoFactory.GetRepoInstance().LoadApartmentById(id);
@@ -72,7 +79,9 @@ namespace RwaApartments_Public.Controllers
         public ActionResult SubmitApartmentReview(ApartmentReview review)
         {
             RepoFactory.GetRepoInstance().InsertApartmentReview(review);
-            return RedirectToAction($"/Apartments/ViewApartment{review.ApartmentId}");
+            //return RedirectToAction($"/Apartments/ViewApartment/{review.ApartmentId}");
+            //return Redirect($"/Apartment/ViewApartment/{review.ApartmentId}");
+            return new EmptyResult();
         }
     }
 }

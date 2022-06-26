@@ -189,7 +189,7 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             return apartment;
         }
 
-        private IList<ApartmentReview> LoadApartmentReviewsByApartmentId(int id)
+        public override IList<ApartmentReview> LoadApartmentReviewsByApartmentId(int id)
         {
             IList<ApartmentReview> apartmentReviews = new List<ApartmentReview>();
 

@@ -577,6 +577,8 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         public abstract void UpdateApartment(Apartment apartment, IList<ApartmentPicture> picturesToRemove);
 
         public abstract IList<string> LoadApartmentNames();
+
+        public abstract IList<ApartmentReview> LoadApartmentReviewsByApartmentId(int id);
         //Interface methods
     }
 }
