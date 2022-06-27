@@ -141,7 +141,7 @@
                         <div class="row">
                             <div class="row">
                                 <div class="col-sm">
-                                    <textarea rows="3" cols="1" name="Details" class="form-control" placeholder="Place your review here..."></textarea>
+                                    <textarea rows="3" cols="1" name="Details" id="details" class="form-control" placeholder="Place your review here..."></textarea>
                                 </div>
                                 <div class="col-md-auto">
                                     <input type="submit" id="createReview" class="btn btn-outline-danger" value="Submit" style="height:100%" />
@@ -218,8 +218,16 @@
         });
 
         $("#createReviewForm").submit(function (e) {
-            loadReviewListAjax();
-            location.reload();
+            setTimeout(function () {
+                for (var i = 1; i <= 5; i++) {
+                    $(`img#${i}`).attr('src', '/Content/images/star_empty.png');
+                }
+                $("#details").html("");
+                $("#details").val("");
+                loadReviewListAjax();
+            }, 300);
+            //loadReviewListAjax();
+            //location.reload();
             e.preventDefault();
         })
 
