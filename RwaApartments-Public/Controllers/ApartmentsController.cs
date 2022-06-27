@@ -1,16 +1,62 @@
-﻿using RwaApartmaniDataLayer.Models;
+﻿using Microsoft.AspNet.Identity.Owin;
+using RwaApartmaniDataLayer.Models;
 using RwaApartmaniDataLayer.Repositories.Factories;
+using RwaApartments_Public.Models.Auth;
 using RwaApartments_Public.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace RwaApartments_Public.Controllers
 {
+    [Authorize]
     public class ApartmentsController : Controller
     {
+        private UserManager _authManager;
+        private SignInManager _signInManager;
+         
+        public UserManager AuthManager
+        {
+            get { return _authManager ?? HttpContext.GetOwinContext().Get<UserManager>(); }
+            set { _authManager = value; }
+        }
+        public SignInManager SignInManager 
+        {
+            get { return _signInManager ?? HttpContext.GetOwinContext().Get<SignInManager>(); }
+            set { _signInManager = value; }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Index(LoginViewModel model)
+        {
+            if(!ModelState.IsValid)
+                return View(model);
+            var user = await AuthManager.FindAsync(model.Email, model.Password);
+            if (user != null)
+            {
+                await SignInManager.SignInAsync(user, true, model.RememberMe);
+                
+                return RedirectToAction(actionName: "BrowseApartments", controllerName: "Apartments");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Username or password is incorrect");
+                return View(model);
+            }
+        }
+
         [HttpGet]
         public ActionResult BrowseApartments()
         {

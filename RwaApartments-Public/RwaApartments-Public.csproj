@@ -211,6 +211,7 @@
     <Compile Include="Models\ViewModels\ApartmentReviewListModel.cs" />
     <Compile Include="Models\ViewModels\ApartmentsBrowserViewModel.cs" />
     <Compile Include="Models\ViewModels\ContactReservationViewModel.cs" />
+    <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ViewModels\StarsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -253,6 +254,7 @@
     <Content Include="Views\Shared\_TagViewLight.cshtml" />
     <Content Include="Views\Shared\_PlaceReviewView.cshtml" />
     <Content Include="Views\Shared\_ReviewListView.cshtml" />
+    <Content Include="Views\Apartments\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

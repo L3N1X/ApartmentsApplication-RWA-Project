@@ -23,4 +23,4 @@ namespace RwaApartments_Public.Models.Auth
             return new DBContext(users);
         }
     }
-}
+}   
