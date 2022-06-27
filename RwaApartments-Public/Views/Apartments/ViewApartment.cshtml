@@ -29,12 +29,20 @@
                             {
                                 <div class="carousel-item active">
                                     <img class="d-block w-100 h-100" src="@picture.Base64Content" alt="apartment picture">
+                                    @if (!string.IsNullOrEmpty(picture.Name))
+                                    {
+                                        <h5 class="text-white p-3" style="position: relative; top: -220px; text-align: center; background: rgba(0, 0, 0, 0.5); height:250px">@picture.Name</h5>
+                                    }
                                 </div>
                             }
                             else
                             {
                                 <div class="carousel-item">
                                     <img class="d-block w-100 h-100" src="@picture.Base64Content" alt="apartment picture">
+                                    @if (!string.IsNullOrEmpty(picture.Name))
+                                    {
+                                        <h5 class="text-white p-3" style="position: relative; top: -220px; text-align: center; background: rgba(0, 0, 0, 0.5); height:250px">@picture.Name</h5>
+                                    }
                                 </div>
                             }
                         }
@@ -118,45 +126,9 @@
         </div>
         <div class="row mt-3">
             <form id="createReviewForm">
-            <input type="hidden" name="Stars", id="Stars" value="0" />
-            <input type="hidden" name="UserId" , value="2" />
-            <input type="hidden" name="ApartmentId" , value="@Model.Id" />
-            <div class="tag_container_light rounded-3 mb-3 p-3">
-                <div class="row">
-                    <div class="col-md-auto">
-                        <img src="~/Content/images/user_account.png" class="user_icon" />
-                    </div>
-                    <div class="col-sm">
-                        <div class="row h-50">
-                            <div class="col-md-auto">
-                                <h5 style="width:fit-content">You</h5>
-                                <div class="mb-3">
-                                    @for (int i = 1; i <= 5; i++)
-                                    {
-                                        <img id="@i" class="icon star" src="~/Content/images/star_empty.png" />
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="row">
-                                <div class="col-sm">
-                                    <textarea rows="3" cols="1" name="Details" id="details" class="form-control" placeholder="Place your review here..."></textarea>
-                                </div>
-                                <div class="col-md-auto">
-                                    <input type="submit" id="createReview" class="btn btn-outline-danger" value="Submit" style="height:100%" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-            @*@using (Html.BeginForm())
-            {
-                @Html.Hidden(name: "Stars", value: 0)
-                @Html.Hidden(name: "UserId", value: 1)
-                @Html.Hidden(name: "ApartmentId", value: Model.Id)
+                <input type="hidden" name="Stars" , id="Stars" value="0" />
+                <input type="hidden" name="UserId" , value="2" />
+                <input type="hidden" name="ApartmentId" , value="@Model.Id" />
                 <div class="tag_container_light rounded-3 mb-3 p-3">
                     <div class="row">
                         <div class="col-md-auto">
@@ -177,24 +149,22 @@
                             <div class="row">
                                 <div class="row">
                                     <div class="col-sm">
-                                        @Html.TextArea(name: "Details", value: "", rows: 3, columns: 1, htmlAttributes: new { @class = "form-control", placeholder = "Place your review here" })
+                                        <textarea rows="3" cols="1" name="Details" id="details" class="form-control" placeholder="Place your review here..."></textarea>
                                     </div>
                                     <div class="col-md-auto">
-                                        <input type="submit" id="createReview" class="btn btn-outline-warning" value="Add review" style="height:100%" />
+                                        @*<input type="submit" id="createReview" class="btn btn-outline-danger" value="Submit" style="height:100%" />*@
+                                        <button type="submit" class="btn btn-outline-danger" id="createReview" value="submit" style="height:100%">
+                                            <img src="~/Content/images/send.png" style="position: relative; top: -2px; left:3px" class="icon" />
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            }*@
+            </form>
         </div>
-        <div class="row mt-3 reviews_container">
-            @*@foreach (var review in reviews)
-            {
-                @Html.Partial("_ReviewView", model: review)
-            }*@
-        </div>
+        <div class="row mt-3 reviews_container"></div>
     </div>
 </div>
 
@@ -211,7 +181,7 @@
                 type: "POST",
                 url: `/Apartments/SubmitApartmentReview`,
                 dataType: "json",
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                 data: valData
             }).success(function () {
             });
@@ -219,15 +189,9 @@
 
         $("#createReviewForm").submit(function (e) {
             setTimeout(function () {
-                for (var i = 1; i <= 5; i++) {
-                    $(`img#${i}`).attr('src', '/Content/images/star_empty.png');
-                }
-                $("#details").html("");
-                $("#details").val("");
+                emptyCommentForm();
                 loadReviewListAjax();
             }, 300);
-            //loadReviewListAjax();
-            //location.reload();
             e.preventDefault();
         })
 
@@ -237,6 +201,14 @@
         $('.carousel-control-next').click(function (e) {
             e.preventDefault();
         });
+
+        function emptyCommentForm() {
+            for (var i = 1; i <= 5; i++) {
+                $(`img#${i}`).attr('src', '/Content/images/star_empty.png');
+            }
+            $("#details").html("");
+            $("#details").val("");
+        }
 
         $("#1, #2, #3, #4, #5").on('click', function () {
             var id = this.id;

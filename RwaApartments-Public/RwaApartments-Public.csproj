@@ -154,6 +154,7 @@
     <Content Include="Content\images\room.png" />
     <Content Include="Content\images\sea.png" />
     <Content Include="Content\images\search.png" />
+    <Content Include="Content\images\send.png" />
     <Content Include="Content\images\star.png" />
     <Content Include="Content\images\star_empty.png" />
     <Content Include="Content\images\ui-icons_444444_256x240.png" />
@@ -166,6 +167,7 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
+    <Content Include="Content\jquery.fancybox.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -180,6 +182,7 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.fancybox.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
