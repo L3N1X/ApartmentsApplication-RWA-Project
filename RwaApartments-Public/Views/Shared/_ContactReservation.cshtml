@@ -11,30 +11,30 @@
         </div>
         <div class="row mb-3">
             <div class="col-sm">
-                @*@Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First name" } })*@
+                @Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First name" } })
             </div>
             <div class="col-sm">
-                @*@Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last name" } })*@
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                @*@Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "your@email.com", type = "email" } }*@)
+                @Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last name" } })
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm">
-                @*@Html.EditorFor(model => model.User.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone number" } })*@
+                @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "your@email.com", type = "email" } })
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm">
+                @Html.EditorFor(model => model.User.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone number" } })
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm">
                 From
-                @*@Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
             </div>
             <div class="col-sm">
                 To
-                @*@Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
         <div class="row mb-3">

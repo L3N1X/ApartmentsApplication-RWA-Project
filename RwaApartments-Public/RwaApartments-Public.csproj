@@ -256,6 +256,7 @@
     <Content Include="Views\Shared\_PlaceReviewView.cshtml" />
     <Content Include="Views\Shared\_ReviewListView.cshtml" />
     <Content Include="Views\Apartments\Index.cshtml" />
+    <Content Include="Views\Apartments\Test.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

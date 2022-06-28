@@ -12,7 +12,6 @@ using System.Web.Mvc;
 
 namespace RwaApartments_Public.Controllers
 {
-    [Authorize]
     public class ApartmentsController : Controller
     {
         private UserManager _authManager;
@@ -30,14 +29,18 @@ namespace RwaApartments_Public.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        public ActionResult Test()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Index(LoginViewModel model)
         {
@@ -58,14 +61,12 @@ namespace RwaApartments_Public.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public ActionResult BrowseApartments()
         {
             return View();
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public ActionResult LoadApartmentListPartialView(string search, int? cityId, string statusId, string filterCode)
         {
             Predicate<Apartment> avaliabilityFilter = (a => a.IsAvaliable);
@@ -103,7 +104,6 @@ namespace RwaApartments_Public.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public ActionResult LoadApartmentReviewsListView(int apartmentId)
         {
             var reviews = RepoFactory.GetRepoInstance().LoadApartmentReviewsByApartmentId(apartmentId);
@@ -111,7 +111,6 @@ namespace RwaApartments_Public.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public ActionResult DisplayApartmentInListView(int id)
         {
             var model = RepoFactory.GetRepoInstance().LoadApartmentById(id);
@@ -119,14 +118,13 @@ namespace RwaApartments_Public.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public async Task<ActionResult> ViewApartment(int id)
         {
             var loggedUser = await AuthManager.FindByNameAsync(User.Identity.Name);
             var model = new ViewApartmentViewModel
             {
                 Apartment = RepoFactory.GetRepoInstance().LoadApartmentById(id),
-                LoggedUser = loggedUser
+                LoggedUser = loggedUser,
             };
             return View(model);
         }

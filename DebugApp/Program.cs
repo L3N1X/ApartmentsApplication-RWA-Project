@@ -13,12 +13,14 @@ namespace DebugApp
     {
         static void Main(string[] args)
         {
-            var users = RepoFactory.GetRepoInstance().LoadUsers();
-            foreach (var user in users)
-            {
-                Console.WriteLine(user.PasswordHash);
-            }
-            Console.WriteLine(SHA512("123"));
+            //var users = RepoFactory.GetRepoInstance().LoadUsers();
+            //foreach (var user in users)
+            //{
+            //    Console.WriteLine(user.PasswordHash);
+            //}
+            //Console.WriteLine(SHA512("123"));
+            var user = new User();
+            Console.WriteLine(user.CreatedAt);
         }
         public static string SHA512(string input)
         {

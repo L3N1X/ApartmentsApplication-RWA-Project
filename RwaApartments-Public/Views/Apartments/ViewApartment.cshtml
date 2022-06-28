@@ -10,17 +10,7 @@
     };
     ContactReservationViewModel contactViewModel = new ContactReservationViewModel
     {
-        User = new RwaApartmaniDataLayer.Models.User()
-        {
-            UserName = "lkruslin@racunarstvo.hr",
-            Email = "lkruslin@racunarstvo.hr",
-            FullName = "Leon Kruslin",
-            Id = "1",
-            Guid = new Guid(),
-            CreatedAt = DateTime.Now,
-            UpdatedTime = DateTime.Now,
-            CreatedTime = DateTime.Now
-        },
+        User = Model.LoggedUser,
         StartTime = DateTime.Now,
         EndTime = DateTime.Now
     };
@@ -130,7 +120,7 @@
             <div class="col-sm">
                 @if (Model.Apartment.IsAvaliable)
                 {
-                    @Html.Partial("_ContactReservation", model: contactViewModel)
+                    @Html.Partial("_ContactReservation", contactViewModel)
                 }
             </div>
         </div>
