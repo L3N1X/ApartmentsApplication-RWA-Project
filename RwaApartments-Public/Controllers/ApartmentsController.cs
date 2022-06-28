@@ -17,16 +17,16 @@ namespace RwaApartments_Public.Controllers
     {
         private UserManager _authManager;
         private SignInManager _signInManager;
-         
-        public UserManager AuthManager
-        {
-            get { return _authManager ?? HttpContext.GetOwinContext().Get<UserManager>(); }
-            set { _authManager = value; }
-        }
-        public SignInManager SignInManager 
+
+        public SignInManager SignInManager
         {
             get { return _signInManager ?? HttpContext.GetOwinContext().Get<SignInManager>(); }
             set { _signInManager = value; }
+        }
+        public UserManager AuthManager
+        {
+            get { return _authManager ?? HttpContext.GetOwinContext().GetUserManager<UserManager>(); }
+            set { _authManager = value; }
         }
 
         [HttpGet]
@@ -47,7 +47,7 @@ namespace RwaApartments_Public.Controllers
             if (user != null)
             {
                 await SignInManager.SignInAsync(user, true, model.RememberMe);
-                
+                ViewBag.username = user.UserName;
                 return RedirectToAction(actionName: "BrowseApartments", controllerName: "Apartments");
             }
             else

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -22,6 +24,11 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         @Html.ActionLink("Apartments", "BrowseApartments", "Apartments", null, new { @class = "nav-link white_link" })
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link">
+                            @HttpContext.Current.User.Identity.Name
+                        </span>
                     </li>
                 </ul>
             </div>

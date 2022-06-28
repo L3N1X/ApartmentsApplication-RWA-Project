@@ -23,18 +23,18 @@ namespace RwaApartments_Public.Models.Auth
 
         public virtual Task SetPasswordHashAsync(TUser user, string passwordHash)
         {
-            user.PasswordHash = passwordHash;
+            user.Password = passwordHash;
             return Task.FromResult(0);
         }
 
         public virtual Task<string> GetPasswordHashAsync(TUser user)
         {
-            return Task.FromResult(user.PasswordHash);
+            return Task.FromResult(user.Password);
         }
 
         public virtual Task<bool> HasPasswordAsync(TUser user)
         {
-            return Task.FromResult(user.PasswordHash != null);
+            return Task.FromResult(user.Password != null);
         }
 
         public virtual Task AddToRoleAsync(TUser user, string roleName)
@@ -65,15 +65,15 @@ namespace RwaApartments_Public.Models.Auth
 
         public virtual Task CreateAsync(TUser user)
         {
-            user.CreatedAt = DateTime.Now;
-            //user.UpdatedTime = DateTime.Now;
+            user.CreatedTime = DateTime.Now;
+            user.UpdatedTime = DateTime.Now;
             _users.Add(user);
             return Task.FromResult(true);
         }
 
         public virtual Task UpdateAsync(TUser user)
         {
-            //user.UpdatedTime = DateTime.Now;
+            user.UpdatedTime = DateTime.Now;
             _users.Remove(user);
             _users.Add(user);
             return Task.FromResult(true);
@@ -94,4 +94,4 @@ namespace RwaApartments_Public.Models.Auth
             return Task.FromResult(_users.FirstOrDefault(u => u.UserName == username));
         }
     }
-}
+}   

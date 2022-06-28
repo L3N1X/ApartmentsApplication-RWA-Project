@@ -459,6 +459,16 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                 );
             }
 
+            /***REMOVE***/
+
+            foreach (var user in users)
+            {
+                user.Roles = new List<string>();
+                user.AddRole("user");
+            }
+
+            /***REMOVE***/
+
             return users;
         }
 
