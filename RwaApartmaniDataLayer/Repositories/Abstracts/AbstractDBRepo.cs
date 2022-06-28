@@ -453,22 +453,14 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                         //DeletedAt = (DateTime)row[nameof(User.DeletedAt)],
                         Email = (string)row[nameof(User.Email)],
                         PasswordHash = !DBNull.Value.Equals(row[nameof(User.PasswordHash)]) ? (string)row[nameof(User.PasswordHash)] : null,
+                        Password = !DBNull.Value.Equals(row[nameof(User.PasswordHash)]) ? (string)row[nameof(User.PasswordHash)] : null,
                         PhoneNumber = (string)row[nameof(User.PhoneNumber)],
-                        UserName = (string)row[nameof(User.UserName)],
+                        UserName = (string)row[nameof(User.Email)], //For aspnet
+                        FullName = (string)row[nameof(User.UserName)], //For aspnet
+                        Roles = new List<string>() { "user" }, //Temporary
                     }
                 );
             }
-
-            /***REMOVE***/
-
-            foreach (var user in users)
-            {
-                user.Roles = new List<string>();
-                user.AddRole("user");
-            }
-
-            /***REMOVE***/
-
             return users;
         }
 
@@ -487,8 +479,11 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                 //DeletedAt = (DateTime)row[nameof(User.DeletedAt)],
                 Email = (string)row[nameof(User.Email)],
                 PasswordHash = !DBNull.Value.Equals(row[nameof(User.PasswordHash)]) ? (string)row[nameof(User.PasswordHash)] : null,
+                Password = !DBNull.Value.Equals(row[nameof(User.PasswordHash)]) ? (string)row[nameof(User.PasswordHash)] : null,
                 PhoneNumber = (string)row[nameof(User.PhoneNumber)],
-                UserName = (string)row[nameof(User.UserName)],
+                UserName = (string)row[nameof(User.Email)], //For aspnet
+                FullName = (string)row[nameof(User.UserName)], //For aspnet
+                Roles = new List<string>() { "user" } //Temporary
             };
         }
 

@@ -127,7 +127,7 @@
         <div class="row mt-3">
             <form id="createReviewForm">
                 <input type="hidden" name="Stars" , id="Stars" value="0" />
-                <input type="hidden" name="UserId" , value="2" />
+                <input type="hidden" name="UserId" , value="@Model.LoggedUser.Id" />
                 <input type="hidden" name="ApartmentId" , value="@Model.Apartment.Id" />
                 <div class="tag_container_light rounded-3 mb-3 p-3">
                     <div class="row">
@@ -223,7 +223,7 @@
 
         function loadReviewListAjax() {
             $.ajax({
-                url: `/Apartments/LoadApartmentListView/?apartmentId=@Model.Apartment.Id`,
+                url: `/Apartments/LoadApartmentReviewsListView/?apartmentId=@Model.Apartment.Id`,
                 success: function (partialView) {
                     $(".reviews_container").html("")
                     $(".reviews_container").append(partialView);

@@ -101,7 +101,7 @@ namespace RwaApartments_Public.Controllers
         }
 
         [HttpGet]
-        public ActionResult LoadApartmentListView(int apartmentId)
+        public ActionResult LoadApartmentReviewsListView(int apartmentId)
         {
             var reviews = RepoFactory.GetRepoInstance().LoadApartmentReviewsByApartmentId(apartmentId);
             return PartialView("_ReviewListView", new ApartmentReviewListModel { Reviews = reviews.Reverse()});
@@ -117,7 +117,6 @@ namespace RwaApartments_Public.Controllers
         [HttpGet]
         public async Task<ActionResult> ViewApartment(int id)
         {
-            var bla = User.Identity.Name;
             var loggedUser = await AuthManager.FindByNameAsync(User.Identity.Name);
             var model = new ViewApartmentViewModel
             {

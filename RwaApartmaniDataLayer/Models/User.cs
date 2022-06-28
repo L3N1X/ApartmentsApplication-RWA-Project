@@ -22,9 +22,9 @@ namespace RwaApartmaniDataLayer.Models
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string UserName { get; set; }
-        public string AspNetUserName { get { return Email; } }
-        public string FirstName { get { return UserName.Split(' ')[0]; } }
-        public string LastName { get { return UserName.Split(' ')[1]; } }
+        public string FullName { get; set; }
+        public string FirstName { get { return FullName.Split(' ')[0]; } }
+        public string LastName { get { return FullName.Split(' ')[1]; } }
         public DateTime CreatedTime { get; set; }
         public DateTime UpdatedTime { get; set; }
         public User()
