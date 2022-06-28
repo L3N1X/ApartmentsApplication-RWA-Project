@@ -91,7 +91,7 @@ namespace RwaApartments_Public.Models.Auth
 
         public virtual Task<TUser> FindByNameAsync(string username)
         {
-            return Task.FromResult(_users.FirstOrDefault(u => u.UserName == username));
+            return Task.FromResult(_users.FirstOrDefault(u => u.AspNetUserName == username));
         }
     }
 }   

@@ -115,9 +115,15 @@ namespace RwaApartments_Public.Controllers
         }
 
         [HttpGet]
-        public ActionResult ViewApartment(int id)
+        public async Task<ActionResult> ViewApartment(int id)
         {
-            var model = RepoFactory.GetRepoInstance().LoadApartmentById(id);
+            var bla = User.Identity.Name;
+            var loggedUser = await AuthManager.FindByNameAsync(User.Identity.Name);
+            var model = new ViewApartmentViewModel
+            {
+                Apartment = RepoFactory.GetRepoInstance().LoadApartmentById(id),
+                LoggedUser = loggedUser
+            };
             return View(model);
         }
 

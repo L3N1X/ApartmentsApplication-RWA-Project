@@ -24,7 +24,7 @@ namespace RwaApartments_Public.Models.Auth
                 new User()
                 {
                     CreatedAt = DateTime.Now,
-                    UserName = "lkruslin@racunarstvo.hr",
+                    UserName = "Leon Kruslin",
                     Email = "lkruslin@racunarstvo.hr",
                     Password = "1234",
                     Roles = new List<string>() { "Admin" }

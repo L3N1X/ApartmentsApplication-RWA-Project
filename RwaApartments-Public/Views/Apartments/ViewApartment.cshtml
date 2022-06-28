@@ -1,20 +1,20 @@
 ﻿@using RwaApartments_Public.Models.ViewModels
-@model RwaApartmaniDataLayer.Models.Apartment
+@model RwaApartments_Public.Models.ViewModels.ViewApartmentViewModel
 @{
-    ViewBag.Title = Model.NameEng;
+    ViewBag.Title = Model.Apartment.NameEng;
     StarsViewModel starViewModel = new StarsViewModel
     {
-        Stars = Model.Stars,
-        TotalReviews = Model.TotalReviews,
+        Stars = Model.Apartment.Stars,
+        TotalReviews = Model.Apartment.TotalReviews,
         ShowTotalReviews = false
     };
     ContactReservationViewModel contactViewModel = new ContactReservationViewModel
     {
-        User = null,
+        User = Model.LoggedUser,
         StartTime = DateTime.Now,
         EndTime = DateTime.Now
     };
-    var reviews = Model.Reviews.Reverse();
+    var reviews = Model.Apartment.Reviews.Reverse();
 }
 
 <div class="rounded-3">
@@ -22,16 +22,16 @@
         <div class="row">
             <div class="col-sm">
                 <div id="carouselExampleControls" class="carousel slide rounded-3" data-ride="carousel">
-                    <div class="carousel-inner" style=" width:100%; height: 800px !important;">
-                        @foreach (var picture in Model.Pictures)
+                    <div class="carousel-inner" style=" width:100%; height: 600px !important;">
+                        @foreach (var picture in Model.Apartment.Pictures)
                         {
-                            if (picture.Equals(Model.RepresentativePicture))
+                            if (picture.Equals(Model.Apartment.RepresentativePicture))
                             {
                                 <div class="carousel-item active">
                                     <img class="d-block w-100 h-100" src="@picture.Base64Content" alt="apartment picture">
                                     @if (!string.IsNullOrEmpty(picture.Name))
                                     {
-                                        <h5 class="text-white p-3" style="position: relative; top: -220px; text-align: center; background: rgba(0, 0, 0, 0.5); height:250px">@picture.Name</h5>
+                                        <h5 class="text-white p-3" style="position: relative; top: -420px; text-align: center; background: rgba(0, 0, 0, 0.5); height:250px">@picture.Name</h5>
                                     }
                                 </div>
                             }
@@ -41,7 +41,7 @@
                                     <img class="d-block w-100 h-100" src="@picture.Base64Content" alt="apartment picture">
                                     @if (!string.IsNullOrEmpty(picture.Name))
                                     {
-                                        <h5 class="text-white p-3" style="position: relative; top: -220px; text-align: center; background: rgba(0, 0, 0, 0.5); height:250px">@picture.Name</h5>
+                                        <h5 class="text-white p-3" style="position: relative; top: -420px; text-align: center; background: rgba(0, 0, 0, 0.5); height:250px">@picture.Name</h5>
                                     }
                                 </div>
                             }
@@ -60,22 +60,22 @@
         </div>
         <div class="row mt-3 mb-3">
             <div class="col-sm">
-                <h2>@Model.NameEng</h2>
+                <h2>@Model.Apartment.NameEng</h2>
             </div>
             <div class="col-md-auto">
                 <div style="display:flex; align-items:center; gap:.7em">
                     @Html.Partial("_StarsView", model: starViewModel)
-                    @if (!Model.IsAvaliable)
+                    @if (!Model.Apartment.IsAvaliable)
                     {
-                        @Html.Partial("_AvaliabilityView", Model.Status)
+                        @Html.Partial("_AvaliabilityView", Model.Apartment.Status)
                     }
-                    @Html.Partial("_PriceView", Model.PriceString)
+                    @Html.Partial("_PriceView", Model.Apartment.PriceString)
                 </div>
             </div>
         </div>
         <div class="row">
             <div style="display:flex; flex-wrap:wrap; gap:.5em">
-                @foreach (var tag in Model.Tags)
+                @foreach (var tag in Model.Apartment.Tags)
                 {
                     @Html.Partial("_TagViewLight", tag.NameEng)
                 }
@@ -83,42 +83,42 @@
         </div>
         <div class="row mt-3">
             <div class="mb-2">
-                <b><span style="height:fit-content"><img src="~/Content/images/location_red.png" style="position: relative; top: -2px;" class="icon" />@Model.City.Name</span></b>
+                <b><span style="height:fit-content"><img src="~/Content/images/location_red.png" style="position: relative; top: -2px;" class="icon" />@Model.Apartment.City.Name</span></b>
             </div>
             <div>
-                <span>@Model.Address</span>
+                <span>@Model.Apartment.Address</span>
             </div>
         </div>
         <div class="row mt-3">
             <div class="col-sm">
                 <b>
-                    <span><img src="~/Content/images/bed.png" style="position: relative; top: -2px;" class="icon" />@Model.TotalSpaces Beds</span>
+                    <span><img src="~/Content/images/bed.png" style="position: relative; top: -2px;" class="icon" />@Model.Apartment.TotalSpaces Beds</span>
                 </b>
             </div>
             <div class="col-sm">
                 <b>
-                    <span><img src="~/Content/images/adult.png" style="position: relative; top: -2px;" class="icon" />@Model.MaxAdults Max adults</span>
+                    <span><img src="~/Content/images/adult.png" style="position: relative; top: -2px;" class="icon" />@Model.Apartment.MaxAdults Max adults</span>
                 </b>
             </div>
             <div class="col-sm">
                 <b>
-                    <span><img src="~/Content/images/child.png" style="position: relative; top: -2px;" class="icon" />@Model.MaxChildren Max children</span>
+                    <span><img src="~/Content/images/child.png" style="position: relative; top: -2px;" class="icon" />@Model.Apartment.MaxChildren Max children</span>
                 </b>
             </div>
             <div class="col-sm">
                 <b>
-                    <span><img src="~/Content/images/room.png" style="position: relative; top: -2px;" class="icon" />@Model.TotalRooms Total rooms</span>
+                    <span><img src="~/Content/images/room.png" style="position: relative; top: -2px;" class="icon" />@Model.Apartment.TotalRooms Total rooms</span>
                 </b>
             </div>
             <div class="col-sm">
                 <b>
-                    <span><img src="~/Content/images/sea.png" style="position: relative; top: -2px;" class="icon" />@Model.BeachDistance<span>m from nearest beach</span></span>
+                    <span><img src="~/Content/images/sea.png" style="position: relative; top: -2px;" class="icon" />@Model.Apartment.BeachDistance<span>m from nearest beach</span></span>
                 </b>
             </div>
         </div>
         <div class="row mt-3">
             <div class="col-sm">
-                @if (Model.IsAvaliable)
+                @if (Model.Apartment.IsAvaliable)
                 {
                     @Html.Partial("_ContactReservation", model: contactViewModel)
                 }
@@ -128,7 +128,7 @@
             <form id="createReviewForm">
                 <input type="hidden" name="Stars" , id="Stars" value="0" />
                 <input type="hidden" name="UserId" , value="2" />
-                <input type="hidden" name="ApartmentId" , value="@Model.Id" />
+                <input type="hidden" name="ApartmentId" , value="@Model.Apartment.Id" />
                 <div class="tag_container_light rounded-3 mb-3 p-3">
                     <div class="row">
                         <div class="col-md-auto">
@@ -223,7 +223,7 @@
 
         function loadReviewListAjax() {
             $.ajax({
-                url: `/Apartments/LoadApartmentListView/?apartmentId=@Model.Id`,
+                url: `/Apartments/LoadApartmentListView/?apartmentId=@Model.Apartment.Id`,
                 success: function (partialView) {
                     $(".reviews_container").html("")
                     $(".reviews_container").append(partialView);
