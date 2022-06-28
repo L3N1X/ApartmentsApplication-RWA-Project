@@ -25,6 +25,12 @@
                     <li class="nav-item">
                         @Html.ActionLink("Apartments", "BrowseApartments", "Apartments", null, new { @class = "nav-link white_link" })
                     </li>
+                    @if (HttpContext.Current.User.Identity.Name == "")
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Login", "Index", "Apartments", null, new { @class = "nav-link" })
+                        </li>
+                    }
                     <li class="nav-item">
                         <span class="nav-link">
                             @HttpContext.Current.User.Identity.Name
