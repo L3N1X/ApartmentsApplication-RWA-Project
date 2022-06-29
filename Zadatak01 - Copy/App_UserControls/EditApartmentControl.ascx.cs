@@ -175,6 +175,22 @@ namespace Zadatak01.UserControls
         {
             this.ddlStatus.Enabled = false;
 
+            var newPictures = (List<ApartmentPicture>)Session["dbPictures"];
+
+            foreach (ApartmentPicture picture in newPictures)
+                picture.IsRepresentative = false;
+
+            foreach (GridViewRow row in this.gwPictures.Rows)
+            {
+                Guid currentPictureGuid = Guid.Parse((row.FindControl("guidLabel") as Label).Text);
+                string currentPictureName = (row.FindControl("txtImageDescription") as TextBox).Text;
+                ApartmentPicture currentPicture = newPictures.FirstOrDefault(picture => picture.Guid.Equals(currentPictureGuid));
+                currentPicture.Name = currentPictureName;
+                RadioButton radio = (row.FindControl("rbRepresentative") as RadioButton);
+                if (radio.Checked)
+                    currentPicture.IsRepresentative = true;
+            }
+
             Apartment apartment = new Apartment
             {
                 Guid = Guid.NewGuid(),
@@ -190,7 +206,7 @@ namespace Zadatak01.UserControls
                 StatusId = int.Parse(this.ddlStatus.SelectedValue),
                 Price = decimal.Parse(this.txtPrice.Text.Trim()),
                 TotalRooms = int.Parse(this.txtTotalRooms.Text.Trim()),
-                Pictures = ((List<ApartmentPicture>)Session["dbPictures"])
+                Pictures = newPictures,
             };
 
             apartment.Tags = new List<Tag>();

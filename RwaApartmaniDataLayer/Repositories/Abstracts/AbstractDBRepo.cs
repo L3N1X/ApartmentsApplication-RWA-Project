@@ -457,7 +457,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                         PhoneNumber = (string)row[nameof(User.PhoneNumber)],
                         UserName = (string)row[nameof(User.Email)], //For aspnet
                         FullName = (string)row[nameof(User.UserName)], //For aspnet
-                        Roles = new List<string>() { "user" }, //Temporary
+                        Roles = new List<string>(),
                     }
                 );
             }
@@ -483,7 +483,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
                 PhoneNumber = (string)row[nameof(User.PhoneNumber)],
                 UserName = (string)row[nameof(User.Email)], //For aspnet
                 FullName = (string)row[nameof(User.UserName)], //For aspnet
-                Roles = new List<string>() { "user" } //Temporary
+                Roles = new List<string>(), //Temporary
             };
         }
 

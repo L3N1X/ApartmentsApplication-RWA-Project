@@ -466,14 +466,49 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
             return this.LoadTagTypesRaw();
         }
 
+        public string LoadUserRoleByRoleId(int roleId)
+        {
+            IList<string> roles = new List<string>();
+
+            var tblRoles = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadUserRoleByRoleId), roleId).Tables[0];
+            foreach (DataRow row in tblRoles.Rows)
+            {
+                roles.Add((string)row["Name"]);
+            }
+            return roles[0];
+        }
+
+        public IList<string> LoadUserRolesByUserId(int userId)
+        {
+            IList<int> roleIds = new List<int>();
+            var tblRoles = SqlHelper.ExecuteDataset(APARTMENS_CS, nameof(LoadUserRolesByUserId), userId).Tables[0];
+            foreach (DataRow row in tblRoles.Rows)
+            {
+                roleIds.Add((int)row["RoleId"]);
+            }
+            IList<string> roles = new List<string>();
+            foreach (var roleId in roleIds)
+            {
+                roles.Add(this.LoadUserRoleByRoleId(roleId));
+            }
+            return roles;
+        }
+
         public override User LoadUserById(int id)
         {
-            return this.LoadUserByIdRaw(id);
+            var user = this.LoadUserByIdRaw(id);
+            user.Roles = this.LoadUserRolesByUserId(int.Parse(user.Id));
+            return user;
         }
 
         public override IList<User> LoadUsers()
         {
-            return this.LoadUsersRaw();
+            var users = this.LoadUsersRaw();
+            foreach (var user in users)
+            {
+                user.Roles = this.LoadUserRolesByUserId(int.Parse(user.Id));
+            }
+            return users;
         }
 
         public override void UpdateApartment(Apartment apartment, IList<ApartmentPicture> picturesToRemove)

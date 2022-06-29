@@ -19,8 +19,8 @@ namespace DebugApp
             //    Console.WriteLine(user.PasswordHash);
             //}
             //Console.WriteLine(SHA512("123"));
-            var user = new User();
-            Console.WriteLine(user.CreatedAt);
+            User user = RepoFactory.GetRepoInstance().LoadUserById(1);
+            Console.WriteLine(user.UserName);
         }
         public static string SHA512(string input)
         {

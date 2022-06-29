@@ -1,4 +1,5 @@
 ﻿using RwaApartmaniDataLayer.Repositories.Interfaces;
+using RwaApartmaniDataLayer.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +29,11 @@ namespace Zadatak01
         {
             if (Page.IsValid)
             {
-                var email = txtUsername.Text;
+                var username = txtUsername.Text;
+                var password = Cryptography.SHA512(txtPassword.Text);
 
                 var allUsers = ((IRepo)Application["database"]).LoadUsers();
-                var user = allUsers.FirstOrDefault(u => u.Email.Equals(email));
+                var user = allUsers.FirstOrDefault(u => u.UserName.Equals(username) && u.PasswordHash == password && u.Roles.Contains("administrator"));
 
                 if (user == null)
                 {
