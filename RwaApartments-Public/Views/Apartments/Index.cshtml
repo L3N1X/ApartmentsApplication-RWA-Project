@@ -4,7 +4,7 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+@*<h2>Login</h2>
 <div>
     @using (Html.BeginForm("Index", "Apartments", null, FormMethod.Post, new { role = "form" }))
     {
@@ -18,13 +18,46 @@
             @Html.PasswordFor(m => m.Password)
         </div>
         <button type="submit" class="btn btn-danger">Submit</button>
-        if(!ViewData.ModelState.IsValid)
+        if (!ViewData.ModelState.IsValid)
         {
             <div class="alert alert-danger">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 @Html.ValidationSummary()
             </div>
         }
+    }
+</div>*@
+
+
+
+<div class="container pt-5" style="display: flex; justify-content: center; align-items: center" id="popup_login">
+    @using (Html.BeginForm("Index", "Apartments", null, FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="container p-4" style="width:500px">
+            <div class="container mb-3" style="display:flex; justify-content:center; align-items:center">
+                <img src="~/Content/images/apartment.png" style="width:150px; height:150px" />
+            </div>
+            <div class="mb-4">
+                <h2 style="text-align:center">RWA Apartments</h2>
+            </div>
+            <div class="mb-3">
+                @Html.TextBoxFor(m => m.Email, htmlAttributes: new { @class = "form-control", style = "text-align:center", placeholder = "Enter your e-mail address" })
+            </div>
+            <div class="mb-5">
+                @Html.PasswordFor(m => m.Password, htmlAttributes: new { @class = "form-control", style = "text-align:center", placeholder = "Enter your password" })
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success" style="width: 100%">Login</button>
+            </div>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    @Html.ValidationSummary()
+                </div>
+            }
+        </div>
     }
 </div>
 
