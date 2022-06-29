@@ -31,11 +31,19 @@
                             @Html.ActionLink("Login", "Index", "Apartments", null, new { @class = "nav-link" })
                         </li>
                     }
-                    <li class="nav-item">
-                        <span class="nav-link">
-                            @Html.ActionLink($"{HttpContext.Current.User.Identity.Name}", "ViewUser", null, new { @class = "nav-link"})
-                        </span>
-                    </li>
+                </ul>
+                <ul class='navbar-nav d-flex'>
+                    @if (HttpContext.Current.User.Identity.Name != "")
+                    {
+                        <li class="nav-item" style="margin-right:.5rem">
+                            <span class="nav-link">
+                                @Html.ActionLink($"{HttpContext.Current.User.Identity.Name}", "ViewUser", null, new { @class = "nav-link" })
+                            </span>
+                        </li>
+                        <li class="nav-item" style="display:flex; justify-content:center; align-items:center">
+                            @Html.ActionLink("Logout", "Logout", "Apartments", null, new { @class = "btn btn-outline-danger" })
+                        </li>
+                    }
                 </ul>
             </div>
         </div>

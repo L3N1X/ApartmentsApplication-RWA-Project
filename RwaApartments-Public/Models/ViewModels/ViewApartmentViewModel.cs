@@ -22,11 +22,11 @@ namespace RwaApartments_Public.Models.ViewModels
         public string Email { get; set; } 
         public string PhoneNumber { get; set; }
 
-        [DataType(DataType.Date), Required]
+        [DataType(DataType.Date), Required(ErrorMessage = "You need to specify arrival date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime StartDate { get; set; }
 
-        [DataType(DataType.Date), Required]
+        [DataType(DataType.Date), Required(ErrorMessage = "You need to specify return date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime EndDate { get; set; }
 

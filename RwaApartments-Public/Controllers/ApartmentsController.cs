@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using Recaptcha.Web.Mvc;
 using RwaApartmaniDataLayer.Models;
 using RwaApartmaniDataLayer.Repositories.Factories;
@@ -185,11 +186,15 @@ namespace RwaApartments_Public.Controllers
         public async Task<ActionResult> ViewUser()
         {
             var loggedUser = await AuthManager.FindByNameAsync(User.Identity.Name);
-            var model = new ViewUserViewModel
-            {
-                User = RepoFactory.GetRepoInstance().LoadUserById(int.Parse(loggedUser.Id))
-            };
+            var model = RepoFactory.GetRepoInstance().LoadUserById(int.Parse(loggedUser.Id));
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("BrowseApartments", "Apartments");
         }
 
 
