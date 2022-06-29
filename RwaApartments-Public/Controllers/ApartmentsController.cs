@@ -112,14 +112,6 @@ namespace RwaApartments_Public.Controllers
             return PartialView("_ReviewListView", new ApartmentReviewListModel { Reviews = reviews.Reverse() });
         }
 
-        //[HttpGet]
-        //[AllowAnonymous]
-        //public ActionResult DisplayApartmentInListView(int id)
-        //{
-        //    var model = RepoFactory.GetRepoInstance().LoadApartmentById(id);
-        //    return PartialView(viewName: "_ApartmentInListView", model: model);
-        //}
-
         [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> ViewApartment(int id)
