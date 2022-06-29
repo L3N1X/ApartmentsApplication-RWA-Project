@@ -276,7 +276,7 @@ namespace Zadatak01.UserControls
                         Guid = Guid.NewGuid(),
                         CreatedAt = DateTime.Now,
                         ApartmentId = selectedApartment.Id,
-                        Details = "????",
+                        Details = this.txtDetails.Text,
                         UserId = int.Parse(this.ddlUsers.SelectedValue),
                     });
                 }

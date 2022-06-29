@@ -538,5 +538,17 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
 
             return apartmentNames;
         }
+
+        public override void GenerateApartmentReservation(ApartmentReservation apartmentReservation)
+        {
+            this.InsertApartmentReservation(apartmentReservation);
+            this.UpdateApartmentAsReserved(apartmentReservation.ApartmentId);
+
+        }
+
+        private void UpdateApartmentAsReserved(int apartmentId)
+        {
+            SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(UpdateApartmentAsReserved), apartmentId);
+        }
     }
 }

@@ -584,6 +584,8 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
         public abstract IList<string> LoadApartmentNames();
 
         public abstract IList<ApartmentReview> LoadApartmentReviewsByApartmentId(int id);
+
+        public abstract void GenerateApartmentReservation(ApartmentReservation apartmentReservation);
         //Interface methods
     }
 }

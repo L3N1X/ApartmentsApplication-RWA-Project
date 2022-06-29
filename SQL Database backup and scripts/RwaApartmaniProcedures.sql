@@ -48,6 +48,16 @@ AS
 	SELECT *
 	FROM Tag
 GO
+CREATE PROCEDURE UpdateApartmentAsReserved
+@ApartmentId INT
+AS
+	UPDATE Apartment
+	SET StatusId = 2
+	WHERE Id = @ApartmentId
+GO
+SELECT * FROM ApartmentStatus
+
+GO
 CREATE PROCEDURE LoadTaggedApartments
 AS
 	SELECT *
@@ -320,18 +330,7 @@ SELECT * FROM Apartment
 SELECT * FROM ApartmentPicture
 SELECT * FROM TaggedApartment
 SELECT * FROM City
-
-
-DELETE FROM Apartment WHERE Id = 12
-DELETE FROM TaggedApartment WHERE ApartmentId = 12
-
-UPDATE Apartment SET DeletedAt = null WHERE Id = 3
-
-SELECT * FROM Tag WHERE NameEng LIKE 'Wash%'
-UPDATE Tag
-SET NameEng = 'Washing machine'
-WHERE Id = 14
-
+SELECT * FROM ApartmentReservation
 /*1 - Occupied
 2 - Reserved
 3 - Vacant*/

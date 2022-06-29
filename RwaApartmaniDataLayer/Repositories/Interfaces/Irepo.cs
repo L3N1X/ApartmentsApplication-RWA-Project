@@ -32,6 +32,7 @@ namespace RwaApartmaniDataLayer.Repositories.Interfaces
         IList<ApartmentReservation> LoadApartmentReservations();
         ApartmentReservation LoadApartmentReservationById(int id);
         void InsertApartmentReservation(ApartmentReservation apartmentReservation);
+        void GenerateApartmentReservation(ApartmentReservation apartmentReservation);
         //ApartmentReview
         IList<ApartmentReview> LoadApartmentReviews();
         IList<ApartmentReview> LoadApartmentReviewsByApartmentId(int id);

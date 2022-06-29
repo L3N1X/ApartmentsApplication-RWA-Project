@@ -43,7 +43,7 @@ namespace RwaApartments_Public.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Index(LoginViewModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View(model);
             var user = await AuthManager.FindAsync(model.Email, model.Password);
             if (user != null)
@@ -109,7 +109,7 @@ namespace RwaApartments_Public.Controllers
         public ActionResult LoadApartmentReviewsListView(int apartmentId)
         {
             var reviews = RepoFactory.GetRepoInstance().LoadApartmentReviewsByApartmentId(apartmentId);
-            return PartialView("_ReviewListView", new ApartmentReviewListModel { Reviews = reviews.Reverse()});
+            return PartialView("_ReviewListView", new ApartmentReviewListModel { Reviews = reviews.Reverse() });
         }
 
         [HttpGet]
@@ -177,6 +177,30 @@ namespace RwaApartments_Public.Controllers
             }
             if (ModelState.IsValid)
             {
+                if (string.IsNullOrEmpty(model.UserId))
+                {
+                    RepoFactory.GetRepoInstance().GenerateApartmentReservation(new ApartmentReservation
+                    {
+                        Guid = Guid.NewGuid(),
+                        CreatedAt = DateTime.Now,
+                        ApartmentId = model.ApartmentId,
+                        Details = $"{model.StartDate.ToShortDateString()} - {model.EndDate.ToShortDateString()}, {model.Details}",
+                        UserEmail = model.Email,
+                        UserName = $"{model.FirstName} {model.LastName}",
+                        UserPhone = model.PhoneNumber
+                    });
+                }
+                else
+                {
+                    RepoFactory.GetRepoInstance().GenerateApartmentReservation(new ApartmentReservation
+                    {
+                        Guid = Guid.NewGuid(),
+                        CreatedAt = DateTime.Now,
+                        ApartmentId = model.ApartmentId,
+                        Details = $"{model.StartDate.ToShortDateString()} - {model.EndDate.ToShortDateString()}, {model.Details}",
+                        UserId = int.Parse(model.UserId),
+                    });
+                }
                 return RedirectToAction("BrowseApartments", "Apartments");
             }
             return View(model);
@@ -242,7 +266,7 @@ namespace RwaApartments_Public.Controllers
                 ModelState.AddModelError(
                 "",
                 "Incorrect captcha answer.");
-                
+
             }
             if (ModelState.IsValid)
             {
