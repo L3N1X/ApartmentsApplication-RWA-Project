@@ -68,11 +68,14 @@
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Recaptcha.Web, Version=3.1.0.0, Culture=neutral, PublicKeyToken=c11b6c0ad947566e, processorArchitecture=MSIL">
+      <HintPath>..\packages\RecaptchaNet.3.1.0\lib\net45\Recaptcha.Web.dll</HintPath>
     </Reference>
     <Reference Include="RouteDebugger, Version=2.1.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\routedebugger.2.1.5\lib\net40\RouteDebugger.dll</HintPath>
@@ -169,6 +172,7 @@
     <Content Include="Content\jquery-ui.theme.css" />
     <Content Include="Content\jquery.fancybox.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="RecaptchaNet.Readme.txt" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -256,7 +260,6 @@
     <Content Include="Views\Shared\_PlaceReviewView.cshtml" />
     <Content Include="Views\Shared\_ReviewListView.cshtml" />
     <Content Include="Views\Apartments\Index.cshtml" />
-    <Content Include="Views\Apartments\Test.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

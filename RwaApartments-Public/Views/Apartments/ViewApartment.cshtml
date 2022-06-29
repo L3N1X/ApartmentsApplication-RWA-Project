@@ -112,53 +112,113 @@
         </div>
         <div class="row mt-3">
             <div class="col-sm">
-                @*@if (Model.Apartment.IsAvaliable)
-                {*@
-                    @*<h1>HEhe</h1>*@
-                    @*@Html.Partial("_ContactReservation", contactViewModel)*@
-                    @*//}*@
-                @{Html.RenderAction("LoadContactReservationPartial", "Apartments");}
+                @if (Model.Apartment.IsAvaliable)
+                {
+                    //Html.RenderAction("LoadContactReservationPartial", "Apartments", routeValues: new { apartmentId = Model.Apartment.Id });
+                    <div>
+                        @using (Html.BeginForm(controllerName: "Apartments", actionName: "SubmitApartmentReservation", method: FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.HiddenFor(m => Model.ApartmentId)
+                            @Html.HiddenFor(m => Model.User.Id)
+
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    <h4>Contact</h4>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    @Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First name" } })
+                                </div>
+                                <div class="col-sm">
+                                    @Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last name" } })
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "your@email.com", type = "email" } })
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    @Html.EditorFor(model => model.User.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone number" } })
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    From
+                                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                <div class="col-sm">
+                                    To
+                                    @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    <input type="submit" value="Reserve" class="btn btn-danger" style="width:100%;" />
+                                </div>
+                                @if (Model.User.Id == null)
+                                {
+                                    <div class="col-md-auto">
+                                        @Html.RecaptchaWidget(siteKey: "6Ld0Ya0gAAAAABWu7qi05kl8gS4MXJuc5ljtY-cH")
+                                        @if (!ViewData.ModelState.IsValid)
+                                        {
+                                            <div class="alert alert-danger">
+                                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                                @Html.ValidationSummary()
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
             </div>
         </div>
         <div class="row mt-3">
-            <form id="createReviewForm">
-                <input type="hidden" name="Stars" , id="Stars" value="0" />
-                <input type="hidden" name="UserId" , value="@Model.LoggedUser.Id" />
-                <input type="hidden" name="ApartmentId" , value="@Model.Apartment.Id" />
-                <div class="tag_container_light rounded-3 mb-3 p-3">
-                    <div class="row">
-                        <div class="col-md-auto">
-                            <img src="~/Content/images/user_account.png" class="user_icon" />
-                        </div>
-                        <div class="col-sm">
-                            <div class="row h-50">
-                                <div class="col-md-auto">
-                                    <h5 style="width:fit-content">You</h5>
-                                    <div class="mb-3">
-                                        @for (int i = 1; i <= 5; i++)
-                                        {
-                                            <img id="@i" class="icon star" src="~/Content/images/star_empty.png" />
-                                        }
+            @if (Model.ShowReviewForm)
+            {
+                <form id="createReviewForm">
+                    <input type="hidden" name="Stars" , id="Stars" value="0" />
+                    <input type="hidden" name="UserId" , value="@Model.LoggedUser.Id" />
+                    <input type="hidden" name="ApartmentId" , value="@Model.Apartment.Id" />
+                    <div class="tag_container_light rounded-3 mb-3 p-3">
+                        <div class="row">
+                            <div class="col-md-auto">
+                                <img src="~/Content/images/user_account.png" class="user_icon" />
+                            </div>
+                            <div class="col-sm">
+                                <div class="row h-50">
+                                    <div class="col-md-auto">
+                                        <h5 style="width:fit-content">You</h5>
+                                        <div class="mb-3">
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                <img id="@i" class="icon star" src="~/Content/images/star_empty.png" />
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="row">
-                                    <div class="col-sm">
-                                        <textarea rows="3" cols="1" name="Details" id="details" class="form-control" placeholder="Place your review here..."></textarea>
-                                    </div>
-                                    <div class="col-md-auto">
-                                        @*<input type="submit" id="createReview" class="btn btn-outline-danger" value="Submit" style="height:100%" />*@
-                                        <button type="submit" class="btn btn-outline-danger" id="createReview" value="submit" style="height:100%">
-                                            <img src="~/Content/images/send.png" style="position: relative; top: -2px; left:3px" class="icon" />
-                                        </button>
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <textarea rows="3" cols="1" name="Details" id="details" class="form-control" placeholder="Place your review here..."></textarea>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <button type="submit" class="btn btn-outline-danger" id="createReview" value="submit" style="height:100%">
+                                                <img src="~/Content/images/send.png" style="position: relative; top: -2px; left:3px" class="icon" />
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            }
         </div>
         <div class="row mt-3 reviews_container"></div>
     </div>

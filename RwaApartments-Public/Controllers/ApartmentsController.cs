@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
+using Recaptcha.Web.Mvc;
 using RwaApartmaniDataLayer.Models;
 using RwaApartmaniDataLayer.Repositories.Factories;
 using RwaApartments_Public.Models.Auth;
@@ -27,12 +28,6 @@ namespace RwaApartments_Public.Controllers
         {
             get { return _authManager ?? HttpContext.GetOwinContext().GetUserManager<UserManager>(); }
             set { _authManager = value; }
-        }
-
-        [HttpGet]
-        public ActionResult Test()
-        {
-            return View();
         }
 
         [HttpGet]
@@ -126,18 +121,29 @@ namespace RwaApartments_Public.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult> ViewApartment(int id)
+        public async Task<ActionResult> ViewApartment(int apartmentId)
         {
             var loggedUser = await AuthManager.FindByNameAsync(User.Identity.Name);
+            bool showReviewForm = true;
             if (loggedUser == null)
-                loggedUser = new User();
+            {
+                loggedUser = new User { Id = null };
+                showReviewForm = false;
+            }
             var model = new ViewApartmentViewModel
             {
-                Apartment = RepoFactory.GetRepoInstance().LoadApartmentById(id),
-                LoggedUser = new RwaApartmaniDataLayer.Models.User(),
+                Apartment = RepoFactory.GetRepoInstance().LoadApartmentById(apartmentId),
+                ShowReviewForm = showReviewForm
             };
             return View(model);
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ViewApartment(ViewApartmentViewModel model)
+        {
+            return View(model);
+        } 
 
         [HttpPost]
         [AllowAnonymous]
@@ -149,16 +155,50 @@ namespace RwaApartments_Public.Controllers
 
         [ChildActionOnly]
         [AllowAnonymous]
-        public async Task<PartialViewResult> LoadContactReservationPartial()
+        public async Task<PartialViewResult> LoadContactReservationPartial(int apartmentId)
         {
             var loggedUser = await AuthManager.FindByNameAsync(User.Identity.Name);
+            if (loggedUser is null)
+                loggedUser = new User { Id = null };
             ContactReservationViewModel contactViewModel = new ContactReservationViewModel
             {
                 User = loggedUser,
+                ApartmentId = apartmentId,
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now
             };
             return PartialView("_ContactReservation", contactViewModel);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult SubmitApartmentReservation(ContactReservationViewModel model)
+        {
+            var firstname = model.User.FirstName;
+            var recaptchaHelper = this.GetRecaptchaVerificationHelper(secretKey: "6Ld0Ya0gAAAAAP0oJWaYw1iafuD_aEXB_GUn7iGS");
+            if (String.IsNullOrEmpty(recaptchaHelper.Response))
+            {
+                ModelState.AddModelError(
+                "",
+                "Captcha answer cannot be empty.");
+                return RedirectToAction(controllerName: "Apartments", actionName: "ViewApartment", routeValues: new { id = model.ApartmentId });
+                //return View(model);
+            }
+            var recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
+            if (!recaptchaResult.Success)
+            {
+                ModelState.AddModelError(
+                "",
+                "Incorrect captcha answer.");
+                //return View(model);
+                return RedirectToAction(controllerName: "Apartments", actionName: "ViewApartment", routeValues: new { id = model.ApartmentId });
+            }
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction(controllerName: "Apartments", actionName: "ViewApartment", routeValues: new { id = model.ApartmentId });
+            }
+
+            return RedirectToAction(controllerName: "Apartments", actionName: "ViewApartment", routeValues: new { id = model.ApartmentId });
         }
     }
 }

@@ -1,46 +1,1 @@
-﻿@model RwaApartments_Public.Models.ViewModels.ContactReservationViewModel
-<div>
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="row mb-3">
-            <div class="col-sm">
-                <h4>Contact</h4>
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                @Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First name" } })
-            </div>
-            <div class="col-sm">
-                @Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last name" } })
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "your@email.com", type = "email" } })
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                @Html.EditorFor(model => model.User.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone number" } })
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                From
-                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-            <div class="col-sm">
-                To
-                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-        <div class="row mb-3">
-            <div class="col-sm">
-                <input type="submit" value="Reserve" class="btn btn-danger" style="width:100%" />
-            </div>
-        </div>
-    }
-</div>
+﻿@using Recaptcha.Web.Mvc@model RwaApartments_Public.Models.ViewModels.ContactReservationViewModel@{     var id = Model.User.Id;}<div>    @using (Html.BeginForm(controllerName: "Apartments", actionName: "SubmitApartmentReservation", method: FormMethod.Post))    {@Html.AntiForgeryToken()@Html.HiddenFor(m => Model.ApartmentId)@Html.HiddenFor(m => Model.User.Id)<div class="row mb-3">    <div class="col-sm">        <h4>Contact</h4>    </div></div><div class="row mb-3">    <div class="col-sm">        @Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First name" } })    </div>    <div class="col-sm">        @Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last name" } })    </div></div><div class="row mb-3">    <div class="col-sm">        @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "your@email.com", type = "email" } })    </div></div><div class="row mb-3">    <div class="col-sm">        @Html.EditorFor(model => model.User.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone number" } })    </div></div><div class="row mb-3">    <div class="col-sm">        From        @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })    </div>    <div class="col-sm">        To        @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })    </div></div><div class="row mb-3">    <div class="col-sm">        <input type="submit" value="Reserve" class="btn btn-danger" style="width:100%;" />    </div>    @if (Model.User.Id == null)    {<div class="col-md-auto">    @Html.RecaptchaWidget(siteKey: "6Ld0Ya0gAAAAABWu7qi05kl8gS4MXJuc5ljtY-cH")    @if (!ViewData.ModelState.IsValid)    {<div class="alert alert-danger">    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>    @Html.ValidationSummary()</div>}</div>}</div>}</div>
