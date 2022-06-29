@@ -121,20 +121,30 @@ namespace RwaApartments_Public.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult> ViewApartment(int apartmentId)
+        public async Task<ActionResult> ViewApartment(int id)
         {
             var loggedUser = await AuthManager.FindByNameAsync(User.Identity.Name);
-            bool showReviewForm = true;
-            if (loggedUser == null)
-            {
-                loggedUser = new User { Id = null };
-                showReviewForm = false;
-            }
             var model = new ViewApartmentViewModel
             {
-                Apartment = RepoFactory.GetRepoInstance().LoadApartmentById(apartmentId),
-                ShowReviewForm = showReviewForm
+                Apartment = RepoFactory.GetRepoInstance().LoadApartmentById(id),
+                ApartmentId = id,
+                UserId = string.Empty,
+                FirstName = string.Empty,
+                LastName = string.Empty,
+                Email = string.Empty,
+                PhoneNumber = string.Empty,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
             };
+            if (loggedUser != null)
+            {
+                model.UserId = loggedUser.Id;
+                model.FirstName = loggedUser.FirstName;
+                model.LastName = loggedUser.LastName;
+                model.Email = loggedUser.Email;
+                model.PhoneNumber = loggedUser.PhoneNumber;
+                model.ShowReviewForm = true;
+            }
             return View(model);
         }
 
@@ -142,6 +152,29 @@ namespace RwaApartments_Public.Controllers
         [AllowAnonymous]
         public ActionResult ViewApartment(ViewApartmentViewModel model)
         {
+            model.Apartment = RepoFactory.GetRepoInstance().LoadApartmentById(model.ApartmentId);
+            var recaptchaHelper = this.GetRecaptchaVerificationHelper(secretKey: "6Ld0Ya0gAAAAAP0oJWaYw1iafuD_aEXB_GUn7iGS");
+            if (string.IsNullOrEmpty(recaptchaHelper.Response))
+            {
+                ModelState.AddModelError(
+                "",
+                "Captcha answer cannot be empty.");
+
+                return View(model);
+            }
+            var recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
+            if (!recaptchaResult.Success)
+            {
+                ModelState.AddModelError(
+                "",
+                "Incorrect captcha answer.");
+
+            }
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("BrowseApartments", "Apartments");
+            }
+
             return View(model);
         } 
 
@@ -174,7 +207,6 @@ namespace RwaApartments_Public.Controllers
         [AllowAnonymous]
         public ActionResult SubmitApartmentReservation(ContactReservationViewModel model)
         {
-            var firstname = model.User.FirstName;
             var recaptchaHelper = this.GetRecaptchaVerificationHelper(secretKey: "6Ld0Ya0gAAAAAP0oJWaYw1iafuD_aEXB_GUn7iGS");
             if (String.IsNullOrEmpty(recaptchaHelper.Response))
             {
@@ -190,15 +222,14 @@ namespace RwaApartments_Public.Controllers
                 ModelState.AddModelError(
                 "",
                 "Incorrect captcha answer.");
-                //return View(model);
-                return RedirectToAction(controllerName: "Apartments", actionName: "ViewApartment", routeValues: new { id = model.ApartmentId });
+                
             }
             if (ModelState.IsValid)
             {
-                return RedirectToAction(controllerName: "Apartments", actionName: "ViewApartment", routeValues: new { id = model.ApartmentId });
+                return View(model);
             }
 
-            return RedirectToAction(controllerName: "Apartments", actionName: "ViewApartment", routeValues: new { id = model.ApartmentId });
+            return View(model);
         }
     }
 }

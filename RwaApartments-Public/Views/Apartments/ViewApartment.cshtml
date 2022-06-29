@@ -1,4 +1,5 @@
-﻿@using RwaApartments_Public.Models.ViewModels
+﻿@using Recaptcha.Web.Mvc
+@using RwaApartments_Public.Models.ViewModels
 @model RwaApartments_Public.Models.ViewModels.ViewApartmentViewModel
 @{
     ViewBag.Title = Model.Apartment.NameEng;
@@ -116,11 +117,11 @@
                 {
                     //Html.RenderAction("LoadContactReservationPartial", "Apartments", routeValues: new { apartmentId = Model.Apartment.Id });
                     <div>
-                        @using (Html.BeginForm(controllerName: "Apartments", actionName: "SubmitApartmentReservation", method: FormMethod.Post))
+                        @using (Html.BeginForm(controllerName: "Apartments", actionName: "ViewApartment", method: FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(m => Model.ApartmentId)
-                            @Html.HiddenFor(m => Model.User.Id)
+                            @Html.HiddenFor(m => Model.UserId)
 
                             <div class="row mb-3">
                                 <div class="col-sm">
@@ -129,47 +130,49 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    @Html.EditorFor(model => model.User.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First name" } })
+                                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First name" } })
                                 </div>
                                 <div class="col-sm">
-                                    @Html.EditorFor(model => model.User.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last name" } })
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-sm">
-                                    @Html.EditorFor(model => model.User.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "your@email.com", type = "email" } })
+                                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last name" } })
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
-                                    @Html.EditorFor(model => model.User.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone number" } })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "your@email.com", type = "email" } })
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm">
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone number" } })
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
                                     From
-                                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
                                 <div class="col-sm">
                                     To
-                                    @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
                                     <input type="submit" value="Reserve" class="btn btn-danger" style="width:100%;" />
                                 </div>
-                                @if (Model.User.Id == null)
+                                @if (String.IsNullOrEmpty(Model.UserId))
                                 {
                                     <div class="col-md-auto">
                                         @Html.RecaptchaWidget(siteKey: "6Ld0Ya0gAAAAABWu7qi05kl8gS4MXJuc5ljtY-cH")
-                                        @if (!ViewData.ModelState.IsValid)
-                                        {
-                                            <div class="alert alert-danger">
-                                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                                                @Html.ValidationSummary()
-                                            </div>
-                                        }
+                                    </div>
+                                }
+                            </div>
+                            <div class="row mb-3">
+                                @if (!ViewData.ModelState.IsValid)
+                                {
+                                    <div class="alert alert-danger">
+                                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                        @Html.ValidationSummary()
                                     </div>
                                 }
                             </div>
@@ -183,7 +186,7 @@
             {
                 <form id="createReviewForm">
                     <input type="hidden" name="Stars" , id="Stars" value="0" />
-                    <input type="hidden" name="UserId" , value="@Model.LoggedUser.Id" />
+                    <input type="hidden" name="UserId" , value="@Model.UserId" />
                     <input type="hidden" name="ApartmentId" , value="@Model.Apartment.Id" />
                     <div class="tag_container_light rounded-3 mb-3 p-3">
                         <div class="row">
