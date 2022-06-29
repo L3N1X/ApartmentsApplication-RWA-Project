@@ -1,8 +1,8 @@
 # ApartmentsApplication-RWA-Project
 Project for "Deveopment of web applications" class at Algebra Univerity
 
-Project consists from 3 pats:
-  <li>Data layer</li>
+Project consists from 3 parts:
+  <li>Data layer (Class library)</li>
   <li>Admin application ASP.NET Webforms</li>
   <li>Public application ASP.NET MVC</li>
   
