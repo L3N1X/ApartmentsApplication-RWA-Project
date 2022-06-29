@@ -218,6 +218,7 @@
     <Compile Include="Models\ViewModels\LoginViewModel.cs" />
     <Compile Include="Models\ViewModels\StarsViewModel.cs" />
     <Compile Include="Models\ViewModels\ViewApartmentViewModel.cs" />
+    <Compile Include="Models\ViewModels\ViewUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -257,7 +258,6 @@
     <Content Include="Views\Shared\_ReviewView.cshtml" />
     <Content Include="Views\Shared\_ContactReservation.cshtml" />
     <Content Include="Views\Shared\_TagViewLight.cshtml" />
-    <Content Include="Views\Shared\_PlaceReviewView.cshtml" />
     <Content Include="Views\Shared\_ReviewListView.cshtml" />
     <Content Include="Views\Apartments\Index.cshtml" />
     <None Include="Web.Debug.config">

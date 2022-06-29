@@ -133,6 +133,7 @@ namespace RwaApartments_Public.Controllers
                 LastName = string.Empty,
                 Email = string.Empty,
                 PhoneNumber = string.Empty,
+                Details = string.Empty,
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now,
             };
@@ -153,30 +154,44 @@ namespace RwaApartments_Public.Controllers
         public ActionResult ViewApartment(ViewApartmentViewModel model)
         {
             model.Apartment = RepoFactory.GetRepoInstance().LoadApartmentById(model.ApartmentId);
-            var recaptchaHelper = this.GetRecaptchaVerificationHelper(secretKey: "6Ld0Ya0gAAAAAP0oJWaYw1iafuD_aEXB_GUn7iGS");
-            if (string.IsNullOrEmpty(recaptchaHelper.Response))
+            if (string.IsNullOrEmpty(model.UserId))
             {
-                ModelState.AddModelError(
-                "",
-                "Captcha answer cannot be empty.");
+                var recaptchaHelper = this.GetRecaptchaVerificationHelper(secretKey: "6Ld0Ya0gAAAAAP0oJWaYw1iafuD_aEXB_GUn7iGS");
+                if (string.IsNullOrEmpty(recaptchaHelper.Response))
+                {
+                    ModelState.AddModelError(
+                    "",
+                    "Captcha answer cannot be empty.");
 
-                return View(model);
-            }
-            var recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
-            if (!recaptchaResult.Success)
-            {
-                ModelState.AddModelError(
-                "",
-                "Incorrect captcha answer.");
+                    return View(model);
+                }
+                var recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
+                if (!recaptchaResult.Success)
+                {
+                    ModelState.AddModelError(
+                    "",
+                    "Incorrect captcha answer.");
 
+                }
             }
             if (ModelState.IsValid)
             {
                 return RedirectToAction("BrowseApartments", "Apartments");
             }
-
             return View(model);
-        } 
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ViewUser()
+        {
+            var loggedUser = await AuthManager.FindByNameAsync(User.Identity.Name);
+            var model = new ViewUserViewModel
+            {
+                User = RepoFactory.GetRepoInstance().LoadUserById(int.Parse(loggedUser.Id))
+            };
+            return View(model);
+        }
+
 
         [HttpPost]
         [AllowAnonymous]

@@ -158,6 +158,12 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm">
+                                    Details:
+                                    @Html.TextAreaFor(model => model.Details, htmlAttributes: new { @class = "form-control" }, columns: 1, rows: 3)
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm">
                                     <input type="submit" value="Reserve" class="btn btn-danger" style="width:100%;" />
                                 </div>
                                 @if (String.IsNullOrEmpty(Model.UserId))

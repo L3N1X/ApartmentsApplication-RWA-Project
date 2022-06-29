@@ -28,7 +28,10 @@ namespace RwaApartments_Public.Models.ViewModels
 
         [DataType(DataType.Date), Required]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
-        public DateTime EndDate { get; set; } 
+        public DateTime EndDate { get; set; }
+
+        public string Details { get; set; }
+
         public Apartment Apartment { get; set; }
         public bool ShowReviewForm { get; set; }
     }
