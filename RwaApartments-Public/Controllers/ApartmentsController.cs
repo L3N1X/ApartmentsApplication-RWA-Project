@@ -112,13 +112,13 @@ namespace RwaApartments_Public.Controllers
             return PartialView("_ReviewListView", new ApartmentReviewListModel { Reviews = reviews.Reverse() });
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult DisplayApartmentInListView(int id)
-        {
-            var model = RepoFactory.GetRepoInstance().LoadApartmentById(id);
-            return PartialView(viewName: "_ApartmentInListView", model: model);
-        }
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public ActionResult DisplayApartmentInListView(int id)
+        //{
+        //    var model = RepoFactory.GetRepoInstance().LoadApartmentById(id);
+        //    return PartialView(viewName: "_ApartmentInListView", model: model);
+        //}
 
         [HttpGet]
         [AllowAnonymous]
@@ -221,59 +221,12 @@ namespace RwaApartments_Public.Controllers
             return RedirectToAction("BrowseApartments", "Apartments");
         }
 
-
         [HttpPost]
         [AllowAnonymous]
         public ActionResult SubmitApartmentReview(ApartmentReview review)
         {
             RepoFactory.GetRepoInstance().InsertApartmentReview(review);
             return new EmptyResult();
-        }
-
-        [ChildActionOnly]
-        [AllowAnonymous]
-        public async Task<PartialViewResult> LoadContactReservationPartial(int apartmentId)
-        {
-            var loggedUser = await AuthManager.FindByNameAsync(User.Identity.Name);
-            if (loggedUser is null)
-                loggedUser = new User { Id = null };
-            ContactReservationViewModel contactViewModel = new ContactReservationViewModel
-            {
-                User = loggedUser,
-                ApartmentId = apartmentId,
-                StartTime = DateTime.Now,
-                EndTime = DateTime.Now
-            };
-            return PartialView("_ContactReservation", contactViewModel);
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public ActionResult SubmitApartmentReservation(ContactReservationViewModel model)
-        {
-            var recaptchaHelper = this.GetRecaptchaVerificationHelper(secretKey: "6Ld0Ya0gAAAAAP0oJWaYw1iafuD_aEXB_GUn7iGS");
-            if (String.IsNullOrEmpty(recaptchaHelper.Response))
-            {
-                ModelState.AddModelError(
-                "",
-                "Captcha answer cannot be empty.");
-                return RedirectToAction(controllerName: "Apartments", actionName: "ViewApartment", routeValues: new { id = model.ApartmentId });
-                //return View(model);
-            }
-            var recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
-            if (!recaptchaResult.Success)
-            {
-                ModelState.AddModelError(
-                "",
-                "Incorrect captcha answer.");
-
-            }
-            if (ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            return View(model);
         }
     }
 }

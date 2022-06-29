@@ -17,26 +17,26 @@
         <div class="row">
             <div class="col-sm">
                 <div id="carouselExampleControls" class="carousel slide rounded-3" data-ride="carousel">
-                    <div class="carousel-inner" style=" width:100%; height: 600px !important;">
+                    <div class="carousel-inner" style=" width:100%; height: 500px !important;">
                         @foreach (var picture in Model.Apartment.Pictures)
                         {
                             if (picture.Equals(Model.Apartment.RepresentativePicture))
                             {
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100 h-100" src="@picture.Base64Content" alt="apartment picture">
+                                <div class="carousel-item active" style="height:500px !important; object-fit:cover;">
+                                    <img class="w-100" style="height:500px !important; object-fit:cover;" src="@picture.Base64Content" alt="apartment picture">
                                     @if (!string.IsNullOrEmpty(picture.Name))
                                     {
-                                        <h5 class="text-white p-3" style="position: relative; top: -420px; text-align: center; background: rgba(0, 0, 0, 0.5); height:250px">@picture.Name</h5>
+                                        <h5 class="text-white p-3" style="position: relative; top: -65px; text-align: center; background: rgba(0, 0, 0, 0.5); height:75px">@picture.Name</h5>
                                     }
                                 </div>
                             }
                             else
                             {
-                                <div class="carousel-item">
-                                    <img class="d-block w-100 h-100" src="@picture.Base64Content" alt="apartment picture">
+                                <div class="carousel-item" style="height:500px !important; object-fit:cover;">
+                                    <img class="w-100" style="height:500px !important; object-fit:cover;" src="@picture.Base64Content" alt="apartment picture">
                                     @if (!string.IsNullOrEmpty(picture.Name))
                                     {
-                                        <h5 class="text-white p-3" style="position: relative; top: -420px; text-align: center; background: rgba(0, 0, 0, 0.5); height:250px">@picture.Name</h5>
+                                        <h5 class="text-white p-3" style="position: relative; top: -65px; text-align: center; background: rgba(0, 0, 0, 0.5); height:75px">@picture.Name</h5>
                                     }
                                 </div>
                             }

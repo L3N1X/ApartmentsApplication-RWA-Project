@@ -1,35 +1,7 @@
 ﻿@model RwaApartments_Public.Models.ViewModels.LoginViewModel
-
 @{
     ViewBag.Title = "Login";
 }
-
-@*<h2>Login</h2>
-<div>
-    @using (Html.BeginForm("Index", "Apartments", null, FormMethod.Post, new { role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-        <div class="mb-3">
-            @Html.LabelFor(m => m.Email)
-            @Html.TextBoxFor(m => m.Email)
-        </div>
-        <div class="mb-3">
-            @Html.LabelFor(m => m.Password)
-            @Html.PasswordFor(m => m.Password)
-        </div>
-        <button type="submit" class="btn btn-danger">Submit</button>
-        if (!ViewData.ModelState.IsValid)
-        {
-            <div class="alert alert-danger">
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                @Html.ValidationSummary()
-            </div>
-        }
-    }
-</div>*@
-
-
-
 <div class="container pt-5" style="display: flex; justify-content: center; align-items: center" id="popup_login">
     @using (Html.BeginForm("Index", "Apartments", null, FormMethod.Post, new { role = "form" }))
     {
@@ -47,9 +19,6 @@
             <div class="mb-5">
                 @Html.PasswordFor(m => m.Password, htmlAttributes: new { @class = "form-control", style = "text-align:center", placeholder = "Enter your password" })
             </div>
-            <div class="mb-3">
-                <button type="submit" class="btn btn-success" style="width: 100%">Login</button>
-            </div>
             @if (!ViewData.ModelState.IsValid)
             {
                 <div class="alert alert-danger">
@@ -57,6 +26,9 @@
                     @Html.ValidationSummary()
                 </div>
             }
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success" style="width: 100%">Login</button>
+            </div>
         </div>
     }
 </div>

@@ -6,9 +6,11 @@ using System.Web.Mvc;
 
 namespace RwaApartments_Public.Controllers
 {
+    [Authorize]
     public class ErrorController : Controller
     {
-        // GET: Error
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View();
