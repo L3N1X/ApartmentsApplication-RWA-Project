@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RwaApartments-Admin", "RwaA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RwaApartments-Public", "RwaApartments-Public\RwaApartments-Public.csproj", "{22230E5C-4429-4E01-91BE-EB92094B4F62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugApp", "DebugApp\DebugApp.csproj", "{6EC27DB7-48C6-4C84-A1CF-1FC650E0FAC4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{22230E5C-4429-4E01-91BE-EB92094B4F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22230E5C-4429-4E01-91BE-EB92094B4F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22230E5C-4429-4E01-91BE-EB92094B4F62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EC27DB7-48C6-4C84-A1CF-1FC650E0FAC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EC27DB7-48C6-4C84-A1CF-1FC650E0FAC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EC27DB7-48C6-4C84-A1CF-1FC650E0FAC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EC27DB7-48C6-4C84-A1CF-1FC650E0FAC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
