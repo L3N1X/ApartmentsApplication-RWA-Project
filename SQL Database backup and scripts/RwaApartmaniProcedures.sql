@@ -319,9 +319,31 @@ AS
 	UPDATE ApartmentPicture
 	SET Name =  @Name, IsRepresentative = @IsRepresentative
 	WHERE Guid = @Guid
+GO
+CREATE PROCEDURE LoadUserRolesByUserId
+@UserId INT
+AS
+	SELECT * FROM AspNetUserRoles WHERE UserId = @UserId
+GO
+CREATE PROCEDURE LoadUserRoleByRoleId
+@RoleId INT
+AS
+	SELECT * FROM AspNetRoles WHERE Id = @RoleId
+GO
+UPDATE AspNetUsers
+SET PasswordHash = 'D404559F602EAB6FD602AC7680DACBFAADD13630335E951F097AF3900E9DE176B6DB28512F2E000B9D04FBA5133E8B1C6E8DF59DB3A8AB9D60BE4B97CC9E81DB'
+GO
+INSERT INTO AspNetRoles (Name) VALUES ('user')
+GO
+INSERT INTO AspNetRoles (Name) VALUES ('administrator')
+GO
+INSERT INTO AspNetUserRoles (UserId, RoleId)
+SELECT Id, 1
+FROM AspNetUsers
+GO
+INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES (1,2)
 
 USE RwaApartmani
-
 SELECT * FROM TaggedApartment
 SELECT * FROM ApartmentStatus
 SELECT * FROM TagType
@@ -331,6 +353,10 @@ SELECT * FROM ApartmentPicture
 SELECT * FROM TaggedApartment
 SELECT * FROM City
 SELECT * FROM ApartmentReservation
+SELECT * FROM AspNetRoles
+SELECT * FROM AspNetUserRoles
+SELECT * FROM AspNetUsers
+
 /*1 - Occupied
 2 - Reserved
 3 - Vacant*/

@@ -286,7 +286,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RwaApartmaniDataLayer\RwaApartments-DataLayer.csproj">
+    <ProjectReference Include="..\RwaApartments-DataLayer\RwaApartments-DataLayer.csproj">
       <Project>{a026f10b-ffd7-4d3b-9787-bb536c87b26c}</Project>
       <Name>RwaApartments-DataLayer</Name>
     </ProjectReference>
