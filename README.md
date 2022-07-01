@@ -9,6 +9,29 @@ Project consists from 3 parts:
   </br>
  SQL folder contains example database backup (.bak file) used by this application
   
+  <h2>Public application</h2>
+  </hr>
+  
+  <h3>Apartments page</h3>
+  Features:
+  <li>Anonymous access</li>
+  <li>Apartments search with autocomplete</li>
+  <li>Apartments are displayed with Ajax call to backend</li>
+  <li>Filtering by avaliability and multiple sorting options</li>
+  ![Screenshot (2)](https://user-images.githubusercontent.com/67825601/176955088-d8b4377e-8203-4071-9de4-5656a458282b.png)
+
+  <h3>Apartment view</h3>
+  Features:
+  <li>Anonymous access</li>
+  <li>Bootsrap carousel, images are swapping automatically, first picture is representative pictrue specified in admin application</li>
+  <li>List of tags, basic information, title for every pictire (if exists)</li>
+  <li>Reservation form that is automatically filled with logged user data</li>
+  <li>Apartment star rating (cumulative rating from all reviews 4.5 rating = 5 stars)</li>
+  <li>User reviews fetched by Ajax call</li>
+  <li>Review form that can only be sent by logged user, (POST method by Ajax)</li>
+![Screenshot (8)](https://user-images.githubusercontent.com/67825601/176955513-59415d7e-9997-4708-b14b-8225e8288ede.png)
+
+  
   <h2>Admin application</h2>
   </hr>
  <h3>Login page</h3>
