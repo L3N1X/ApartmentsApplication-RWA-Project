@@ -11,10 +11,6 @@ namespace Zadatak01
 {
     public partial class Dashboard : DefaultPage
     {
-        //TO DO: Avoid always calling the database when refreshing
-        //Add constant apartments then filter them (maybe??)
-        //START USING NAMEOF!!!!!!
-
         private IList<Apartment> _allApartments;
         private IList<City> _allCities;
         private IList<ApartmentStatus> _allStatuses;
