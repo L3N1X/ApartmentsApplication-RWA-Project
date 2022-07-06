@@ -18,6 +18,9 @@ Project consists from 3 parts:
   <li>Apartments search with autocomplete</li>
   <li>Apartments are displayed with Ajax call to backend</li>
   <li>Filtering by avaliability and multiple sorting options</li>
+  
+  
+  
   ![Screenshot (2)](https://user-images.githubusercontent.com/67825601/176955088-d8b4377e-8203-4071-9de4-5656a458282b.png)
 
   <h3>Apartment view</h3>
@@ -29,14 +32,15 @@ Project consists from 3 parts:
   <li>Apartment star rating (cumulative rating from all reviews 4.5 rating = 5 stars)</li>
   <li>User reviews fetched by Ajax call</li>
   <li>Review form that can only be sent by logged user, (POST method by Ajax)</li>
-![Screenshot (8)](https://user-images.githubusercontent.com/67825601/176955513-59415d7e-9997-4708-b14b-8225e8288ede.png)
+  
+  ![Screenshot (8)](https://user-images.githubusercontent.com/67825601/176955513-59415d7e-9997-4708-b14b-8225e8288ede.png)
 
   
   <h2>Admin application</h2>
   </hr>
  <h3>Login page</h3>
  
-![login](https://user-images.githubusercontent.com/67825601/173871726-f4c2a086-341b-4abc-8abf-329002a1dbc8.png)
+  ![login](https://user-images.githubusercontent.com/67825601/173871726-f4c2a086-341b-4abc-8abf-329002a1dbc8.png)
 
   <h3>Dashboard page</h3>
   
