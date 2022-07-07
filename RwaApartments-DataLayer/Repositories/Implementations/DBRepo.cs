@@ -166,10 +166,9 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
         {
             throw new NotImplementedException();
         }
-
-        //Also addes role "user" via SQL procedure
-        public override Task InsertUser(User user)
+        public override void InsertUser(User user)
         {
+            //Also addes role "user" via SQL procedure
             SqlHelper.ExecuteNonQuery(APARTMENS_CS, nameof(InsertUser),
                 user.Guid,
                 user.CreatedAt,
@@ -179,7 +178,6 @@ namespace RwaApartmaniDataLayer.Repositories.Implementations
                 user.Address,
                 user.PasswordHash
                 );
-            return Task.CompletedTask;
         }
 
         public override Apartment LoadApartmentById(int id)

@@ -221,6 +221,7 @@ namespace RwaApartments_Public.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -252,13 +253,19 @@ namespace RwaApartments_Public.Controllers
                 CreatedAt = DateTime.Now,
                 Guid = Guid.NewGuid(),
             };
-            await RepoFactory.GetRepoInstance().InsertUser(newRegisteredUser);
-            var user = await AuthManager.FindAsync(model.Email, model.Password);
+            RepoFactory.GetRepoInstance().InsertUser(newRegisteredUser);
+            return RedirectToAction(actionName: "LoginAfterRegistrationAsync", controllerName: "Apartments", routeValues: new { email = newRegisteredUser.Email, password = model.Password});
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult> LoginAfterRegistrationAsync(string email, string password)
+        {
+            var user = await AuthManager.FindAsync(email, password);
             await SignInManager.SignInAsync(user, true, true);
             ViewBag.username = user.UserName;
             return RedirectToAction(actionName: "BrowseApartments", controllerName: "Apartments");
         }
-
 
         [HttpPost]
         [AllowAnonymous]
