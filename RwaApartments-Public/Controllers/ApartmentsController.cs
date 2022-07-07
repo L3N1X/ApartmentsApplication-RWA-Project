@@ -213,6 +213,62 @@ namespace RwaApartments_Public.Controllers
             return RedirectToAction("BrowseApartments", "Apartments");
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> RegisterAsync(RegisterViewModel model)
+        {
+            var recaptchaHelper = this.GetRecaptchaVerificationHelper(secretKey: "6Ld0Ya0gAAAAAP0oJWaYw1iafuD_aEXB_GUn7iGS");
+            if (string.IsNullOrEmpty(recaptchaHelper.Response))
+            {
+                ModelState.AddModelError(
+                "",
+                "Captcha answer cannot be empty.");
+
+                return View(model);
+            }
+            var recaptchaResult = recaptchaHelper.VerifyRecaptchaResponse();
+            if (!recaptchaResult.Success)
+            {
+                ModelState.AddModelError(
+                "",
+                "Incorrect captcha answer.");
+            }
+            if (!ModelState.IsValid)
+                return View(model);
+            var newRegisteredUser = new User
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                PasswordHash = RwaApartmaniDataLayer.Utils.Cryptography.SHA512(model.Password),
+                PhoneNumber = model.PhoneNumber,
+                Address = model.Address,
+                CreatedAt = DateTime.Now,
+                Guid = Guid.NewGuid(),
+            };
+            RepoFactory.GetRepoInstance().InsertUser(newRegisteredUser);
+            var user = await AuthManager.FindAsync(model.Email, model.Password);
+            if (user != null)
+            {
+                await SignInManager.SignInAsync(user, true, false);
+                ViewBag.username = user.UserName;
+                return RedirectToAction(actionName: "BrowseApartments", controllerName: "Apartments");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Username or password is incorrect");
+                return View(model);
+            }
+            return View(model);
+        }
+
+
         [HttpPost]
         [AllowAnonymous]
         public ActionResult SubmitApartmentReview(ApartmentReview review)
