@@ -27,10 +27,13 @@ namespace RwaApartments_Public.Models.ViewModels
 
         [Required(ErrorMessage = "Password is required")]
         [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please confirm specified password")]
         [Display(Name = "Confirm password")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Specified passwords don't match")]
         public string ConfirmPassword { get; set; }
     }
 }

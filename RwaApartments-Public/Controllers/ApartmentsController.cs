@@ -222,7 +222,7 @@ namespace RwaApartments_Public.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> RegisterAsync(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             var recaptchaHelper = this.GetRecaptchaVerificationHelper(secretKey: "6Ld0Ya0gAAAAAP0oJWaYw1iafuD_aEXB_GUn7iGS");
             if (string.IsNullOrEmpty(recaptchaHelper.Response))
@@ -252,20 +252,11 @@ namespace RwaApartments_Public.Controllers
                 CreatedAt = DateTime.Now,
                 Guid = Guid.NewGuid(),
             };
-            RepoFactory.GetRepoInstance().InsertUser(newRegisteredUser);
+            await RepoFactory.GetRepoInstance().InsertUser(newRegisteredUser);
             var user = await AuthManager.FindAsync(model.Email, model.Password);
-            if (user != null)
-            {
-                await SignInManager.SignInAsync(user, true, false);
-                ViewBag.username = user.UserName;
-                return RedirectToAction(actionName: "BrowseApartments", controllerName: "Apartments");
-            }
-            else
-            {
-                ModelState.AddModelError("", "Username or password is incorrect");
-                return View(model);
-            }
-            return View(model);
+            await SignInManager.SignInAsync(user, true, true);
+            ViewBag.username = user.UserName;
+            return RedirectToAction(actionName: "BrowseApartments", controllerName: "Apartments");
         }
 
 

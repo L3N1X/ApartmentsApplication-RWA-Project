@@ -521,7 +521,7 @@ namespace RwaApartmaniDataLayer.Repositories.Abstracts
 
         public abstract void InsertTagType(TagType tagType);
 
-        public abstract void InsertUser(User user);
+        public abstract Task InsertUser(User user);
 
         public abstract Apartment LoadApartmentById(int id);
 

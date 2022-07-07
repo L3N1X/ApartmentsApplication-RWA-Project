@@ -27,13 +27,13 @@
             <div class="mb-3">
                 @Html.TextBoxFor(m => m.PhoneNumber, htmlAttributes: new { @class = "form-control", style = "text-align:center", placeholder = "Enter your phone number" })
             </div>
-            <div class="mb-2">
+            <div class="mb-3">
                 @Html.PasswordFor(m => m.Password, htmlAttributes: new { @class = "form-control", style = "text-align:center", placeholder = "Enter your password" })
             </div>
             <div class="mb-3">
                 @Html.PasswordFor(m => m.ConfirmPassword, htmlAttributes: new { @class = "form-control", style = "text-align:center", placeholder = "Confirm specified password" })
             </div>
-            <div class="mb-5" style="display:flex; justify-content: center; align-items:center">
+            <div class="mb-3" style="display:flex; justify-content: center; align-items:center">
                 @Html.RecaptchaWidget(siteKey: "6Ld0Ya0gAAAAABWu7qi05kl8gS4MXJuc5ljtY-cH")
             </div>
             @if (!ViewData.ModelState.IsValid)

@@ -330,6 +330,20 @@ CREATE PROCEDURE LoadUserRoleByRoleId
 AS
 	SELECT * FROM AspNetRoles WHERE Id = @RoleId
 GO
+CREATE OR ALTER PROCEDURE InsertUser
+@Guid UNIQUEIDENTIFIER,
+@CreatedAt DATETIME,
+@UserName NVARCHAR(256),
+@Email NVARCHAR(256),
+@PhoneNumber NVARCHAR(MAX),
+@Address NVARCHAR(1000),
+@PasswordHash NVARCHAR(MAX)
+AS
+	INSERT INTO AspNetUsers(Guid, CreatedAt, Email, PasswordHash, PhoneNumber, UserName, Address, EmailConfirmed, PhoneNumberConfirmed, LockoutEnabled, AccessFailedCount)
+	VALUES(@Guid, @CreatedAt, @Email, @PasswordHash, @PhoneNumber, @UserName, @Address, 1, 1,0,0)
+	INSERT INTO AspNetUserRoles (UserId, RoleId)
+	VALUES (SCOPE_IDENTITY(), 1)
+GO
 UPDATE AspNetUsers
 SET PasswordHash = 'D404559F602EAB6FD602AC7680DACBFAADD13630335E951F097AF3900E9DE176B6DB28512F2E000B9D04FBA5133E8B1C6E8DF59DB3A8AB9D60BE4B97CC9E81DB'
 GO

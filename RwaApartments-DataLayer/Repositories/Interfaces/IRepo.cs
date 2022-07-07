@@ -65,7 +65,7 @@ namespace RwaApartmaniDataLayer.Repositories.Interfaces
         //User
         IList<User> LoadUsers();
         User LoadUserById(int id);
-        void InsertUser(User user);
+        Task InsertUser(User user);
         void DeleteUser(int id);
         User AuthUser(string username, string password);
     }
