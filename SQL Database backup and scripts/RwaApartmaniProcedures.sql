@@ -1,54 +1,54 @@
 USE RwaApartmani
 GO
 /*Bulk select procedures*/
-CREATE PROCEDURE LoadApartments
+CREATE OR ALTER PROCEDURE LoadApartments
 AS
 	SELECT * FROM Apartment WHERE Apartment.DeletedAt IS NULL
 GO
-CREATE PROCEDURE LoadApartmentOwners
+CREATE OR ALTER PROCEDURE LoadApartmentOwners
 AS
 	SELECT * FROM ApartmentOwner 
 GO
-CREATE PROCEDURE LoadApartmentPictures
+CREATE OR ALTER PROCEDURE LoadApartmentPictures
 AS
 	SELECT * 
 	FROM ApartmentPicture 
 	WHERE ApartmentPicture.DeletedAt IS NULL
 
 GO
-CREATE PROCEDURE LoadApartmentReservations
+CREATE OR ALTER PROCEDURE LoadApartmentReservations
 AS
 	SELECT *
 	FROM ApartmentReservation
 GO
-CREATE PROCEDURE LoadApartmentReviews
+CREATE OR ALTER PROCEDURE LoadApartmentReviews
 AS
 	SELECT *
 	FROM ApartmentReview
 GO
-CREATE PROCEDURE LoadApartmentReviewsByApartmentId
+CREATE OR ALTER PROCEDURE LoadApartmentReviewsByApartmentId
 @ApartmentId INT
 AS
 	SELECT *
 	FROM ApartmentReview
 	WHERE ApartmentId = @ApartmentId
 GO
-CREATE PROCEDURE LoadApartmentStatus
+CREATE OR ALTER PROCEDURE LoadApartmentStatus
 AS
 	SELECT *
 	FROM ApartmentStatus
 GO
-CREATE PROCEDURE LoadCities
+CREATE OR ALTER PROCEDURE LoadCities
 AS
 	SELECT *
 	FROM City
 GO
-CREATE PROCEDURE LoadTags
+CREATE OR ALTER PROCEDURE LoadTags
 AS
 	SELECT *
 	FROM Tag
 GO
-CREATE PROCEDURE UpdateApartmentAsReserved
+CREATE OR ALTER PROCEDURE UpdateApartmentAsReserved
 @ApartmentId INT
 AS
 	UPDATE Apartment
@@ -58,80 +58,80 @@ GO
 SELECT * FROM ApartmentStatus
 
 GO
-CREATE PROCEDURE LoadTaggedApartments
+CREATE OR ALTER PROCEDURE LoadTaggedApartments
 AS
 	SELECT *
 	FROM TaggedApartment
 GO
-CREATE PROCEDURE LoadTagTypes
+CREATE OR ALTER PROCEDURE LoadTagTypes
 AS
 	SELECT *
 	FROM TagType
 GO
-CREATE PROCEDURE LoadUsers
+CREATE OR ALTER PROCEDURE LoadUsers
 AS
 	SELECT *
 	FROM AspNetUsers
 	WHERE AspNetUsers.DeletedAt IS NULL
 GO
 /*Id select Procedures*/
-CREATE PROCEDURE LoadApartmentById
+CREATE OR ALTER PROCEDURE LoadApartmentById
 @Id INT 
 AS
 	SELECT * FROM Apartment WHERE Apartment.Id = @Id
 GO
-CREATE PROCEDURE LoadApartmentOwnerById
+CREATE OR ALTER PROCEDURE LoadApartmentOwnerById
 @Id INT
 AS
 	SELECT * FROM ApartmentOwner WHERE ApartmentOwner.Id = @Id
 GO
-CREATE PROCEDURE LoadApartmentPictureById
+CREATE OR ALTER PROCEDURE LoadApartmentPictureById
 @Id INT 
 AS
 	SELECT * FROM ApartmentPicture WHERE ApartmentPicture.Id = @Id
 GO
-CREATE PROCEDURE LoadApartmentReservationById
+CREATE OR ALTER PROCEDURE LoadApartmentReservationById
 @Id INT
 AS 
 	SELECT * FROM ApartmentReservation WHERE ApartmentReservation.Id = @Id
 GO
-CREATE PROCEDURE LoadApartmentReviewById
+CREATE OR ALTER PROCEDURE LoadApartmentReviewById
 @Id INT
 AS
 	SELECT * FROM ApartmentReview WHERE ApartmentReview.Id = @Id
 GO
-ALTER PROCEDURE LoadApartmentStatusById
+ALTER OR ALTER PROCEDURE LoadApartmentStatusById
 @Id INT
 AS
 	SELECT * FROM ApartmentStatus WHERE ApartmentStatus.Id = @Id
 GO
-CREATE PROCEDURE LoadCitiyById
+CREATE OR ALTER PROCEDURE LoadCitiyById
 @Id INT
 AS
 	SELECT * FROM City WHERE City.Id = @Id
 GO
-CREATE PROCEDURE LoadTagById
+CREATE OR ALTER PROCEDURE LoadTagById
 @Id	INT
 AS
 	SELECT * FROM Tag WHERE Tag.Id = @Id
 GO
-CREATE PROCEDURE LoadTaggedApartmentById
+CREATE OR ALTER PROCEDURE LoadTaggedApartmentById
 @Id INT
 AS
 	SELECT * FROM TaggedApartment WHERE TaggedApartment.Id = @Id
 GO
-CREATE PROCEDURE LoadTagTypeById
+CREATE OR ALTER PROCEDURE LoadTagTypeById
 @Id INT
 AS
 	SELECT * FROM TagType WHERE TagType.Id = @Id
 GO
-CREATE PROCEDURE LoadUserById
+CREATE OR ALTER PROCEDURE LoadUserById
 @Id INT
 AS
 	SELECT * FROM AspNetUsers WHERE AspNetUsers.Id = @Id
 /*Special select procedures*/
 GO
-CREATE PROCEDURE LoadTagsByApartmentId
+CREATE OR ALTER PROCEDURE LoadTagsByApartmentId
 @Id INT
 AS
 	SELECT t.Id, t.Guid, t.CreatedAt, t.Name, t.NameEng, t.TypeId
@@ -139,14 +139,14 @@ AS
 	INNER JOIN TaggedApartment as ta ON ta.TagId = t.Id
 	WHERE ta.ApartmentId = @Id
 GO
-CREATE PROCEDURE LoadApartmentPicturesByApartmentId
+CREATE OR ALTER PROCEDURE LoadApartmentPicturesByApartmentId
 @Id INT
 AS
 	SELECT * 
 	FROM ApartmentPicture 
 	WHERE ApartmentPicture.ApartmentId = @Id
 GO
-CREATE PROCEDURE LoadApartmentsByOwnerId
+CREATE OR ALTER PROCEDURE LoadApartmentsByOwnerId
 @Id INT
 AS
 	SELECT *
@@ -154,20 +154,20 @@ AS
 	WHERE Apartment.OwnerId = @Id
 /*Delete procedures*/
 GO
-CREATE PROCEDURE DeleteApartment
+CREATE OR ALTER PROCEDURE DeleteApartment
 @Id INT
 AS
 	UPDATE Apartment
 	SET Apartment.DeletedAt = GETDATE()
 	WHERE Apartment.Id = @Id
 GO
-CREATE PROCEDURE DeleteTag
+CREATE OR ALTER PROCEDURE DeleteTag
 @Id INT
 AS 
 	DELETE Tag
 	WHERE Tag.Id = @Id
 GO
-ALTER PROCEDURE DeleteTaggedApartment
+CREATE OR ALTER PROCEDURE DeleteTaggedApartment
 @ApartmentId INT,
 @TagId INT
 AS 
@@ -175,7 +175,7 @@ AS
 	WHERE ApartmentId = @ApartmentId
 	AND TagId = @TagId
 GO
-CREATE PROCEDURE DeleteUser
+CREATE OR ALTER PROCEDURE DeleteUser
 @Id INT
 AS 
 	UPDATE AspNetUsers
@@ -183,7 +183,7 @@ AS
 	WHERE AspNetUsers.Id = @Id
 GO
 /*Create procedures*/
-CREATE PROCEDURE InsertTag
+CREATE OR ALTER PROCEDURE InsertTag
 @Guid UNIQUEIDENTIFIER,
 @CreatedAt DATETIME,
 @TypeId INT,
@@ -194,7 +194,7 @@ AS
 	VALUES (@Guid, @CreatedAt, @TypeId, @Name, @NameEng)
 GO
 
-CREATE PROCEDURE InsertApartment
+CREATE OR ALTER PROCEDURE InsertApartment
 @Guid UNIQUEIDENTIFIER,
 @CreatedAt DATETIME,
 @OwnerId INT,
@@ -214,7 +214,7 @@ AS
 
 GO
 
-CREATE PROCEDURE InsertTaggedApartment
+CREATE OR ALTER PROCEDURE InsertTaggedApartment
 @Guid UNIQUEIDENTIFIER,
 @ApartmentId INT,
 @TagId INT
@@ -224,7 +224,7 @@ AS
 
 GO
 
-CREATE PROCEDURE InsertApartmentPicture
+CREATE OR ALTER PROCEDURE InsertApartmentPicture
 @Guid UNIQUEIDENTIFIER,
 @CreatedAt DATETIME,
 @ApartmentId INT,
@@ -237,7 +237,7 @@ AS
 	VALUES (@Guid, @CreatedAt, @ApartmentId, @Path, @Base64Content, @Name, @IsRepresentative)
 GO
 
-CREATE PROCEDURE InsertApartmentReview
+CREATE OR ALTER PROCEDURE InsertApartmentReview
 @Guid UNIQUEIDENTIFIER,
 @CreatedAt DATETIME,
 @ApartmentId INT,
@@ -249,14 +249,14 @@ AS
 	VALUES (@Guid, @CreatedAt, @ApartmentId, @UserId, @Details, @Stars)
 
 GO
-CREATE PROCEDURE LoadApartmentIdByGuid
+CREATE OR ALTER PROCEDURE LoadApartmentIdByGuid
 @Guid UNIQUEIDENTIFIER
 AS
 	SELECT Apartment.Id
 	FROM Apartment 
 	WHERE Guid = @Guid
-
-CREATE PROCEDURE UpdateApartment
+GO
+CREATE OR ALTER PROCEDURE UpdateApartment
 @Id INT,
 @OwnerId INT,
 @StatusId INT,
@@ -273,15 +273,14 @@ AS
 	UPDATE Apartment
 	SET OwnerId = @OwnerId, StatusId = @StatusId, CityId = @CityId, Address = @Address, Name =  @Name, NameEng = @NameEng, Price = @Price, MaxAdults = @MaxAdults, MaxChildren = @MaxChildren, TotalRooms = @TotalRooms, BeachDistance = @BeachDistance
 	WHERE Id = @Id
-
-
-CREATE PROCEDURE DeleteTaggedApartmentByApartmentId
+GO
+CREATE OR ALTER PROCEDURE DeleteTaggedApartmentByApartmentId
 @ApartmentId INT
 AS
 	DELETE TaggedApartment WHERE ApartmentId = @ApartmentId
 
 GO
-CREATE PROCEDURE InsertApartmentReservation
+CREATE OR ALTER PROCEDURE InsertApartmentReservation
 @Guid UNIQUEIDENTIFIER,
 @CreatedAt DATETIME,
 @ApartmentId INT,
@@ -295,8 +294,7 @@ AS
 	INSERT INTO ApartmentReservation (Guid, CreatedAt, ApartmentId, Details, UserId, UserName, UserEmail, UserPhone, UserAddress)
 	VALUES (@Guid, @CreatedAt, @ApartmentId, @Details, @UserId, @UserName, @UserEmail, @UserPhone, @UserAddress)
 GO
-
-CREATE PROCEDURE DeleteApartmentPicture
+CREATE OR ALTER PROCEDURE DeleteApartmentPicture
 @Guid UNIQUEIDENTIFIER
 AS
 	UPDATE ApartmentPicture
@@ -304,14 +302,12 @@ AS
 	WHERE Guid = @Guid
 
 GO
-
-CREATE PROCEDURE LoadApartmentNames
+CREATE OR ALTER PROCEDURE LoadApartmentNames
 AS
 	SELECT Apartment.NameEng FROM Apartment
 
 GO
-
-CREATE PROCEDURE UpdateApartmentPicture
+CREATE OR ALTER PROCEDURE UpdateApartmentPicture
 @Guid UNIQUEIDENTIFIER,
 @Name NVARCHAR(250),
 @IsRepresentative BIT
@@ -320,12 +316,12 @@ AS
 	SET Name =  @Name, IsRepresentative = @IsRepresentative
 	WHERE Guid = @Guid
 GO
-CREATE PROCEDURE LoadUserRolesByUserId
+CREATE OR ALTER PROCEDURE LoadUserRolesByUserId
 @UserId INT
 AS
 	SELECT * FROM AspNetUserRoles WHERE UserId = @UserId
 GO
-CREATE PROCEDURE LoadUserRoleByRoleId
+CREATE OR ALTER PROCEDURE LoadUserRoleByRoleId
 @RoleId INT
 AS
 	SELECT * FROM AspNetRoles WHERE Id = @RoleId
@@ -356,21 +352,3 @@ SELECT Id, 1
 FROM AspNetUsers
 GO
 INSERT INTO AspNetUserRoles (UserId, RoleId) VALUES (1,2)
-
-USE RwaApartmani
-SELECT * FROM TaggedApartment
-SELECT * FROM ApartmentStatus
-SELECT * FROM TagType
-SELECT * FROM ApartmentReview
-SELECT * FROM Apartment
-SELECT * FROM ApartmentPicture
-SELECT * FROM TaggedApartment
-SELECT * FROM City
-SELECT * FROM ApartmentReservation
-SELECT * FROM AspNetRoles
-SELECT * FROM AspNetUserRoles
-SELECT * FROM AspNetUsers
-
-/*1 - Occupied
-2 - Reserved
-3 - Vacant*/
