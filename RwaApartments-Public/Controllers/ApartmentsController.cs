@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Recaptcha.Web.Mvc;
 using RwaApartmaniDataLayer.Models;
 using RwaApartmaniDataLayer.Repositories.Factories;
+using RwaApartments_Public.Models;
 using RwaApartments_Public.Models.Auth;
 using RwaApartments_Public.Models.ViewModels;
 using System;
@@ -223,7 +224,7 @@ namespace RwaApartments_Public.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public ActionResult Register(RegisterViewModel model)
         {
             var recaptchaHelper = this.GetRecaptchaVerificationHelper(secretKey: "6Ld0Ya0gAAAAAP0oJWaYw1iafuD_aEXB_GUn7iGS");
             if (string.IsNullOrEmpty(recaptchaHelper.Response))
