@@ -15,7 +15,7 @@ namespace RwaApartments_Public.App_Start
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/jquery-ui.js",
                         "~/Scripts/jquery.validate.min.js",
-                        "~/Scripts/jquery.fancybox.min.js"));
+                        "~/Scripts/SlimboxScript/slimbox2.js"));
 
             bundles.Add(new Bundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
@@ -24,8 +24,8 @@ namespace RwaApartments_Public.App_Start
                       "~/Content/bootstrap.css",
                       "~/Content/validation.css",
                       "~/Content/jquery-ui.css",
-                      "~/Content/jquery.fancybocx.min.css",
-                      "~/Content/custom-styling.css"));
+                      "~/Content/custom-styling.css",
+                      "~/Content/SlimboxContent/slimbox2.css"));
         }
     }
 }

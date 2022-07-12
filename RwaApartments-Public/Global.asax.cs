@@ -18,9 +18,9 @@ namespace RwaApartments_Public
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-        //protected void Application_Error()
-        //{
-        //    Response.Redirect("~/Error/Index");
-        //}
+        protected void Application_Error()
+        {
+            Response.Redirect("~/Error/Index");
+        }
     }
 }

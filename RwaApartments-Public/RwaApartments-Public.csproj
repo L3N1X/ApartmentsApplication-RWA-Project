@@ -171,7 +171,11 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.theme.css" />
-    <Content Include="Content\jquery.fancybox.min.css" />
+    <Content Include="Content\SlimboxContent\closelabel.gif" />
+    <Content Include="Content\SlimboxContent\loading.gif" />
+    <Content Include="Content\SlimboxContent\nextlabel.gif" />
+    <Content Include="Content\SlimboxContent\prevlabel.gif" />
+    <Content Include="Content\SlimboxContent\slimbox2.css" />
     <Content Include="Global.asax" />
     <Content Include="RecaptchaNet.Readme.txt" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -187,12 +191,12 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui.js" />
-    <Content Include="Scripts\jquery.fancybox.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\SlimboxScript\slimbox2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />

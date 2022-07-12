@@ -23,7 +23,10 @@
                             if (picture.Equals(Model.Apartment.RepresentativePicture))
                             {
                                 <div class="carousel-item active" style="height:500px !important; object-fit:cover;">
-                                    <img class="w-100" style="height:500px !important; object-fit:cover;" src="@picture.Base64Content" alt="apartment picture">
+                                    @*<img class="w-100" style="height:500px !important; object-fit:cover;" src="@picture.Base64Content" alt="apartment picture">*@
+                                    <a href="@picture.Base64Content" rel="lightbox-apartment" title="@picture.Name">
+                                        <img class="w-100" style="height:500px !important; object-fit:cover;" src="@picture.Base64Content" alt="apartment picture">
+                                    </a>
                                     @if (!string.IsNullOrEmpty(picture.Name))
                                     {
                                         <h5 class="text-white p-3" style="position: relative; top: -65px; text-align: center; background: rgba(0, 0, 0, 0.5); height:75px">@picture.Name</h5>
@@ -33,7 +36,10 @@
                             else
                             {
                                 <div class="carousel-item" style="height:500px !important; object-fit:cover;">
-                                    <img class="w-100" style="height:500px !important; object-fit:cover;" src="@picture.Base64Content" alt="apartment picture">
+                                    @*<img class="w-100" style="height:500px !important; object-fit:cover;" src="@picture.Base64Content" alt="apartment picture">*@
+                                    <a href="@picture.Base64Content" rel="lightbox-apartment" title="@picture.Name">
+                                        <img class="w-100" style="height:500px !important; object-fit:cover;" src="@picture.Base64Content" alt="apartment picture">
+                                    </a>
                                     @if (!string.IsNullOrEmpty(picture.Name))
                                     {
                                         <h5 class="text-white p-3" style="position: relative; top: -65px; text-align: center; background: rgba(0, 0, 0, 0.5); height:75px">@picture.Name</h5>
