@@ -104,7 +104,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="400.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -154,13 +153,6 @@
     <Content Include="Zadatak01.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="400.aspx.cs">
-      <DependentUpon>400.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="400.aspx.designer.cs">
-      <DependentUpon>400.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AdminPage.Master.cs">
       <DependentUpon>AdminPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
