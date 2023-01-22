@@ -1,5 +1,5 @@
 # ApartmentsApplication-RWA-Project
-Project for "Deveopment of web applications" class at Algebra Univerity
+Project for "Deveopment of web applications" class at Algebra University
 
 Project consists from 3 parts:
   <li>Data layer (Class library)</li>
